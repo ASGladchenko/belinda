@@ -1,0 +1,31 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-white dark:bg-primary;
+  }
+}
+
+@layer components {
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 min-w-[40px] min-h-[40px] py-2 px-4 box-border decoration-0 rounded text-btnWhite disabled:opacity-[0.4] disabled:select-none transition-colors duration-300 ease-in-out border-[1px] border-transparent;
+  }
+
+  .btn-primary {
+    @apply bg-primary border-primary enabled:hover:bg-primaryHover enabled:active:bg-primaryActive;
+  }
+
+  .btn-outline-primary {
+    @apply bg-transparent text-primary border-primary enabled:hover:bg-primaryHover enabled:hover:text-btnWhite enabled:active:bg-primaryActive enabled:active:text-btnWhite;
+  }
+
+  .btn-secondary {
+    @apply bg-secondary border-secondary enabled:hover:bg-secondaryHover enabled:active:bg-secondaryActive;
+  }
+
+  .btn-outline-secondary {
+    @apply bg-transparent text-secondary border-secondary enabled:hover:bg-secondaryHover enabled:hover:text-btnWhite enabled:active:bg-secondaryActive enabled:active:text-btnWhite;
+  }
+}
