@@ -15,10 +15,9 @@ module.exports = {
       colors: {
         ...defaultTheme.colors,
         transparent: 'transparent',
+        white: '#FFFFFF',
 
         admin: {
-          main: '#24243E',
-          second: '#0E0E23',
           warning: '#E76971',
 
           btnWhite: '#F5F5FB',
@@ -30,6 +29,20 @@ module.exports = {
           secondary: '#f1388b',
           secondaryHover: '#ec3487',
           secondaryActive: '#f75da2',
+
+          lighten: {
+            main: '#EAEDF7',
+            second: '#FFFFFF',
+
+            border: '#bdbdd7',
+
+            grey: '#474040',
+          },
+          darken: {
+            main: '#24243E',
+            second: '#0E0E23',
+            border: '#474749',
+          },
         },
       },
       fontFamily: {
