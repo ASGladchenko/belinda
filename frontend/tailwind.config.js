@@ -16,19 +16,21 @@ module.exports = {
         ...defaultTheme.colors,
         transparent: 'transparent',
 
-        admMain: '#24243E',
-        admSecond: '#0E0E23',
-        admWarning: '#E76971',
+        admin: {
+          main: '#24243E',
+          second: '#0E0E23',
+          warning: '#E76971',
 
-        btnWhite: '#F5F5FB',
+          btnWhite: '#F5F5FB',
 
-        primary: '#6259ca',
-        primaryHover: '#403fad',
-        primaryActive: '#6259CACC',
+          primary: '#6259ca',
+          primaryHover: '#403fad',
+          primaryActive: '#6259CACC',
 
-        secondary: '#f1388b',
-        secondaryHover: '#ec3487',
-        secondaryActive: '#f75da2',
+          secondary: '#f1388b',
+          secondaryHover: '#ec3487',
+          secondaryActive: '#f75da2',
+        },
       },
       fontFamily: {
         pacifico: ['Pacifico', 'cursive'],

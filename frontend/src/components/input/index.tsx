@@ -6,7 +6,6 @@ const Input = ({
   error,
   label,
   value,
-  variant,
   disabled,
   placeholder,
   type = 'text',

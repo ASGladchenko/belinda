@@ -3,30 +3,27 @@
 @tailwind utilities;
 
 @layer base {
-  body {
-    @apply bg-white dark:bg-primary;
-  }
 }
 
 @layer components {
   .btn {
-    @apply inline-flex items-center justify-center gap-2 min-w-[40px] min-h-[40px] py-2 px-4 box-border decoration-0 rounded text-btnWhite disabled:opacity-[0.8] disabled:select-none transition-colors duration-300 ease-in-out border-[1px] border-transparent;
+    @apply inline-flex items-center justify-center gap-2 min-w-[40px] min-h-[40px] py-2 px-4 box-border decoration-0 rounded text-admin-btnWhite disabled:opacity-[0.8] disabled:select-none transition-colors duration-300 ease-in-out border-[1px] border-transparent;
   }
 
   .btn-primary {
-    @apply bg-primary border-primary enabled:hover:bg-primaryHover enabled:active:bg-primaryActive;
+    @apply bg-admin-primary border-admin-primary enabled:hover:bg-admin-primaryHover enabled:active:bg-admin-primaryActive;
   }
 
   .btn-outline-primary {
-    @apply bg-transparent text-primary border-primary enabled:hover:bg-primaryHover enabled:hover:text-btnWhite enabled:active:bg-primaryActive enabled:active:text-btnWhite;
+    @apply bg-transparent text-admin-primary border-admin-primary enabled:hover:bg-admin-primaryHover enabled:hover:text-admin-btnWhite enabled:active:bg-admin-primaryActive enabled:active:text-admin-btnWhite;
   }
 
   .btn-secondary {
-    @apply bg-secondary border-secondary enabled:hover:bg-secondaryHover enabled:active:bg-secondaryActive;
+    @apply bg-admin-secondary border-admin-secondary enabled:hover:bg-admin-secondaryHover enabled:active:bg-admin-secondaryActive;
   }
 
   .btn-outline-secondary {
-    @apply bg-transparent text-secondary border-secondary enabled:hover:bg-secondaryHover enabled:hover:text-btnWhite enabled:active:bg-secondaryActive enabled:active:text-btnWhite;
+    @apply bg-transparent text-admin-secondary border-admin-secondary enabled:hover:bg-admin-secondaryHover enabled:hover:text-admin-btnWhite enabled:active:bg-admin-secondaryActive enabled:active:text-admin-btnWhite;
   }
 
   .input-admin {

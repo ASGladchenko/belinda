@@ -7,6 +7,7 @@ import { Euro } from '@/assets/icons';
 
 import { Button, Checkbox } from '@/components';
 import { initialValues, validationSchema } from './config';
+import { InputField } from '@/components/input-field';
 
 const pacific = Pacifico({ weight: ['400'], subsets: ['cyrillic'] });
 
@@ -17,8 +18,8 @@ export default function LogIn() {
   };
 
   return (
-    <div className='flex items-center justify-center min-h-screen bg-admMain text-neutral-300'>
-      <div className='flex  flex-col justify-center items-center gap-7 p-6  max-w-[460px] w-full rounded-lg shadow-xl bg-admSecond'>
+    <div className='flex items-center justify-center min-h-screen text-neutral-300'>
+      <div className='flex  flex-col justify-center items-center gap-7 p-6  max-w-[460px] w-full rounded-lg shadow-xl bg-admin-second'>
         <h3 className={`text-5xl select-none ${pacific.className}`}>Belinda</h3>
         <div className='flex flex-col w-full gap-7'>
           <Formik
@@ -28,17 +29,16 @@ export default function LogIn() {
           >
             <Form className='flex flex-col gap-5'>
               <div>
-                {/* <Input type='text' name='username' /> */}
-                <ErrorMessage name='username' component='div' className='text-admWarning' />
+                <InputField name='login' />
               </div>
 
               <div>
                 <Field type='password' name='password' className='w-full' />
-                <ErrorMessage name='password' component='div' className='text-admWarning' />
+                <ErrorMessage name='password' component='div' className='text-admin-warning' />
               </div>
 
               <div className='flex justify-between w-full '>
-                <CommonLink href='/' className='transition duration-300 hover:text-primary'>
+                <CommonLink href='/' className='transition duration-300 hover:text-admin-primary'>
                   <span>Забыли пароль?</span>
                 </CommonLink>
 

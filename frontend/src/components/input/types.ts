@@ -6,7 +6,6 @@ export interface InputProps
   id?: string;
   name: string;
   label?: string;
-  variant: IInputVariant;
   error?: string;
   onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
 }
