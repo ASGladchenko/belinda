@@ -1,3 +1,4 @@
+import { type } from 'os';
 import { ChangeEvent, DetailedHTMLProps, InputHTMLAttributes } from 'react';
 
 export interface InputProps
@@ -5,6 +6,9 @@ export interface InputProps
   id?: string;
   name: string;
   label?: string;
+  variant: IInputVariant;
   error?: string;
   onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
 }
+
+type IInputVariant = 'admin';

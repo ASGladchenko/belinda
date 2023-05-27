@@ -3,9 +3,10 @@ import { InputProps } from './types';
 const Input = ({
   id,
   name,
+  error,
   label,
   value,
-  error,
+  variant,
   disabled,
   placeholder,
   type = 'text',

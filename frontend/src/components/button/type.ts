@@ -5,7 +5,9 @@ interface CustomButton
 
 export interface IButton extends Omit<CustomButton, 'ref'> {
   text?: string;
+  icon?: ReactNode;
   variant: IVariant;
+  iconRight?: boolean;
 }
 
 export type IVariant = 'primary' | 'outline-primary' | 'secondary' | 'outline-secondary';
