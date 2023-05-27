@@ -12,7 +12,7 @@ const SwitchPassword = (isPassword: boolean): ISwitchPassword => {
 
   const Component = (
     <div
-      className='absolute right-1.5 flex cursor-pointer top-1/2 translate-y-[-50%] text-admin-lighten-border dark:text-admin-btnWhite'
+      className='absolute right-1.5 flex cursor-pointer top-1/2 translate-y-[-50%] text-admin-lighten-border dark:text-admin-btnWhite hover:text-admin-primary dark:hover:text-admin-primary'
       onClick={() => setIsShow(!isShow)}
     >
       {isShow ? <Eye width={24} height={24} /> : <EyeOff width={24} height={24} />}

@@ -19,7 +19,7 @@ export default function LogIn() {
 
   return (
     <div className='flex items-center justify-center min-h-screen text-neutral-300'>
-      <div className='flex flex-col justify-center items-center gap-7 p-6 max-w-[460px] w-full rounded-lg shadow-xl bg-admin-lighten-second dark:bg-admin-darken-second'>
+      <div className='flex flex-col transition-[background-color] duration-300 justify-center items-center gap-7 p-6 max-w-[460px] w-full rounded-lg shadow-xl bg-admin-lighten-second dark:bg-admin-darken-second'>
         <h3
           className={`text-5xl select-none text-admin-primary dark:text-admin-btnWhite  ${pacific.className}`}
         >
