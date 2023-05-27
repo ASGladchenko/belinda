@@ -4,7 +4,7 @@ import CommonLink from 'next/link';
 import { Pacifico } from 'next/font/google';
 import { Formik, Form, FormikValues } from 'formik';
 
-import { Euro } from '@/assets/icons';
+import { Login } from '@/assets/icons';
 import { Button, Checkbox } from '@/components';
 import { InputField } from '@/components/input-field';
 
@@ -51,8 +51,8 @@ export default function LogIn() {
                 text='Войти'
                 type='submit'
                 variant='primary'
-                className='w-[200px] ml-auto'
-                icon={<Euro width={24} height={24} />}
+                className='w-[150px] ml-auto'
+                icon={<Login width={24} height={24} />}
               />
             </Form>
           </Formik>
