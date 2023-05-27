@@ -9,5 +9,3 @@ export interface InputProps
   error?: string;
   onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
 }
-
-type IInputVariant = 'admin';

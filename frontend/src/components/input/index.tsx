@@ -13,7 +13,9 @@ const Input = ({
 }: InputProps) => {
   return (
     <label className='flex flex-col'>
-      {label && <span>{label}</span>}
+      {label && (
+        <span className='pl-1 mb-1 text-sm text-text dark:text-admin-btnWhite'>{label}</span>
+      )}
 
       <input
         name={name}
@@ -28,13 +30,13 @@ const Input = ({
             props.onChange(e);
           }
         }}
-        className={`p-2 w-full h-10 border bg-lighten-white dark:bg-darken-bg-theme border-lighten-border dark:border-darken-border enabled:focus:border-primary enabled:dark:focus:border-primary
-         disabled:bg-lighten-bg-body dark:disabled:bg-darken-bg-body rounded-lg transition-colors duration-300 ease-in-out
-         ${error && 'border-red'}
+        className={`p-2 w-full h-10 border text-text dark:text-admin-btnWhite bg-transparent border-lighten-border dark:border-admin-darken-border enabled:focus:border-admin-primary enabled:dark:focus:border-admin-primary enabled:active:border-admin-primary
+         disabled:bg-lighten-bg-body dark:disabled:bg-darken-bg-body rounded-lg transition-colors duration-300 ease-in-out focus-visible:outline-none
+         ${error && 'border-admin-warning dark:border-admin-warning'}
          `}
       />
 
-      {error && <span className='text-red'>{error}</span>}
+      {error && <span className='mt-1 text-xs text-admin-warning'>{error}</span>}
     </label>
   );
 };

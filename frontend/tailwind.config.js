@@ -16,10 +16,10 @@ module.exports = {
         ...defaultTheme.colors,
         transparent: 'transparent',
         white: '#FFFFFF',
+        text: '#1D212F',
 
         admin: {
           warning: '#E76971',
-
           btnWhite: '#F5F5FB',
 
           primary: '#6259ca',
@@ -35,12 +35,12 @@ module.exports = {
             second: '#FFFFFF',
 
             border: '#bdbdd7',
-
             grey: '#474040',
           },
           darken: {
             main: '#24243E',
             second: '#0E0E23',
+
             border: '#474749',
           },
         },

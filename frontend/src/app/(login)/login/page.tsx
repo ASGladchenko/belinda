@@ -2,29 +2,30 @@
 
 import CommonLink from 'next/link';
 import { Pacifico } from 'next/font/google';
-import { Formik, Form, Field, ErrorMessage } from 'formik';
-import { Euro } from '@/assets/icons';
+import { Formik, Form, FormikValues } from 'formik';
 
+import { Euro } from '@/assets/icons';
 import { Button, Checkbox } from '@/components';
-import { initialValues, validationSchema } from './config';
 import { InputField } from '@/components/input-field';
+
+import { initialValues, validationSchema } from './config';
 
 const pacific = Pacifico({ weight: ['400'], subsets: ['cyrillic'] });
 
 export default function LogIn() {
-  const onSubmit = () => {
-    // eslint-disable-next-line no-console
-    console.log('onSubmit');
+  const onSubmit = (e: FormikValues) => {
+    console.log(e);
   };
 
   return (
     <div className='flex items-center justify-center min-h-screen text-neutral-300'>
-      <div className='flex  flex-col justify-center items-center gap-7 p-6  max-w-[460px] w-full rounded-lg shadow-xl bg-admin-lighten-second dark:bg-admin-darken-second'>
+      <div className='flex flex-col justify-center items-center gap-7 p-6 max-w-[460px] w-full rounded-lg shadow-xl bg-admin-lighten-second dark:bg-admin-darken-second'>
         <h3
           className={`text-5xl select-none text-admin-primary dark:text-admin-btnWhite  ${pacific.className}`}
         >
           Belinda
         </h3>
+
         <div className='flex flex-col w-full gap-7'>
           <Formik
             onSubmit={onSubmit}
@@ -32,14 +33,8 @@ export default function LogIn() {
             validationSchema={validationSchema}
           >
             <Form className='flex flex-col gap-5'>
-              <div>
-                <InputField name='login' />
-              </div>
-
-              <div>
-                <Field type='password' name='password' className='w-full' />
-                <ErrorMessage name='password' component='div' className='text-admin-warning' />
-              </div>
+              <InputField name='username' label='Login' />
+              <InputField name='password' type='password' label='Password' />
 
               <div className='flex justify-between w-full '>
                 <CommonLink
@@ -49,13 +44,14 @@ export default function LogIn() {
                   Забыли пароль?
                 </CommonLink>
 
-                <Checkbox name='rememberMe' label='Запамонтить меня ' className='checkbox-admin' />
+                <Checkbox name='remeber' label='Запомнить меня' className='checkbox-admin' />
               </div>
 
               <Button
                 text='Войти'
+                type='submit'
                 variant='primary'
-                className='w-[250px] ml-auto'
+                className='w-[200px] ml-auto'
                 icon={<Euro width={24} height={24} />}
               />
             </Form>
