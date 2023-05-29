@@ -1,37 +1,26 @@
 import { NestFactory } from '@nestjs/core';
-import { ConfigService } from '@nestjs/config';
-import { DocumentBuilder } from '@nestjs/swagger';
-import { SwaggerModule } from '@nestjs/swagger/dist';
+import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 
 import { AppModule } from './app.module';
 
+const port = process.env.PORT;
+
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-  app.enableCors({
-    origin: '*',
-    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-    preflightContinue: false,
-    optionsSuccessStatus: 204,
-  });
-
   app.setGlobalPrefix('api');
 
-  const config = await app.get(ConfigService);
   const configSwagger = new DocumentBuilder()
-    .setTitle('Axesystem - BACKEND')
+    .setTitle('Belinda - BACKEND')
     .setDescription('Rest API Documentation')
     .setVersion('1.0.0')
-    .addTag('Axesystem')
+    .addTag('Belinda')
     .build();
 
   const document = SwaggerModule.createDocument(app, configSwagger);
-  SwaggerModule.setup('swagger', app, document);
-
-  const port = config.get('PORT');
+  SwaggerModule.setup('swagger-ui', app, document);
 
   await app.listen(port || 5000, () =>
     console.log(`Started on the port:${port}`),
   );
 }
-
 bootstrap();
