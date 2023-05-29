@@ -1,4 +1,11 @@
-import { Body, Controller, HttpCode, Post } from '@nestjs/common';
+import {
+  Body,
+  Post,
+  HttpCode,
+  Controller,
+  HttpStatus,
+  HttpException,
+} from '@nestjs/common';
 import {
   ApiTags,
   ApiOperation,
@@ -19,13 +26,17 @@ export class RoleController {
   constructor(private roleService: RoleService) {}
 
   @Post('create')
-  @ApiOperation({ summary: 'Create only admin' })
+  @ApiOperation({ summary: 'Create admin only' })
   @ApiCreatedResponse({
     type: RoleDto,
     description: 'CREATED',
   })
   @ApiBadRequestResponse({ description: 'BAD REQUEST' })
   async create(@Body() { role, password }: RoleDto): Promise<RoleEntity> {
+    const roleAdmin = this.roleService.getRole(role);
+    if (roleAdmin) {
+      throw new HttpException('Admin exists', HttpStatus.BAD_REQUEST);
+    }
     return await this.roleService.create({ role, password });
   }
 

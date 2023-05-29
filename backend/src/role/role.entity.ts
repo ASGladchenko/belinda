@@ -7,7 +7,7 @@ export class RoleEntity {
   @PrimaryGeneratedColumn('uuid')
   id: number;
 
-  @ApiProperty({ example: 'admin' })
+  @ApiProperty({ uniqueItems: true, example: 'admin' })
   @Column()
   role: string;
 

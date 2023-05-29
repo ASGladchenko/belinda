@@ -20,4 +20,8 @@ export class RoleService {
   async login({ role }: RoleDto): Promise<RoleEntity> {
     return await this.roleRepository.findOneBy({ role });
   }
+
+  async getRole(role: string): Promise<RoleEntity> {
+    return await this.roleRepository.findOneBy({ role });
+  }
 }
