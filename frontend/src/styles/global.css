@@ -3,6 +3,20 @@
 @tailwind utilities;
 
 @layer base {
+  *::-webkit-scrollbar {
+    @apply w-[9px] hidden;
+  }
+  *::-webkit-scrollbar-track {
+    @apply bg-admin-lighten-second dark:bg-admin-darken-second;
+  }
+
+  *::-webkit-scrollbar-thumb {
+    @apply border-2 border-transparent border-solid lg:border-4 bg-admin-primary rounded-xl bg-clip-content;
+  }
+
+  *::-webkit-scrollbar-thumb:hover {
+    @apply border-2 bg-admin-primaryHover;
+  }
 }
 
 @layer components {
