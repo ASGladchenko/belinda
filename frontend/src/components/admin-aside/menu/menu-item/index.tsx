@@ -27,10 +27,10 @@ export default function MenuItem({ isNavBar, name, href, Icon }: IMenuItem) {
     },
   );
   const mainLinkClass = clsx(
-    'relative min-h-[56px] flex items-center w-full gap-6 py-2 pl-2 rounded-l-full outline-none cursor-pointer group',
+    'relative min-h-[56px] flex items-center w-full gap-6 pl-2 rounded-l-full outline-none cursor-pointer group',
     {
       'dark:bg-admin-darken-main bg-admin-lighten-main': isActive,
-      'bg-admin-lighten-second  dark:bg-admin-darken-second': !isActive,
+      'bg-admin-lighten-second dark:bg-admin-darken-second': !isActive,
     },
   );
   const iconLinkClass = clsx(
@@ -42,6 +42,7 @@ export default function MenuItem({ isNavBar, name, href, Icon }: IMenuItem) {
         !isActive,
     },
   );
+
   return (
     <li>
       <Link href={href} className={mainLinkClass}>
