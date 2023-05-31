@@ -1,5 +1,5 @@
 import { menuList } from './config';
-import MenuItem from './menu-item';
+import { MenuItem } from './menu-item';
 
 export default function Menu({ isNavBar }: { isNavBar: boolean }) {
   return (

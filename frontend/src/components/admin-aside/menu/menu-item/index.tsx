@@ -5,7 +5,7 @@ import { usePathname } from 'next/navigation';
 
 import { IMenuItem } from '../types';
 
-export default function MenuItem({ isNavBar, name, href, Icon }: IMenuItem) {
+export function MenuItem({ isNavBar, name, href, Icon }: IMenuItem) {
   const pathname = usePathname();
 
   const isActive = pathname === href;
