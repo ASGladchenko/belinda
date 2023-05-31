@@ -10,12 +10,13 @@ export default function MenuItem({ isNavBar, name, href, Icon }: IMenuItem) {
 
   const isActive = pathname === href;
 
-  console.log(pathname === href);
-
   const linkNameClass = clsx(
-    'whitespace-nowrap transition-links duration-500 overflow-hidden group-hover:pl-3 group-active:pl-3 select-none text-black dark:text-white group-hover:text-admin-primaryHover capitalize',
+    'whitespace-nowrap transition-links duration-500 overflow-hidden group-hover:pl-3 select-none  capitalize',
     { 'scale-0 transition ': !isNavBar },
-    { 'text-admin-primaryHover pl-3': isActive }
+    {
+      'text-admin-primaryHover pl-3 ': isActive,
+      'group-hover:text-admin-primaryHover dark:text-white ': !isActive,
+    }
   );
 
   const borderLinkClass = clsx(
