@@ -16,7 +16,7 @@ export default function MenuItem({ isNavBar, name, href, Icon }: IMenuItem) {
     {
       'text-admin-primaryHover pl-3 ': isActive,
       'group-hover:text-admin-primaryHover dark:text-white ': !isActive,
-    }
+    },
   );
 
   const borderLinkClass = clsx(
@@ -24,27 +24,31 @@ export default function MenuItem({ isNavBar, name, href, Icon }: IMenuItem) {
     {
       ' block': isActive,
       hidden: !isActive,
-    }
+    },
   );
   const mainLinkClass = clsx(
-    'relative flex items-center w-full gap-6 py-2 pl-2 rounded-l-full outline-none cursor-pointer   group',
+    'relative min-h-[56px] flex items-center w-full gap-6 py-2 pl-2 rounded-l-full outline-none cursor-pointer group',
     {
       'dark:bg-admin-darken-main bg-admin-lighten-main': isActive,
       'bg-admin-lighten-second  dark:bg-admin-darken-second': !isActive,
-    }
+    },
   );
   const iconLinkClass = clsx(
     'transition-all duration-300 focus-visible:outline-none dark:fill-white dark:stroke-white',
     {
-      'p-2 rounded-full bg-admin-primary drop-shadow-md fill-white dark:fill-black': isActive,
-      'dark:group-hover:fill-admin-primary group-hover:fill-admin-primary ': !isActive,
-    }
+      'p-2 rounded-full bg-admin-primary drop-shadow-md fill-white dark:fill-black ml-0`':
+        isActive,
+      'dark:group-hover:fill-admin-primary group-hover:fill-admin-primary  ml-2':
+        !isActive,
+    },
   );
   return (
     <li>
       <Link href={href} className={mainLinkClass}>
         <span className={`${borderLinkClass} -top-6 after:rounded-br-full`} />
-        <span className={`${borderLinkClass} -bottom-6 after:rounded-tr-full`} />
+        <span
+          className={`${borderLinkClass} -bottom-6 after:rounded-tr-full`}
+        />
         <div className={iconLinkClass}>
           <Icon width={24} height={24} />
         </div>
