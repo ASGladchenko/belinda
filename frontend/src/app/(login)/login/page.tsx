@@ -1,19 +1,12 @@
 'use client';
 import CommonLink from 'next/link';
-import { Pacifico } from 'next/font/google';
+import { pacifico } from '@/fonts/fonts';
 import { Formik, Form, FormikValues } from 'formik';
 
 import { Login } from '@/assets/icons';
 import { Button, Checkbox } from '@/components';
 import { InputField } from '@/components/input-field';
 import { initialValues, validationSchema } from './config';
-
-export const pacifico = Pacifico({
-  weight: ['400'],
-  display: 'swap',
-  variable: '--font-pacifico',
-  subsets: ['latin', 'cyrillic'],
-});
 
 export default function LogIn() {
   const onSubmit = (e: FormikValues) => {
