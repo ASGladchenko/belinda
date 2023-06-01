@@ -3,12 +3,11 @@ import { useState } from 'react';
 
 import { Login } from '@/assets/icons';
 import { pacifico } from '@/fonts/fonts';
+import { Button } from '@/components/button';
+import { ThemeIcons } from '@/components/theme-icons';
+import LanguageSelection from '@/components/language-selection';
 
-import { Button } from '../button';
-import { ThemeIcons } from '../theme-icons';
-import LanguageSelection from '../language-selection';
-
-export default function AdminHeader() {
+export default function Header() {
   const [lang, setLang] = useState('ukrainian');
 
   const onExit = () => console.log('Exit');
