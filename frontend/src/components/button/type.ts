@@ -1,7 +1,10 @@
 import { ButtonHTMLAttributes, DetailedHTMLProps, ReactNode } from 'react';
 
 interface CustomButton
-  extends DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement> {}
+  extends DetailedHTMLProps<
+    ButtonHTMLAttributes<HTMLButtonElement>,
+    HTMLButtonElement
+  > {}
 
 export interface IButton extends Omit<CustomButton, 'ref'> {
   text?: string;
@@ -10,4 +13,10 @@ export interface IButton extends Omit<CustomButton, 'ref'> {
   iconRight?: boolean;
 }
 
-export type IVariant = 'primary' | 'outline-primary' | 'secondary' | 'outline-secondary';
+export type IVariant =
+  | 'primary'
+  | 'secondary'
+  | 'ghost-primary'
+  | 'outline-primary'
+  | 'ghost-secondary'
+  | 'outline-secondary';

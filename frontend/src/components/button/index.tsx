@@ -1,14 +1,24 @@
 'use client';
 import clsx from 'clsx';
 import { IButton } from './type';
-import { setVariant } from './helpers';
+import { setClass } from './helpers';
 
-export const Button = ({ variant, text, className, icon, iconRight, ...rest }: IButton) => {
-  const btnClass = 'btn' + setVariant(variant);
-  const classIcon = clsx('order-0', { 'order-1': iconRight });
+export const Button = ({
+  icon,
+  text,
+  variant,
+  className,
+  iconRight,
+  ...rest
+}: IButton) => {
+  const btnStyles = setClass(variant);
+  const classIcon = clsx({ 'order-1': iconRight, 'order-0': !iconRight });
 
   return (
-    <button {...rest} className={className ? `${className} ${btnClass}` : btnClass}>
+    <button
+      {...rest}
+      className={className ? `${btnStyles} ${className}` : btnStyles}
+    >
       {icon && <div className={classIcon}>{icon}</div>}
       {text && <span>{text}</span>}
     </button>

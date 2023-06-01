@@ -1,4 +1,5 @@
 export { default as Company } from './admin/company.svg';
+export { default as Add } from './admin/added.svg';
 export { default as Euro } from './euro.svg';
 export { default as Eye } from './eye.svg';
 export { default as EyeOff } from './eyeOff.svg';
@@ -7,6 +8,6 @@ export { default as Left } from './left.svg';
 export { default as Login } from './login.svg';
 export { default as Product } from './admin/product.svg';
 export { default as Right } from './right.svg';
-export { default as Web } from './admin/webpage.svg';
 export { default as Ua } from './flags/ua.svg';
 export { default as Uk } from './flags/uk.svg';
+export { default as Web } from './admin/webpage.svg';
