@@ -3,22 +3,37 @@ import clsx from 'clsx';
 import { IVariant } from './type';
 
 export const setClass = (variant: IVariant) => {
+  const primaryColor =
+    'border-admin-primary enabled:hover:bg-admin-primaryHover enabled:active:bg-admin-primaryActive';
+
+  const secondaryColor =
+    'bg-admin-secondary border-admin-secondary enabled:hover:bg-admin-secondaryHover enabled:active:bg-admin-secondaryActive ';
+
+  const outlineVariant = 'bg-transparent enabled:hover:text-white';
+
+  const ghostVariant =
+    'enabled:text-black dark:enable:text-black dark:enabled:hover:text-white enabled:dark:text-white border-transparent';
+
+  const baseVariant = 'enabled:text-white enabled:dark:text-white ';
+
   return clsx(
-    `flex items-center justify-center gap-2 py-2 px-4 box-border decoration-0 rounded disabled:opacity-[0.8] disabled:select-none transition-colors duration-300 ease-in-out border-[1px]`,
+    `flex items-center justify-center gap-2 py-2 px-4 box-border decoration-0 rounded disabled:opacity-[0.8] disabled:select-none transition-colors duration-300 ease-in-out border`,
     {
-      'enabled:text-white enabled:dark:text-white bg-admin-primary border-admin-primary enabled:hover:bg-admin-primaryHover enabled:active:bg-admin-primaryActive':
+      [`${primaryColor} ${baseVariant} bg-admin-primary`]:
         variant === 'primary',
 
-      'bg-transparent text-admin-primary border-admin-primary enabled:hover:bg-admin-primaryHover enabled:hover:text-admin-btnWhite enabled:active:bg-admin-primaryActive enabled:active:text-admin-btnWhite':
+      [`${primaryColor} ${outlineVariant} text-admin-primary`]:
         variant === 'outline-primary',
 
-      'bg-admin-secondary border-admin-secondary enabled:hover:bg-admin-secondaryHover enabled:active:bg-admin-secondaryActive':
-        variant === 'secondary',
+      [`${secondaryColor} ${baseVariant}`]: variant === 'secondary',
 
-      'bg-transparent text-admin-secondary border-admin-secondary enabled:hover:bg-admin-secondaryHover enabled:hover:text-admin-btnWhite enabled:active:bg-admin-secondaryActive enabled:active:text-admin-btnWhite':
+      [`${secondaryColor} ${outlineVariant} text-admin-secondary`]:
         variant === 'outline-secondary',
 
-      'text-admin-lighten-grey dark:text-white enabled:hover:text-admin-primaryHover dark:enabled:hover:text-white  enabled:hover:bg-admin-lighten-main dark:enabled:hover:bg-admin-darken-main border-transparent':
+      [`${ghostVariant} enabled:hover:bg-admin-secondaryActive`]:
+        variant === 'ghost-secondary',
+
+      [`${ghostVariant} enabled:hover:bg-admin-lighten-main dark:enabled:hover:bg-admin-darken-main`]:
         variant === 'ghost-primary',
     },
   );
