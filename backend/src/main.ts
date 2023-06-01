@@ -2,12 +2,14 @@ import { NestFactory } from '@nestjs/core';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 
 import { AppModule } from './app.module';
+import { ValidationPipe } from './pipes';
 
 const port = process.env.PORT;
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.setGlobalPrefix('api');
+  app.useGlobalPipes(new ValidationPipe());
 
   const configSwagger = new DocumentBuilder()
     .setTitle('Belinda - BACKEND')
@@ -17,9 +19,9 @@ async function bootstrap() {
     .build();
 
   const document = SwaggerModule.createDocument(app, configSwagger);
-  SwaggerModule.setup('swagger-ui', app, document);
+  SwaggerModule.setup('swagger-ui/', app, document);
 
-  await app.listen(port || 5000, () =>
+  await app.listen(port || 4200, () =>
     console.log(`Started on the port:${port}`),
   );
 }

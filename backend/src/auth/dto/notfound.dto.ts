@@ -9,5 +9,5 @@ export class NotFoundResponse {
   @ApiProperty({
     default: 'Login not found',
   })
-  message: string;
+  message: string | string[];
 }
