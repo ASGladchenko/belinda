@@ -2,7 +2,7 @@ import clsx from 'clsx';
 
 export const getStyles = (isNavBar: boolean) => ({
   aside: clsx(
-    'fixed translate-x-[-100%] lg:translate-x-[0] w-full h-full lg:relative max-w-[250px] lg:max-w-[100px] duration-500 transition-aside bg-admin-lighten-second dark:bg-admin-darken-second py-5 pl-2 ',
+    'fixed translate-x-[-100%] lg:translate-x-[0] w-full h-full lg:relative max-w-[250px] lg:max-w-[100px] duration-500 transition-aside bg-admin-lighten-second dark:bg-admin-darken-second py-5 pl-2 z-100',
     {
       'translate-x-[0] lg:max-w-[250px]': isNavBar,
     },
