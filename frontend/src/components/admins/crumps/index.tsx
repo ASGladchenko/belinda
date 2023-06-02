@@ -26,6 +26,7 @@ const Crumps = ({ crumps }: { crumps: { name: string; path: string }[] }) => {
             >
               {el.name}
             </Link>
+
             <span className="select-none text-admin-lighten-crumps dark:text-admin-darken-crumps">{`>`}</span>
           </>
         );

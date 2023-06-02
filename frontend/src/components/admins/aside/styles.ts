@@ -11,7 +11,7 @@ export const getStyles = (isNavBar: boolean) => ({
   switcher: clsx(
     'absolute p-3 lg:p-1 text-white transition duration-300 cursor-pointer rounded-full bg-admin-primary hover:bg-admin-primaryHover z-100',
     {
-      'translate-x-[-4px] duration-300 translate-x-1/2 bottom-[135px] lg:bottom-20 right-0':
+      'duration-300 translate-x-1/2  bottom-[135px] lg:bottom-20 right-0':
         isNavBar,
       'translate-x-full duration-300 lg:translate-x-1/3 bottom-[135px] lg:bottom-20 right-0 ':
         !isNavBar,
