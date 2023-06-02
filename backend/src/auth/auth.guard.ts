@@ -19,11 +19,12 @@ export class AuthGuard implements CanActivate {
     let isValid = false;
 
     if (token || refresh) {
-      const getJwtToken = token ?? refresh;
+      const getJwtToken = refresh ? refresh : token;
       try {
         const payload = await this.jwtService.verifyAsync(getJwtToken, {
           secret: process.env.SECRET_KEY,
         });
+
         request['user'] = payload;
         isValid = true;
       } catch {
