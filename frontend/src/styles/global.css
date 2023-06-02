@@ -3,6 +3,9 @@
 @tailwind utilities;
 
 @layer base {
+  * {
+    @apply box-border text-base;
+  }
   .scroll::-webkit-scrollbar {
     @apply w-[9px];
   }

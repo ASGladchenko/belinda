@@ -20,7 +20,7 @@ export const Button = ({
       className={className ? `${btnStyles} ${className}` : btnStyles}
     >
       {icon && <div className={classIcon}>{icon}</div>}
-      {text && <span>{text}</span>}
+      {text && <span className="select-none">{text}</span>}
     </button>
   );
 };

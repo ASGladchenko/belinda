@@ -9,17 +9,17 @@ export const getStyles = (isNavBar: boolean) => ({
   ),
 
   switcher: clsx(
-    'absolute bottom-[80px] p-3 lg:p-1 text-white transition duration-300 cursor-pointer  rounded-3xl bg-admin-primary hover:bg-admin-primaryHover z-100',
+    'absolute p-3 lg:p-1 text-white transition duration-300 cursor-pointer rounded-full bg-admin-primary hover:bg-admin-primaryHover z-100',
     {
-      'translate-x-[-4px] duration-300 lg:translate-x-1/3 right-2 lg:right-0':
+      'translate-x-[-4px] duration-300 translate-x-1/2 bottom-[135px] lg:bottom-20 right-0':
         isNavBar,
-      'translate-x-full duration-300 lg:translate-x-1/3 right-[-4px] lg:right-0 ':
+      'translate-x-full duration-300 lg:translate-x-1/3 bottom-[135px] lg:bottom-20 right-0 ':
         !isNavBar,
     },
   ),
 
   header: clsx(
-    'flex w-full justify-center transition-all duration-300 mb-4 font-bold select-none',
+    'flex w-full justify-center transition-all min-h-[28px] duration-300 mb-4 font-bold select-none',
     {
       'text-lg ': isNavBar,
       'text-xs  ': !isNavBar,

@@ -4,6 +4,7 @@ const Crumps = ({ crumps }: { crumps: { name: string; path: string }[] }) => {
   return (
     <div className="flex gap-2 text-sm font-medium capitalize text-admin-lighten-border darken:text-text ">
       {crumps.map((el, index) => {
+        if (!index) return;
         if (index === crumps.length - 1) {
           return (
             <>
