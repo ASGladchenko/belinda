@@ -1,6 +1,5 @@
 'use client';
 import CommonLink from 'next/link';
-import { pacifico } from '@/fonts/fonts';
 import { Formik, Form, FormikValues } from 'formik';
 
 import { Login } from '@/assets/icons';
@@ -16,11 +15,10 @@ export default function LogIn() {
   return (
     <div className="flex items-center justify-center min-h-screen text-neutral-300">
       <div className="flex  flex-col justify-center items-center gap-7 p-6  max-w-[460px] w-full rounded-lg shadow-xl bg-admin-lighten-second dark:bg-admin-darken-second">
-        <h3
-          className={`${pacifico.className} text-5xl select-none text-admin-primary dark:text-admin-btnWhite`}
-        >
+        <h3 className="text-5xl select-none text-admin-primary dark:text-admin-btnWhite font-pacifico">
           Belinda
         </h3>
+
         <div className="flex flex-col w-full gap-7">
           <Formik
             onSubmit={onSubmit}

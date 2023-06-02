@@ -26,6 +26,7 @@ module.exports = {
           primary: '#6259ca',
           primaryHover: '#403fad',
           primaryActive: '#6259CACC',
+          headPage: '#170c6b',
 
           secondary: '#f1388b',
           secondaryHover: '#ec3487',
@@ -59,6 +60,11 @@ module.exports = {
         },
       },
 
+      fontFamily: {
+        pacifico: ['var(--font-pacifico)', 'sans-serif'],
+        inter: ['var(--font-inter)', 'sans-serif'],
+      },
+
       transitionProperty: {
         ...defaultTheme.transitionProperty,
         width: 'width, max-width',
@@ -69,7 +75,8 @@ module.exports = {
 
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-        'gradient-conic': 'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
+        'gradient-conic':
+          'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
       },
       zIndex: {
         ...defaultTheme.zIndex,
