@@ -36,12 +36,20 @@ module.exports = {
             main: '#EAEDF7',
             second: '#FFFFFF',
 
+            crumps: '#8f9cc0',
+            crumpsActive: '#7787bc',
+            crumpsHover: '#170c6b',
+
             grey: '#474040',
             border: '#bdbdd7',
           },
           darken: {
             main: '#24243E',
             second: '#0E0E23',
+
+            crumps: '#8f9cc0',
+            crumpsActive: '#D0D0E2',
+            crumpsHover: '#FFFFFF',
 
             border: '#474749',
           },
