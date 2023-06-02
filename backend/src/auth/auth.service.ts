@@ -68,6 +68,9 @@ export class AuthService {
     const roleAdmin = await this.roleRepository.findOneBy({
       id: decodedToken.id,
     });
+
+    if (!roleAdmin.refresh_token) throw new ForbiddenException();
+
     const newTokens = await this.getTokens(decodedToken.id, decodedToken.role);
 
     return {
