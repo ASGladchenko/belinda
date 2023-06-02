@@ -3,8 +3,7 @@ import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
 import { Connection } from './connection';
-import { UserModule } from './user/user.module';
-import { RoleModule } from './role/role.module';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -14,8 +13,7 @@ import { RoleModule } from './role/role.module';
       synchronize: false,
       autoLoadEntities: true,
     }),
-    UserModule,
-    RoleModule,
+    AuthModule,
   ],
 })
 export class AppModule {}
