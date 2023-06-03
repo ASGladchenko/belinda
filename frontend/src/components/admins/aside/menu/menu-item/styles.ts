@@ -19,7 +19,7 @@ export const getStyles = (isActive: boolean, isNavBar: boolean) => ({
   ),
 
   main: clsx(
-    'relative min-h-[56px] flex items-center w-full gap-6 pl-2 rounded-l-full outline-none cursor-pointer group',
+    'relative min-h-[56px] flex items-center w-full gap-6 pl-2 pr-2 lg:pr-0 rounded-l-full rounded-r-full lg:rounded-r-none outline-none cursor-pointer group',
     {
       'dark:bg-admin-darken-main bg-admin-lighten-main': isActive,
       'bg-admin-lighten-second dark:bg-admin-darken-second': !isActive,

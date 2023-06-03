@@ -32,6 +32,9 @@ module.exports = {
           secondaryHover: '#ec3487',
           secondaryActive: '#f75da2',
 
+          overlay: 'rgba(36, 36, 61, 0.6);',
+          overlay1: 'rgba(234, 237, 247, 0.4);',
+
           lighten: {
             main: '#EAEDF7',
             second: '#FFFFFF',
@@ -79,6 +82,7 @@ module.exports = {
         aside: 'transform, width, max-width',
         rotate: 'rotate',
         links: 'padding, transform, color',
+        opacity: 'opacity',
       },
 
       backgroundImage: {
@@ -89,6 +93,7 @@ module.exports = {
       zIndex: {
         ...defaultTheme.zIndex,
         100: '100',
+        999: '999',
       },
     },
   },

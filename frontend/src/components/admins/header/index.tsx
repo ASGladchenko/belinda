@@ -12,7 +12,7 @@ export default function Header() {
   const onExit = () => console.log('Exit');
 
   return (
-    <header className="flex items-center justify-between transition w-full h-[65px] bg-admin-lighten-second dark:bg-admin-darken-second border-b border-admin-lighten-border dark:border-admin-darken-border drop-shadow-lg dark:drop-shadow-lg duration-0 px-8">
+    <header className="relative flex items-center justify-between transition w-full h-[65px] bg-admin-lighten-second dark:bg-admin-darken-second border-b border-admin-lighten-border dark:border-admin-darken-border drop-shadow-lg dark:drop-shadow-lg duration-0 px-8 z-999">
       <h3 className={`text-xl cursor-pointer font-pacifico`}>Belinda</h3>
       <div className="flex items-center gap-6 flex-nowrap">
         <LanguageSelection selectLang={lang} onSelect={setLang} />

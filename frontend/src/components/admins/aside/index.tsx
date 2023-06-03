@@ -22,7 +22,7 @@ export default function Aside() {
         />
       </div>
 
-      <h2 className={header}>DASHBOARD</h2>
+      <h2 className={header}>Dashboard</h2>
 
       <div className="w-full h-[95%] overflow-y-auto scroll lg:pb-0 lg:h-full overflow-x-hidden">
         <Menu isNavBar={isNavBar} />
