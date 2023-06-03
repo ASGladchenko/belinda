@@ -27,7 +27,7 @@ export default function Products() {
         duration={duration}
         isAnimation={isAnimation}
         setClose={() => setOpen(false)}
-        // TODO PRoblem !!!!!!!!!!!
+        // TODO: PRoblem !!!!!!!!!!!
         onCreate={() => alert('Create')}
       >
         <Formik

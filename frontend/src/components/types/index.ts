@@ -22,3 +22,8 @@ export interface CheckboxProps
   error?: string;
   placeholder?: string;
 }
+
+export interface IAuth {
+  role: string;
+  password: string;
+}

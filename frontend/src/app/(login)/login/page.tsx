@@ -1,15 +1,25 @@
 'use client';
 import CommonLink from 'next/link';
-import { Formik, Form, FormikValues } from 'formik';
+import { Formik, Form } from 'formik';
 
+import { api } from '@/http';
 import { Login } from '@/assets/icons';
+import { IAuth } from '@/components/types';
 import { Button, Checkbox } from '@/components';
 import { InputField } from '@/components/input-field';
+
 import { initialValues, validationSchema } from './config';
 
 export default function LogIn() {
-  const onSubmit = (e: FormikValues) => {
+  const onSubmit = async (e: IAuth) => {
     console.log(e);
+
+    try {
+      const response = await api.login(e);
+      console.log(response);
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   return (
@@ -26,7 +36,7 @@ export default function LogIn() {
             validationSchema={validationSchema}
           >
             <Form className="flex flex-col gap-5">
-              <InputField name="username" label="Login" />
+              <InputField name="role" label="Login" />
               <InputField name="password" type="password" label="Password" />
 
               <div className="flex justify-between w-full ">
