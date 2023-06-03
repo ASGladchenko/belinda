@@ -94,6 +94,7 @@ module.exports = {
         ...defaultTheme.zIndex,
         100: '100',
         999: '999',
+        1000: '1000',
       },
     },
   },

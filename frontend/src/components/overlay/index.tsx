@@ -20,8 +20,6 @@ export const Overlay = ({
   isAnimation,
   duration = 300,
 }: ChildrenProps<IOverlay>) => {
-  const delay = duration - 300;
-
   const childRef = useRef<HTMLDivElement>(null);
 
   const [isTouched, setIsTouched] = useState(false);
@@ -98,7 +96,7 @@ export const Overlay = ({
   return ReactDOM.createPortal(
     <div
       className={overlay}
-      style={!isAnimation ? { transitionDelay: `${delay}ms` } : {}}
+      style={!isAnimation ? { transitionDelay: `${duration - 300}ms` } : {}}
     >
       <div ref={childRef} className={window}>
         {children}

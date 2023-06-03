@@ -11,9 +11,9 @@ export const getStyles = (isActive: boolean, isNavBar: boolean) => ({
   ),
 
   border: clsx(
-    'absolute right-0 z-20 w-6 h-6 outline-none  bg-admin-lighten-main dark:bg-admin-darken-main after:block after:w-6 after:h-6 after:bg-admin-lighten-second dark:after:bg-admin-darken-second',
+    'absolute right-0 z-20 w-6 h-6 outline-none bg-admin-lighten-main dark:bg-admin-darken-main after:block after:w-6 after:h-6 after:bg-admin-lighten-second dark:after:bg-admin-darken-second select-none border-none text-[0px]',
     {
-      ' block': isActive,
+      'hidden lg:block': isActive,
       hidden: !isActive,
     },
   ),
