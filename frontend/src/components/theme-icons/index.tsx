@@ -20,16 +20,16 @@ export function ThemeIcons() {
     if (currentTheme === 'dark') {
       return (
         <SunIcon
-          role='button'
-          className='w-6 h-6 transition-all duration-300 stroke-2 w-7 h-7 stroke-lighten-color hover:stroke-admin-primary'
+          role="button"
+          className="w-6 h-6 transition-all duration-300 stroke-2 stroke-lighten-color hover:stroke-admin-primary"
           onClick={() => setTheme('light')}
         />
       );
     } else {
       return (
         <MoonIcon
-          role='button'
-          className='w-6 h-6 transition-all duration-300 stroke-2 stroke-darken-color hover:stroke-admin-primary'
+          role="button"
+          className="w-6 h-6 transition-all duration-300 stroke-2 stroke-darken-color hover:stroke-admin-primary"
           onClick={() => setTheme('dark')}
         />
       );
