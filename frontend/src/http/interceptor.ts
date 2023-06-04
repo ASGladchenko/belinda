@@ -7,7 +7,6 @@ import { IToken } from './types';
 
 const initBelinda = ({ onAuthError }: { onAuthError: () => void }) => {
   axios.defaults.baseURL = 'http://localhost:4200/api';
-  // axios.defaults.headers['Content-Type'] = 'application/json';
 
   axios.interceptors.request.use((config) => {
     const token = localStorage.getItem('token') as IToken;
