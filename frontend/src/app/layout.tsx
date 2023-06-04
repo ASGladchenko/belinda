@@ -2,7 +2,7 @@
 import { Inter, Pacifico } from 'next/font/google';
 
 import { Provider } from '@/components';
-import { ChildrenProps } from '@/components/types';
+import { ChildrenProps } from '@/types';
 
 import '../styles/global.css';
 

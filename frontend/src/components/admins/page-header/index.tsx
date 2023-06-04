@@ -1,9 +1,9 @@
 'use client';
 import { Add } from '@/assets/icons';
 import { Button } from '@/components/button';
-import { BreadCrumps } from '@/components/admins/crumps/helpers';
 
-import Crumps from '../crumps';
+import { Crumps } from '../crumps';
+import { BreadCrumps } from '../crumps/helpers';
 
 import { IPageHead } from './types';
 
@@ -33,4 +33,4 @@ const PageHead = ({ head, onClick }: IPageHead) => {
   );
 };
 
-export default PageHead;
+export { PageHead };

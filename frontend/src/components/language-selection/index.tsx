@@ -1,12 +1,13 @@
 'use client';
 import React, { useState } from 'react';
 
-import Tooltip from '../tooltip';
+import { Tooltip } from '@/components';
+
 import { languages } from './config';
 import { ILanguageSelection } from './types';
-import SelectableLanguage from './selectable-language';
+import { SelectableLanguage } from './selectable-language';
 
-export default function LanguageSelection({
+export function LanguageSelection({
   selectLang,
   onSelect,
 }: ILanguageSelection) {

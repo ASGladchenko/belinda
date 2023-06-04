@@ -1,13 +1,8 @@
 'use client';
-import CommonLink from 'next/link';
 import { Form, Formik, FormikValues } from 'formik';
 
-import { Login } from '@/assets/icons';
-import { Overlay } from '@/components/overlay';
-import { Button, Checkbox } from '@/components';
-import { useDelayAnimation } from '@/hooks/useDelay';
-import { InputField } from '@/components/input-field';
-import PageHead from '@/components/admins/page-header';
+import { useDelayAnimation } from '@/hooks';
+import { InputField, Overlay, PageHead } from '@/components';
 import { initialValues, validationSchema } from '@/app/(login)/login/config';
 
 export default function Products() {

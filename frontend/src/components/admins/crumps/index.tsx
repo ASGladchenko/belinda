@@ -35,4 +35,4 @@ const Crumps = ({ crumps }: { crumps: { name: string; path: string }[] }) => {
   );
 };
 
-export default Crumps;
+export { Crumps };

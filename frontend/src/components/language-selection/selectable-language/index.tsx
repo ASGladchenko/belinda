@@ -1,6 +1,6 @@
 import { ISelectableLanguage } from '../types';
 
-export default function SelectableLanguage({
+export function SelectableLanguage({
   abb,
   Icon,
   name,

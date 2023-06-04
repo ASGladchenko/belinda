@@ -3,7 +3,7 @@ import { useCallback, useEffect, useRef } from 'react';
 
 import { ITooltip } from './types';
 
-export default function Tooltip({ isOpen, children, setIsOpen }: ITooltip) {
+export function Tooltip({ isOpen, children, setIsOpen }: ITooltip) {
   const ref = useRef<HTMLDivElement>(null);
 
   const handleClick = useCallback(
