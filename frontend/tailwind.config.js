@@ -26,14 +26,22 @@ module.exports = {
           primary: '#6259ca',
           primaryHover: '#403fad',
           primaryActive: '#6259CACC',
+          headPage: '#170c6b',
 
           secondary: '#f1388b',
           secondaryHover: '#ec3487',
           secondaryActive: '#f75da2',
 
+          overlay: 'rgba(36, 36, 61, 0.6);',
+          overlay1: 'rgba(234, 237, 247, 0.4);',
+
           lighten: {
             main: '#EAEDF7',
             second: '#FFFFFF',
+
+            crumps: '#8f9cc0',
+            crumpsActive: '#7787bc',
+            crumpsHover: '#170c6b',
 
             grey: '#474040',
             border: '#bdbdd7',
@@ -41,6 +49,10 @@ module.exports = {
           darken: {
             main: '#24243E',
             second: '#0E0E23',
+
+            crumps: '#8f9cc0',
+            crumpsActive: '#D0D0E2',
+            crumpsHover: '#FFFFFF',
 
             border: '#474749',
           },
@@ -59,21 +71,30 @@ module.exports = {
         },
       },
 
+      fontFamily: {
+        pacifico: ['var(--font-pacifico)', 'sans-serif'],
+        inter: ['var(--font-inter)', 'sans-serif'],
+      },
+
       transitionProperty: {
         ...defaultTheme.transitionProperty,
         width: 'width, max-width',
         aside: 'transform, width, max-width',
         rotate: 'rotate',
         links: 'padding, transform, color',
+        opacity: 'opacity',
       },
 
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-        'gradient-conic': 'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
+        'gradient-conic':
+          'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
       },
       zIndex: {
         ...defaultTheme.zIndex,
         100: '100',
+        999: '999',
+        1000: '1000',
       },
     },
   },

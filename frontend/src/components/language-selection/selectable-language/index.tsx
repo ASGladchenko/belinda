@@ -1,6 +1,6 @@
 import { ISelectableLanguage } from '../types';
 
-export default function SelectableLanguage({
+export function SelectableLanguage({
   abb,
   Icon,
   name,
@@ -18,7 +18,7 @@ export default function SelectableLanguage({
   return (
     <div data-lang={abb} onClick={onClick} className={classChild}>
       <Icon width={24} height={24} />
-      <span className='capitalize select-none'>{name}</span>
+      <span className="text-sm capitalize select-none">{name}</span>
     </div>
   );
 }

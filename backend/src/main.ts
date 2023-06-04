@@ -11,6 +11,15 @@ async function bootstrap() {
   app.setGlobalPrefix('api');
   app.useGlobalPipes(new ValidationPipe());
 
+  if (process.env.NODE_ENV === 'development') {
+    app.enableCors({
+      origin: true,
+      methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+      preflightContinue: false,
+      optionsSuccessStatus: 204,
+    });
+  }
+
   const configSwagger = new DocumentBuilder()
     .setTitle('Belinda - BACKEND')
     .setDescription('Rest API Documentation')
