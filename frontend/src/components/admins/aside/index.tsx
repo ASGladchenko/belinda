@@ -6,7 +6,7 @@ import { Right } from '@/assets/icons';
 import Menu from './menu';
 import { getStyles } from './styles';
 
-export default function Aside() {
+export function Aside() {
   const [isNavBar, setIsNavBar] = useState(false);
   const { aside, switcher, header } = getStyles(isNavBar);
 

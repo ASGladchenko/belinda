@@ -2,8 +2,9 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
-import { getStyles } from './styles';
 import { IMenuItem } from '../types';
+
+import { getStyles } from './styles';
 
 export function MenuItem({ isNavBar, name, href, Icon }: IMenuItem) {
   const pathname = usePathname();

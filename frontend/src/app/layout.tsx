@@ -1,8 +1,10 @@
 'use client';
+import { Provider } from 'react-redux';
 import { Inter, Pacifico } from 'next/font/google';
 
-import { Provider } from '@/components';
-import { ChildrenProps } from '@/components/types';
+import { store } from '@/store';
+import { ChildrenProps } from '@/types';
+import { Provider as ThemeProvider } from '@/components';
 
 import '../styles/global.css';
 
@@ -26,7 +28,9 @@ export default function RootLayout({ children }: ChildrenProps) {
   return (
     <html lang="en">
       <body className={`${pacifico.variable} ${inter.variable}`}>
-        <Provider>{children}</Provider>
+        <Provider store={store}>
+          <ThemeProvider>{children}</ThemeProvider>
+        </Provider>
       </body>
     </html>
   );

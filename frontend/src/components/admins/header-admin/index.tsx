@@ -2,11 +2,9 @@
 import { useState } from 'react';
 
 import { Login } from '@/assets/icons';
-import { Button } from '@/components/button';
-import { ThemeIcons } from '@/components/theme-icons';
-import LanguageSelection from '@/components/language-selection';
+import { Button, LanguageSelection, ThemeIcons } from '@/components';
 
-export default function Header() {
+export function HeaderAdmin() {
   const [lang, setLang] = useState('ukrainian');
 
   const onExit = () => console.log('Exit');

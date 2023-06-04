@@ -1,4 +1,4 @@
-import { IAuth } from '@/components/types';
+import { IAuth } from '@/types';
 
 import { belinda } from '.';
 

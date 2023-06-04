@@ -7,7 +7,7 @@ import { useOutsideClick } from '@/hooks/outSideClick';
 import { IOverlay } from './types';
 import { Button } from '../button';
 import { getStyles } from './styles';
-import { ChildrenProps } from '../types';
+import { ChildrenProps } from '../../types';
 
 const listFocusable =
   'a[href], button, textarea, input[type="text"], input[type="radio"], input[type="checkbox"], select, *[tabindex]:not([tabindex="-1"])';

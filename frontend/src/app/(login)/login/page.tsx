@@ -3,10 +3,9 @@ import CommonLink from 'next/link';
 import { Formik, Form } from 'formik';
 
 import { api } from '@/http';
+import { IAuth } from '@/types';
 import { Login } from '@/assets/icons';
-import { IAuth } from '@/components/types';
-import { Button, Checkbox } from '@/components';
-import { InputField } from '@/components/input-field';
+import { Button, Checkbox, InputField } from '@/components';
 
 import { initialValues, validationSchema } from './config';
 

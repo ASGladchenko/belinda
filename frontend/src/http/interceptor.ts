@@ -1,62 +1,65 @@
-import axios, { AxiosInstance } from 'axios';
+import axios from 'axios';
 
-interface IToken {
-  access_token?: string;
-  refresh_token?: string;
-}
+import { store } from '@/store';
+import { setIsAuth } from '@/store/auth/slice';
 
-const belinda: AxiosInstance = axios.create({
-  baseURL: 'http://localhost:4200/api',
-  // headers: { 'Content-Type': 'application/json' },
-});
+import { IToken } from './types';
 
-belinda.interceptors.request.use((config) => {
-  const token = localStorage.getItem('token') as IToken;
+const initBelinda = ({ onAuthError }: { onAuthError: () => void }) => {
+  axios.defaults.baseURL = 'http://localhost:4200/api';
+  // axios.defaults.headers['Content-Type'] = 'application/json';
 
-  if (token?.access_token)
-    config.headers.Authorization = `Bearer ${token.access_token}`;
-
-  return config;
-});
-
-belinda.interceptors.response.use(
-  (config) => {
-    console.log('response use');
-    return config;
-  },
-
-  async (error) => {
-    const originalRequest = error.config;
-    console.log('error', error);
+  axios.interceptors.request.use((config) => {
     const token = localStorage.getItem('token') as IToken;
-    if (
-      error.response.status === 401 &&
-      token?.refresh_token &&
-      !error.config.isRetry
-    ) {
-      console.log('response error2');
-      originalRequest.isRetry = true;
 
-      try {
-        const response = await axios.post(
-          `/auth/refresh`,
-          {},
-          {
-            headers: {
-              refresh: `${token.refresh_token}`,
-            },
-          },
-        );
+    if (token) config.headers.Authorization = `Bearer ${token?.access_token}`;
 
-        localStorage.setItem('token', response.data);
+    return config;
+  });
 
-        return belinda.request(originalRequest);
-      } catch (error) {
-        localStorage.removeItem('token');
-        // TODO: clear storage isAuth
+  axios.interceptors.response.use(
+    (config) => config,
+
+    async (error) => {
+      const originalRequest = error.config;
+      const token = localStorage.getItem('token') as IToken;
+
+      if (error.response.status === 401 && !token?.refresh_token) {
+        onAuthError();
+        return Promise.reject(error);
       }
-    }
-  },
-);
+
+      if (error.response.status === 401 && !error.config.isRetry) {
+        originalRequest.isRetry = true;
+
+        try {
+          const response = await axios.post(
+            `/auth/refresh`,
+            {},
+            {
+              headers: {
+                refresh: `${token?.refresh_token}`,
+              },
+            },
+          );
+
+          localStorage.setItem('token', response.data);
+
+          return axios.request(originalRequest);
+        } catch (error) {
+          localStorage.removeItem('token');
+          onAuthError();
+          return Promise.reject(error);
+        }
+      }
+    },
+  );
+
+  return axios;
+};
+
+const belinda = initBelinda({
+  onAuthError: () => store.dispatch(setIsAuth(false)),
+});
 
 export { belinda };

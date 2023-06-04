@@ -1,11 +1,11 @@
-import { MyFooter, MyHeader } from '@/components';
+import { Footer, Header } from '@/components';
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <>
-      <MyHeader />
+      <Header />
       <main>{children}</main>
-      <MyFooter />
+      <Footer />
     </>
   );
 }
