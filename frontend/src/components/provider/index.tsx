@@ -1,7 +1,7 @@
 'use client';
 import { ThemeProvider } from 'next-themes';
 
-import { ChildrenProps } from '../../types';
+import { ChildrenProps } from '@/types';
 
 const Provider = ({ children }: ChildrenProps) => {
   return (
