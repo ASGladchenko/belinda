@@ -7,13 +7,14 @@ interface IToken {
 
 const belinda: AxiosInstance = axios.create({
   baseURL: 'http://localhost:4200/api',
+  // headers: { 'Content-Type': 'application/json' },
 });
-belinda.defaults.headers['Content-Type'] = 'application/json';
 
 belinda.interceptors.request.use((config) => {
-  const { access_token } = localStorage.getItem('token') as IToken;
+  const token = localStorage.getItem('token') as IToken;
 
-  if (access_token) config.headers.Authorization = `Bearer ${access_token}`;
+  if (token?.access_token)
+    config.headers.Authorization = `Bearer ${token.access_token}`;
 
   return config;
 });
@@ -26,13 +27,14 @@ belinda.interceptors.response.use(
 
   async (error) => {
     const originalRequest = error.config;
-    const { refresh_token } = localStorage.getItem('token') as IToken;
-    console.log('response error');
+    console.log('error', error);
+    const token = localStorage.getItem('token') as IToken;
     if (
       error.response.status === 401 &&
-      refresh_token &&
+      token?.refresh_token &&
       !error.config.isRetry
     ) {
+      console.log('response error2');
       originalRequest.isRetry = true;
 
       try {
@@ -41,7 +43,7 @@ belinda.interceptors.response.use(
           {},
           {
             headers: {
-              refresh: `${refresh_token}`,
+              refresh: `${token.refresh_token}`,
             },
           },
         );
