@@ -16,8 +16,8 @@ export default function LogIn() {
     try {
       const response = await api.login(e);
       console.log(response);
-    } catch (e) {
-      console.log(e);
+    } catch (e: any) {
+      console.log(e.response);
     }
   };
 

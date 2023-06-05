@@ -22,6 +22,7 @@ const initBelinda = ({ onAuthError }: { onAuthError: () => void }) => {
 
     async (error) => {
       const originalRequest = error.config;
+
       // TODO: create fn whom defines toke from local or session storage
       const token = localStorage.getItem('token') as IToken;
 
@@ -50,9 +51,12 @@ const initBelinda = ({ onAuthError }: { onAuthError: () => void }) => {
         } catch (error) {
           localStorage.removeItem('token');
           onAuthError();
+
           return Promise.reject(error);
         }
       }
+
+      return Promise.reject(error);
     },
   );
 
