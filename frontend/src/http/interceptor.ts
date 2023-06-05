@@ -9,6 +9,7 @@ const initBelinda = ({ onAuthError }: { onAuthError: () => void }) => {
   axios.defaults.baseURL = 'http://localhost:4200/api';
 
   axios.interceptors.request.use((config) => {
+    // TODO: create fn whom defines toke from local or session storage
     const token = localStorage.getItem('token') as IToken;
 
     if (token) config.headers.Authorization = `Bearer ${token?.access_token}`;
@@ -21,6 +22,7 @@ const initBelinda = ({ onAuthError }: { onAuthError: () => void }) => {
 
     async (error) => {
       const originalRequest = error.config;
+      // TODO: create fn whom defines toke from local or session storage
       const token = localStorage.getItem('token') as IToken;
 
       if (error.response.status === 401 && !token?.refresh_token) {
@@ -41,7 +43,7 @@ const initBelinda = ({ onAuthError }: { onAuthError: () => void }) => {
               },
             },
           );
-
+          // TODO: create fn whom set token to session or local stor
           localStorage.setItem('token', response.data);
 
           return axios.request(originalRequest);
