@@ -11,6 +11,10 @@ const authSlice = createSlice({
   initialState: authInitialState,
   reducers: {
     setIsAuth: (state, { payload }) => {
+      if (!payload) {
+        localStorage.removeItem('token');
+        sessionStorage.removeItem('token');
+      }
       state.isAuth = payload;
     },
   },

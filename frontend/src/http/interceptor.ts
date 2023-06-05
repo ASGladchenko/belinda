@@ -3,7 +3,10 @@ import axios from 'axios';
 import { store } from '@/store';
 import { setIsAuth } from '@/store/auth/slice';
 
-import { IToken } from './types';
+interface IToken {
+  access_token?: string;
+  refresh_token?: string;
+}
 
 const initBelinda = ({ onAuthError }: { onAuthError: () => void }) => {
   axios.defaults.baseURL = 'http://localhost:4200/api';

@@ -1,8 +1,15 @@
-import { type } from 'os';
-import { ChangeEvent, DetailedHTMLProps, InputHTMLAttributes, ReactNode } from 'react';
+import {
+  ReactNode,
+  ChangeEvent,
+  DetailedHTMLProps,
+  InputHTMLAttributes,
+} from 'react';
 
 export interface InputProps
-  extends DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement> {
+  extends DetailedHTMLProps<
+    InputHTMLAttributes<HTMLInputElement>,
+    HTMLInputElement
+  > {
   id?: string;
   name: string;
   label?: string;

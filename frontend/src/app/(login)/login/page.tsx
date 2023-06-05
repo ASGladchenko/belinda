@@ -5,16 +5,15 @@ import { Formik, Form } from 'formik';
 import { api } from '@/http';
 import { IAuth } from '@/types';
 import { Login } from '@/assets/icons';
-import { Button, Checkbox, InputField } from '@/components';
+import { Button, InputField } from '@/components';
 
 import { initialValues, validationSchema } from './config';
 
 export default function LogIn() {
-  const onSubmit = async (e: IAuth) => {
-    console.log(e);
-
+  const onSubmit = async ({ role, password, remember }: IAuth) => {
     try {
-      const response = await api.login(e);
+      const response = await api.login({ role, password });
+      // TODO: check remember and set local or session and dispatch to store
       console.log(response);
     } catch (e: any) {
       console.log(e.response);
@@ -46,8 +45,9 @@ export default function LogIn() {
                   Forgot password?
                 </CommonLink>
 
-                <Checkbox
-                  name="remeber"
+                <InputField
+                  type="checkbox"
+                  name="remember"
                   label="Remember me"
                   className="checkbox-admin"
                 />
