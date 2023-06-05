@@ -20,5 +20,13 @@ export const getStorage = (key: string) => {
   const local = localStorage.getItem(key);
   const session = sessionStorage.getItem(key);
 
-  return JSON.parse(local || session || '');
+  let parsed = null;
+  try {
+    if (local) parsed = JSON.parse(local);
+    if (session) parsed = JSON.parse(session);
+  } catch (error) {
+    console.log(error);
+  }
+
+  return parsed;
 };

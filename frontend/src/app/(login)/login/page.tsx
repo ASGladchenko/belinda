@@ -1,20 +1,28 @@
 'use client';
 import CommonLink from 'next/link';
 import { Formik, Form } from 'formik';
+import { useRouter } from 'next/navigation';
 
 import { api } from '@/http';
 import { IAuth } from '@/types';
 import { Login } from '@/assets/icons';
+import { useAppDispatch } from '@/store';
+import { setIsAuth } from '@/store/auth/slice';
 import { Button, InputField } from '@/components';
 
 import { initialValues, validationSchema } from './config';
 
 export default function LogIn() {
+  const router = useRouter();
+  const dispatch = useAppDispatch();
   const onSubmit = async ({ role, password, remember }: IAuth) => {
     try {
       const response = await api.login({ role, password });
-      // TODO: check remember and set local or session and dispatch to store
-      console.log(response);
+
+      if (remember) localStorage.setItem('token', JSON.stringify(response));
+      else sessionStorage.setItem('token', JSON.stringify(response));
+      dispatch(setIsAuth(true));
+      router.push('/admin/products');
     } catch (e: any) {
       console.log(e.response);
     }

@@ -2,6 +2,7 @@ import axios from 'axios';
 
 import { store } from '@/store';
 import { setIsAuth } from '@/store/auth/slice';
+import { getStorage, setStorage } from '@/utils';
 
 interface IToken {
   access_token?: string;
@@ -13,7 +14,7 @@ const initBelinda = ({ onAuthError }: { onAuthError: () => void }) => {
 
   axios.interceptors.request.use((config) => {
     // TODO: create fn whom defines toke from local or session storage
-    const token = localStorage.getItem('token') as IToken;
+    const token = getStorage('token');
 
     if (token) config.headers.Authorization = `Bearer ${token?.access_token}`;
 
@@ -27,7 +28,7 @@ const initBelinda = ({ onAuthError }: { onAuthError: () => void }) => {
       const originalRequest = error.config;
 
       // TODO: create fn whom defines toke from local or session storage
-      const token = localStorage.getItem('token') as IToken;
+      const token = getStorage('token');
 
       if (error.response.status === 401 && !token?.refresh_token) {
         onAuthError();
@@ -48,7 +49,7 @@ const initBelinda = ({ onAuthError }: { onAuthError: () => void }) => {
             },
           );
           // TODO: create fn whom set token to session or local stor
-          localStorage.setItem('token', response.data);
+          setStorage({ key: 'token', body: response.data });
 
           return axios.request(originalRequest);
         } catch (error) {
