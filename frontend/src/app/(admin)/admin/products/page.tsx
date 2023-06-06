@@ -5,7 +5,7 @@ import { useDelayAnimation } from '@/hooks';
 import { InputField, Overlay, PageHead } from '@/components';
 import { initialValues, validationSchema } from '@/app/(login)/login/config';
 
-export default function Products() {
+function Products() {
   const duration = 500;
   const { isOpen, isAnimation, setOpen } = useDelayAnimation(duration);
 
@@ -41,3 +41,5 @@ export default function Products() {
     </div>
   );
 }
+
+export default Products;

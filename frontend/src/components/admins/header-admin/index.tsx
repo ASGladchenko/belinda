@@ -1,13 +1,21 @@
 'use client';
 import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 
 import { Login } from '@/assets/icons';
+import { useAppDispatch } from '@/store';
+import { setIsAuth } from '@/store/auth/slice';
 import { Button, LanguageSelection, ThemeIcons } from '@/components';
 
 export function HeaderAdmin() {
+  const router = useRouter();
+  const dispatch = useAppDispatch();
   const [lang, setLang] = useState('ukrainian');
 
-  const onExit = () => console.log('Exit');
+  const onExit = () => {
+    dispatch(setIsAuth(false));
+    router.push('/');
+  };
 
   return (
     <header className="relative flex items-center justify-between transition w-full h-[65px] bg-admin-lighten-second dark:bg-admin-darken-second border-b border-admin-lighten-border dark:border-admin-darken-border drop-shadow-lg dark:drop-shadow-lg duration-0 px-8 z-999">

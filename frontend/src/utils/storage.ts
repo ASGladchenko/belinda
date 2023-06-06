@@ -1,10 +1,11 @@
 'use client';
+interface IToken {
+  access_token: string;
+  refresh_token: string;
+}
 interface ISetStorage {
   key: string;
-  body: {
-    access_token: string;
-    refresh_token: string;
-  };
+  body: IToken;
 }
 
 export const setStorage = ({ key, body }: ISetStorage) => {
@@ -16,11 +17,14 @@ export const setStorage = ({ key, body }: ISetStorage) => {
   if (session) sessionStorage.setItem(key, JSON.stringify(body));
 };
 
-export const getStorage = (key: string) => {
+export const getStorage = (
+  key: string | undefined = 'token',
+): IToken | null => {
   const local = localStorage.getItem(key);
   const session = sessionStorage.getItem(key);
 
   let parsed = null;
+
   try {
     if (local) parsed = JSON.parse(local);
     if (session) parsed = JSON.parse(session);
@@ -28,5 +32,5 @@ export const getStorage = (key: string) => {
     console.log(error);
   }
 
-  return parsed;
+  return parsed as IToken | null;
 };

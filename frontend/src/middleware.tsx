@@ -1,14 +1,18 @@
 import { NextRequest, NextResponse } from 'next/server';
 
-import { store } from './store';
+export async function middleware(request: NextRequest) {
+  const url = request.nextUrl.clone();
+  const isAuth = request.cookies.get('isAuth');
 
-export function middleware(request: NextRequest) {
-  const { isAuth } = store.getState().auth;
-  console.log('isAuth', isAuth);
+  if (!isAuth) {
+    if (request.nextUrl.pathname.startsWith('/admin')) {
+      return NextResponse.rewrite(new URL('/login', request.url));
+    }
+  }
 
-  if (request.url.includes('admin')) {
-    if (!isAuth) {
-      return NextResponse.redirect(new URL('/login', request.url));
+  if (isAuth) {
+    if (url.pathname.startsWith('/login')) {
+      return NextResponse.redirect(new URL('/admin/products', request.url));
     }
   }
 }

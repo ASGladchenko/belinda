@@ -1,3 +1,5 @@
+'use client';
+import Cookies from 'js-cookie';
 import { createSlice } from '@reduxjs/toolkit';
 
 import { RootState } from '../store';
@@ -14,6 +16,7 @@ const authSlice = createSlice({
       if (payload === false) {
         localStorage.removeItem('token');
         sessionStorage.removeItem('token');
+        Cookies.remove('isAuth');
       }
       state.isAuth = payload;
     },
