@@ -12,7 +12,7 @@ export async function middleware(request: NextRequest) {
 
   if (isAuth) {
     if (url.pathname.startsWith('/login')) {
-      return NextResponse.redirect(new URL('/admin/products', request.url));
+      return NextResponse.redirect(new URL('/admin', request.url));
     }
   }
 }

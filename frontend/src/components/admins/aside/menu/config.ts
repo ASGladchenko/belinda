@@ -5,7 +5,7 @@ import { IMenuList } from './types';
 export const menuList: IMenuList[] = [
   {
     name: 'products',
-    href: '/admin/products',
+    href: '/admin',
     Icon: Product,
   },
 

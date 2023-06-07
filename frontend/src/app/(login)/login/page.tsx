@@ -21,7 +21,7 @@ export default function LogIn() {
       else sessionStorage.setItem('token', JSON.stringify(response));
 
       Cookies.set('isAuth', JSON.stringify(true), { expires: 7 });
-      router.push('/admin/products');
+      router.push('/admin');
     } catch (e: any) {
       console.log(e.response);
     }
