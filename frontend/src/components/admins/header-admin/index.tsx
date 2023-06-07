@@ -6,6 +6,7 @@ import { useRouter } from 'next/navigation';
 import { Login } from '@/assets/icons';
 import { deleteStorage } from '@/utils';
 import { Button, LanguageSelection, ThemeIcons } from '@/components';
+import Link from 'next/link';
 
 export function HeaderAdmin() {
   const router = useRouter();
@@ -19,7 +20,9 @@ export function HeaderAdmin() {
 
   return (
     <header className="relative flex items-center justify-between transition w-full h-[65px] bg-admin-lighten-second dark:bg-admin-darken-second border-b border-admin-lighten-border dark:border-admin-darken-border drop-shadow-lg dark:drop-shadow-lg duration-0 px-8 z-999">
-      <h3 className={`text-xl cursor-pointer font-pacifico`}>Belinda</h3>
+      <Link href="/admin" className={`text-xl cursor-pointer font-pacifico`}>
+        Belinda
+      </Link>
       <div className="flex items-center gap-6 flex-nowrap">
         <LanguageSelection selectLang={lang} onSelect={setLang} />
 
