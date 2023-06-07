@@ -1,20 +1,20 @@
 'use client';
 import { useState } from 'react';
+import Cookies from 'js-cookie';
 import { useRouter } from 'next/navigation';
 
 import { Login } from '@/assets/icons';
-import { useAppDispatch } from '@/store';
-import { setIsAuth } from '@/store/auth/slice';
+import { deleteStorage } from '@/utils';
 import { Button, LanguageSelection, ThemeIcons } from '@/components';
 
 export function HeaderAdmin() {
   const router = useRouter();
-  const dispatch = useAppDispatch();
   const [lang, setLang] = useState('ukrainian');
 
   const onExit = () => {
-    dispatch(setIsAuth(false));
-    router.push('/');
+    Cookies.remove('isAuth');
+    router.push('/login');
+    deleteStorage('token');
   };
 
   return (

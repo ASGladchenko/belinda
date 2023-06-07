@@ -34,3 +34,8 @@ export const getStorage = (
 
   return parsed as IToken | null;
 };
+
+export const deleteStorage = (key: string) => {
+  localStorage.removeItem(key);
+  sessionStorage.removeItem(key);
+};

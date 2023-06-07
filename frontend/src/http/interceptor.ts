@@ -1,7 +1,5 @@
 import axios from 'axios';
 
-import { store } from '@/store';
-import { setIsAuth } from '@/store/auth/slice';
 import { getStorage, setStorage } from '@/utils';
 
 interface IToken {
@@ -63,7 +61,7 @@ const initBelinda = ({ onAuthError }: { onAuthError: () => void }) => {
 };
 
 const belinda = initBelinda({
-  onAuthError: () => store.dispatch(setIsAuth(false)),
+  onAuthError: () => {},
 });
 
 export { belinda };
