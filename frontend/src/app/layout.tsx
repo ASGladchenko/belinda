@@ -11,12 +11,14 @@ import '../styles/global.css';
 export const inter = Inter({
   subsets: ['latin'],
   variable: '--font-inter',
+  display: 'swap',
 });
 
 export const pacifico = Pacifico({
   weight: ['400'],
   variable: '--font-pacifico',
   subsets: ['latin', 'cyrillic'],
+  display: 'swap',
 });
 
 export const metadata = {
