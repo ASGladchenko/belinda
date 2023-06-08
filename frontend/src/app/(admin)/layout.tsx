@@ -1,5 +1,12 @@
 import { Aside, HeaderAdmin } from '@/components';
 
+export const metadata = {
+  title: {
+    default: 'Products',
+    template: '%s',
+  },
+};
+
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <div className="h-screen overflow-y-hidden">
