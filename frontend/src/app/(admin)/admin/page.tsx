@@ -22,7 +22,7 @@ function Products() {
         duration={duration}
         isAnimation={isAnimation}
         setClose={() => setOpen(false)}
-        // TODO: PRoblem !!!!!!!!!!!
+        // TODO: PRoblem with create !!!!!!!!!!!
         onCreate={() => alert('Create')}
       >
         <Formik
@@ -32,9 +32,11 @@ function Products() {
         >
           <Form className="flex flex-col w-[400px] gap-5">
             <h3 className="text-center select-none">Create Category</h3>
-            <InputField name="newCategory" label="Enter name" />
-
-            <div className="flex justify-between w-full "></div>
+            <InputField
+              name="newCategory"
+              label="Enter name"
+              className="text-white"
+            />
           </Form>
         </Formik>
       </Overlay>

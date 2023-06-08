@@ -1,7 +1,6 @@
 'use client';
 import { useState } from 'react';
 import Link from 'next/link';
-import Cookies from 'js-cookie';
 import { useRouter } from 'next/navigation';
 
 import { Login } from '@/assets/icons';
@@ -13,9 +12,8 @@ export function HeaderAdmin() {
   const [lang, setLang] = useState('ukrainian');
 
   const onExit = () => {
-    Cookies.remove('isAuth');
-    router.push('/login');
     deleteStorage('token');
+    router.push('/login');
   };
 
   return (

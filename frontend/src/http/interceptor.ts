@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import { getStorage, setStorage } from '@/utils';
+import { deleteStorage, getStorage, setStorage } from '@/utils';
 
 interface IToken {
   access_token?: string;
@@ -61,7 +61,7 @@ const initBelinda = ({ onAuthError }: { onAuthError: () => void }) => {
 };
 
 const belinda = initBelinda({
-  onAuthError: () => {},
+  onAuthError: () => deleteStorage('token'),
 });
 
 export { belinda };

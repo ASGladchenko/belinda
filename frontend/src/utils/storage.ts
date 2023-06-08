@@ -1,4 +1,6 @@
 'use client';
+import Cookies from 'js-cookie';
+
 interface IToken {
   access_token: string;
   refresh_token: string;
@@ -36,6 +38,7 @@ export const getStorage = (
 };
 
 export const deleteStorage = (key: string) => {
+  Cookies.remove('isAuth');
   localStorage.removeItem(key);
   sessionStorage.removeItem(key);
 };
