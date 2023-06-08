@@ -6,6 +6,7 @@ import { useRouter } from 'next/navigation';
 
 import { api } from '@/http';
 import { IAuth } from '@/types';
+import { routes } from '@/constants';
 import { Login } from '@/assets/icons';
 import { Button, InputField } from '@/components';
 
@@ -21,7 +22,7 @@ export default function LogIn() {
       else sessionStorage.setItem('token', JSON.stringify(response));
 
       Cookies.set('isAuth', JSON.stringify(true), { expires: 7 });
-      router.push('/admin');
+      router.push(routes.admin);
     } catch (e: any) {
       console.log(e.response);
     }
