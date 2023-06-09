@@ -11,7 +11,7 @@ const PageHead = ({ head, onClick }: IPageHead) => {
   const crumps = BreadCrumps();
 
   return (
-    <div className="flex items-center justify-between w-full p-3 rounded-lg bg-admin-lighten-second dark:bg-admin-darken-second drop-shadow-md">
+    <div className="flex items-center justify-between w-full p-3 rounded-lg ">
       <div className="flex flex-col gap-2">
         <h1 className="text-2xl font-medium select-none text-admin-headPage dark:text-white font-inter">
           {head}

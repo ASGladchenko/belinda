@@ -83,6 +83,8 @@ module.exports = {
         rotate: 'rotate',
         links: 'padding, transform, color',
         opacity: 'opacity',
+        color: 'background-color, color',
+        h: 'height',
       },
 
       backgroundImage: {

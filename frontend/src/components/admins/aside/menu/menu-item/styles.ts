@@ -27,7 +27,7 @@ export const getStyles = (isActive: boolean, isNavBar: boolean) => ({
   ),
 
   icon: clsx(
-    'transition-all duration-300 focus-visible:outline-none dark:fill-white dark:stroke-white',
+    'transition-all duration-300 focus-visible:outline-none dark:fill-white',
     {
       'p-2 rounded-full bg-admin-primary drop-shadow-md fill-white dark:fill-black ml-0`':
         isActive,
