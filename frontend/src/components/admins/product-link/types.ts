@@ -2,6 +2,7 @@ export interface IProductLink {
   id: number;
   href: string;
   name: string;
+  modify?: boolean;
 }
 
 export interface ISubCategory {

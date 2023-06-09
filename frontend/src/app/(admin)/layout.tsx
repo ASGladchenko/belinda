@@ -8,7 +8,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       <div className="flex flex-nowrap h-[calc(100%-65px)]">
         <Aside />
 
-        <main className="[postion:] w-full p-5 overflow-y-auto bg-admin-lighten-main dark:bg-admin-darken-main">
+        <main className="w-full p-5 overflow-y-auto bg-admin-lighten-main dark:bg-admin-darken-main">
           {children}
         </main>
       </div>

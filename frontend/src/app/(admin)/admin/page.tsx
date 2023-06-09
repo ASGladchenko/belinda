@@ -2,10 +2,17 @@
 import { Form, Formik, FormikValues } from 'formik';
 
 import { useDelayAnimation } from '@/hooks';
-import { ProductLink, InputField, Overlay, PageHead } from '@/components';
 import { initialValues, validationSchema } from '@/app/(login)/login/config';
+import {
+  Overlay,
+  PageHead,
+  InputField,
+  ProductLink,
+  MainWrapper,
+  CategoryWrapper,
+} from '@/components';
 
-import { categories } from '@/components/admins/product-link/mockdata';
+import { categories } from '@/components/admins/mock/mockdata';
 
 function Products() {
   const duration = 500;
@@ -16,14 +23,14 @@ function Products() {
   };
 
   return (
-    <div className="flex flex-col flex-wrap items-center justify-center gap-4">
+    <MainWrapper>
       <PageHead head="Categories" onClick={() => setOpen(true)} />
 
-      <div className="flex flex-col w-full gap-5 p-2 rounded-lg md:p-5 bg-admin-lighten-second dark:bg-admin-darken-second ">
+      <CategoryWrapper>
         {categories.map((category) => (
           <ProductLink {...category} />
         ))}
-      </div>
+      </CategoryWrapper>
 
       <Overlay
         isOpen={isOpen}
@@ -48,7 +55,7 @@ function Products() {
           </Form>
         </Formik>
       </Overlay>
-    </div>
+    </MainWrapper>
   );
 }
 
