@@ -2,18 +2,23 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
+import { useSWRConfig } from 'swr';
 
 import { Login } from '@/assets/icons';
-import { deleteStorage } from '@/utils';
+import { removeTokensCookies } from '@/utils';
+import { USE_AUTH, routes } from '@/constants';
 import { Button, LanguageSelection, ThemeIcons } from '@/components';
 
 export function HeaderAdmin() {
   const router = useRouter();
   const [lang, setLang] = useState('ukrainian');
 
+  const { mutate } = useSWRConfig();
+
   const onExit = () => {
-    deleteStorage('token');
-    router.push('/login');
+    removeTokensCookies();
+    mutate(USE_AUTH, null);
+    router.push(routes.login);
   };
 
   return (

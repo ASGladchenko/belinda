@@ -1,19 +1,17 @@
 import axios from 'axios';
+import Cookies from 'js-cookie';
 
-import { deleteStorage, getStorage, setStorage } from '@/utils';
-
-interface IToken {
-  access_token?: string;
-  refresh_token?: string;
-}
+import { deleteStorage, getCookies, getStorage, setStorage } from '@/utils';
 
 const initBelinda = ({ onAuthError }: { onAuthError: () => void }) => {
   axios.defaults.baseURL = 'http://localhost:4200/api';
 
   axios.interceptors.request.use((config) => {
-    const token = getStorage('token');
+    const access = getCookies('access');
 
-    if (token) config.headers.Authorization = `Bearer ${token?.access_token}`;
+    if (access) {
+      config.headers.Authorization = `Bearer ${access}`;
+    }
 
     return config;
   });
@@ -23,9 +21,9 @@ const initBelinda = ({ onAuthError }: { onAuthError: () => void }) => {
 
     async (error) => {
       const originalRequest = error.config;
-      const token = getStorage();
+      const refresh = getCookies('refresh');
 
-      if (error.response.status === 401 && !token?.refresh_token) {
+      if (error.response.status === 401 && !refresh) {
         onAuthError();
         return Promise.reject(error);
       }
@@ -39,7 +37,7 @@ const initBelinda = ({ onAuthError }: { onAuthError: () => void }) => {
             {},
             {
               headers: {
-                refresh: `${token?.refresh_token}`,
+                refresh: `${refresh}`,
               },
             },
           );

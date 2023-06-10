@@ -1,27 +1,39 @@
 'use client';
-import CommonLink from 'next/link';
 import Cookies from 'js-cookie';
+import CommonLink from 'next/link';
+import { useSWRConfig } from 'swr';
 import { Formik, Form } from 'formik';
+import useSWRMutation from 'swr/mutation';
 import { useRouter } from 'next/navigation';
 
 import { api } from '@/http';
 import { IAuth } from '@/types';
-import { routes } from '@/constants';
 import { Login } from '@/assets/icons';
+import { USE_AUTH, routes } from '@/constants';
 import { Button, InputField } from '@/components';
 
 import { initialValues, validationSchema } from './config';
 
 export default function LogIn() {
   const router = useRouter();
+  const { mutate } = useSWRConfig();
+  const { trigger, isMutating } = useSWRMutation('/auth/login', api.login);
+
   const onSubmit = async ({ role, password, remember }: IAuth) => {
     try {
-      const response = await api.login({ role, password });
+      const response = await trigger({ role, password });
+      mutate(USE_AUTH, response.refresh_token);
 
-      if (remember) localStorage.setItem('token', JSON.stringify(response));
-      else sessionStorage.setItem('token', JSON.stringify(response));
+      if (remember) {
+        Cookies.set('access', JSON.stringify(response.access_token));
+        Cookies.set('refresh', JSON.stringify(response.refresh_token), {
+          expires: 7,
+        });
+      } else {
+        Cookies.set('access', JSON.stringify(response.access_token));
+        Cookies.set('refresh', JSON.stringify(response.refresh_token));
+      }
 
-      Cookies.set('isAuth', JSON.stringify(true), { expires: 7 });
       router.push(routes.admin);
     } catch (e: any) {
       console.log(e.response);
@@ -65,6 +77,7 @@ export default function LogIn() {
                 text="Enter"
                 type="submit"
                 variant="primary"
+                disabled={isMutating}
                 className="w-[150px] ml-auto"
                 icon={<Login width={24} height={24} />}
               />

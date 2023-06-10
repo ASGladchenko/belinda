@@ -1,12 +1,13 @@
 'use client';
+import { useRouter } from 'next/navigation';
 import { Form, Formik, FormikValues } from 'formik';
 
 import { useDelayAnimation } from '@/hooks';
 import { InputField, Overlay, PageHead } from '@/components';
 import { initialValues, validationSchema } from '@/app/(login)/login/config';
 
+const duration = 500;
 function Products() {
-  const duration = 500;
   const { isOpen, isAnimation, setOpen } = useDelayAnimation(duration);
 
   const onSubmit = (e: FormikValues) => {
