@@ -1,7 +1,7 @@
 import axios from 'axios';
 import Cookies from 'js-cookie';
 
-import { deleteStorage, getCookies, getStorage, setStorage } from '@/utils';
+import { getCookies, removeTokensCookies } from '@/utils';
 
 const initBelinda = ({ onAuthError }: { onAuthError: () => void }) => {
   axios.defaults.baseURL = 'http://localhost:4200/api';
@@ -41,7 +41,8 @@ const initBelinda = ({ onAuthError }: { onAuthError: () => void }) => {
               },
             },
           );
-          setStorage({ key: 'token', body: response.data });
+
+          Cookies.set('refresh', response.data.refresh);
 
           return axios.request(originalRequest);
         } catch (error) {
@@ -59,7 +60,7 @@ const initBelinda = ({ onAuthError }: { onAuthError: () => void }) => {
 };
 
 const belinda = initBelinda({
-  onAuthError: () => deleteStorage('token'),
+  onAuthError: () => removeTokensCookies(),
 });
 
 export { belinda };
