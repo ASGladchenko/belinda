@@ -1,17 +1,17 @@
 import axios from 'axios';
+import Cookies from 'js-cookie';
 
-import { store } from '@/store';
-import { setIsAuth } from '@/store/auth/slice';
-
-import { IToken } from './types';
+import { deleteStorage, getCookies, getStorage, setStorage } from '@/utils';
 
 const initBelinda = ({ onAuthError }: { onAuthError: () => void }) => {
   axios.defaults.baseURL = 'http://localhost:4200/api';
 
   axios.interceptors.request.use((config) => {
-    const token = localStorage.getItem('token') as IToken;
+    const access = getCookies('access');
 
-    if (token) config.headers.Authorization = `Bearer ${token?.access_token}`;
+    if (access) {
+      config.headers.Authorization = `Bearer ${access}`;
+    }
 
     return config;
   });
@@ -21,9 +21,9 @@ const initBelinda = ({ onAuthError }: { onAuthError: () => void }) => {
 
     async (error) => {
       const originalRequest = error.config;
-      const token = localStorage.getItem('token') as IToken;
+      const refresh = getCookies('refresh');
 
-      if (error.response.status === 401 && !token?.refresh_token) {
+      if (error.response.status === 401 && !refresh) {
         onAuthError();
         return Promise.reject(error);
       }
@@ -37,20 +37,21 @@ const initBelinda = ({ onAuthError }: { onAuthError: () => void }) => {
             {},
             {
               headers: {
-                refresh: `${token?.refresh_token}`,
+                refresh: `${refresh}`,
               },
             },
           );
-
-          localStorage.setItem('token', response.data);
+          setStorage({ key: 'token', body: response.data });
 
           return axios.request(originalRequest);
         } catch (error) {
-          localStorage.removeItem('token');
           onAuthError();
+
           return Promise.reject(error);
         }
       }
+
+      return Promise.reject(error);
     },
   );
 
@@ -58,7 +59,7 @@ const initBelinda = ({ onAuthError }: { onAuthError: () => void }) => {
 };
 
 const belinda = initBelinda({
-  onAuthError: () => store.dispatch(setIsAuth(false)),
+  onAuthError: () => deleteStorage('token'),
 });
 
 export { belinda };

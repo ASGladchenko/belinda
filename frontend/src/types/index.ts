@@ -10,4 +10,5 @@ export interface Params {
 export interface IAuth {
   role: string;
   password: string;
+  remember?: boolean;
 }

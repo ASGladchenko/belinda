@@ -1,17 +1,31 @@
 'use client';
 import { useState } from 'react';
+import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+import { useSWRConfig } from 'swr';
 
 import { Login } from '@/assets/icons';
+import { removeTokensCookies } from '@/utils';
+import { USE_AUTH, routes } from '@/constants';
 import { Button, LanguageSelection, ThemeIcons } from '@/components';
 
 export function HeaderAdmin() {
+  const router = useRouter();
   const [lang, setLang] = useState('ukrainian');
 
-  const onExit = () => console.log('Exit');
+  const { mutate } = useSWRConfig();
+
+  const onExit = () => {
+    removeTokensCookies();
+    mutate(USE_AUTH, null);
+    router.push(routes.login);
+  };
 
   return (
     <header className="relative flex items-center justify-between transition w-full h-[65px] bg-admin-lighten-second dark:bg-admin-darken-second border-b border-admin-lighten-border dark:border-admin-darken-border drop-shadow-lg dark:drop-shadow-lg duration-0 px-8 z-999">
-      <h3 className={`text-xl cursor-pointer font-pacifico`}>Belinda</h3>
+      <Link href="/admin" className={`text-xl cursor-pointer font-pacifico`}>
+        Belinda
+      </Link>
       <div className="flex items-center gap-6 flex-nowrap">
         <LanguageSelection selectLang={lang} onSelect={setLang} />
 

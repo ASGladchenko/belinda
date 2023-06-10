@@ -1,12 +1,13 @@
 'use client';
+import { useRouter } from 'next/navigation';
 import { Form, Formik, FormikValues } from 'formik';
 
 import { useDelayAnimation } from '@/hooks';
 import { InputField, Overlay, PageHead } from '@/components';
 import { initialValues, validationSchema } from '@/app/(login)/login/config';
 
-export default function Products() {
-  const duration = 500;
+const duration = 500;
+function Products() {
   const { isOpen, isAnimation, setOpen } = useDelayAnimation(duration);
 
   const onSubmit = (e: FormikValues) => {
@@ -22,7 +23,7 @@ export default function Products() {
         duration={duration}
         isAnimation={isAnimation}
         setClose={() => setOpen(false)}
-        // TODO: PRoblem !!!!!!!!!!!
+        // TODO: PRoblem with create !!!!!!!!!!!
         onCreate={() => alert('Create')}
       >
         <Formik
@@ -32,12 +33,16 @@ export default function Products() {
         >
           <Form className="flex flex-col w-[400px] gap-5">
             <h3 className="text-center select-none">Create Category</h3>
-            <InputField name="newCategory" label="Enter name" />
-
-            <div className="flex justify-between w-full "></div>
+            <InputField
+              name="newCategory"
+              label="Enter name"
+              className="text-white"
+            />
           </Form>
         </Formik>
       </Overlay>
     </div>
   );
 }
+
+export default Products;

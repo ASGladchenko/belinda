@@ -2,7 +2,8 @@ import React from 'react';
 
 export type InputOnChangeEventType =
   | React.ChangeEvent<HTMLInputElement>
-  | string;
+  | string
+  | boolean;
 
 export interface IInitialValues {
   tel: string;

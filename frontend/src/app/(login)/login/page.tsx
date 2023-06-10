@@ -1,23 +1,42 @@
 'use client';
+import Cookies from 'js-cookie';
 import CommonLink from 'next/link';
+import { useSWRConfig } from 'swr';
 import { Formik, Form } from 'formik';
+import useSWRMutation from 'swr/mutation';
+import { useRouter } from 'next/navigation';
 
 import { api } from '@/http';
 import { IAuth } from '@/types';
 import { Login } from '@/assets/icons';
-import { Button, Checkbox, InputField } from '@/components';
+import { USE_AUTH, routes } from '@/constants';
+import { Button, InputField } from '@/components';
 
 import { initialValues, validationSchema } from './config';
 
 export default function LogIn() {
-  const onSubmit = async (e: IAuth) => {
-    console.log(e);
+  const router = useRouter();
+  const { mutate } = useSWRConfig();
+  const { trigger, isMutating } = useSWRMutation('/auth/login', api.login);
 
+  const onSubmit = async ({ role, password, remember }: IAuth) => {
     try {
-      const response = await api.login(e);
-      console.log(response);
-    } catch (e) {
-      console.log(e);
+      const response = await trigger({ role, password });
+      mutate(USE_AUTH, response.refresh_token);
+
+      if (remember) {
+        Cookies.set('access', JSON.stringify(response.access_token));
+        Cookies.set('refresh', JSON.stringify(response.refresh_token), {
+          expires: 7,
+        });
+      } else {
+        Cookies.set('access', JSON.stringify(response.access_token));
+        Cookies.set('refresh', JSON.stringify(response.refresh_token));
+      }
+
+      router.push(routes.admin);
+    } catch (e: any) {
+      console.log(e.response);
     }
   };
 
@@ -46,8 +65,9 @@ export default function LogIn() {
                   Forgot password?
                 </CommonLink>
 
-                <Checkbox
-                  name="remeber"
+                <InputField
+                  type="checkbox"
+                  name="remember"
                   label="Remember me"
                   className="checkbox-admin"
                 />
@@ -57,6 +77,7 @@ export default function LogIn() {
                 text="Enter"
                 type="submit"
                 variant="primary"
+                disabled={isMutating}
                 className="w-[150px] ml-auto"
                 icon={<Login width={24} height={24} />}
               />
