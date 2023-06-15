@@ -1,5 +1,5 @@
 'use client';
-import { MainWrapper, PageHead } from '@/components';
+import { CategoryWrapper, MainWrapper, PageHead } from '@/components';
 
 interface ISubCategory {
   params: {
@@ -8,17 +8,13 @@ interface ISubCategory {
 }
 
 const Product = ({ params: { product } }: ISubCategory) => {
-  const onCreate = () => alert('create');
-
   return (
     <MainWrapper>
-      <PageHead
-        maxCrumps={4}
-        onClick={onCreate}
-        head={product.split('_').join(' ')}
-      />
+      <PageHead maxCrumps={4} head={product.split('_').join(' ')} />
 
-      <h1>{product}</h1>
+      <CategoryWrapper>
+        <h1>{product}</h1>
+      </CategoryWrapper>
     </MainWrapper>
   );
 };

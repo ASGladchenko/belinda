@@ -21,7 +21,7 @@ export function HeaderAdmin() {
       <Link href="/admin" className={`text-xl cursor-pointer font-pacifico`}>
         Belinda
       </Link>
-      <div className="flex items-center gap-6 flex-nowrap">
+      <div className="flex items-center gap-3 sm:gap-5 flex-nowrap">
         <LanguageSelection selectLang={lang} onSelect={setLang} />
 
         <ThemeIcons />

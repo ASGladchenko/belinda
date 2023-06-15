@@ -1,4 +1,6 @@
 'use client';
+import { usePathname, useRouter } from 'next/navigation';
+
 import {
   CategoryWrapper,
   MainWrapper,
@@ -14,7 +16,9 @@ interface ISubCategory {
 import { products } from '@/components/admins/mock/mockdata';
 
 const SubCategory = ({ params: { subCategory } }: ISubCategory) => {
-  const onCreate = () => alert('create');
+  const router = useRouter();
+  const path = usePathname();
+  const onCreate = () => router.push(`${path}/create`);
 
   return (
     <MainWrapper>
