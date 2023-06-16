@@ -1,9 +1,12 @@
 'use client';
+import { SWRConfig } from 'swr';
 import { Provider } from 'react-redux';
 import { Inter, Pacifico } from 'next/font/google';
 
 import { store } from '@/store';
+import { getCookies } from '@/utils';
 import { ChildrenProps } from '@/types';
+import { USE_AUTH } from '@/constants';
 import { Provider as ThemeProvider, Toast } from '@/components';
 
 import '../styles/global.css';
@@ -27,13 +30,20 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }: ChildrenProps) {
+  const token = getCookies('refresh');
+
   return (
     <html lang="en">
       <body className={`${pacifico.variable} ${inter.variable}`}>
-        <Provider store={store}>
-          <ThemeProvider>{children}</ThemeProvider>
-          <Toast />
-        </Provider>
+        <SWRConfig
+          value={{
+            fallback: { [USE_AUTH]: token },
+          }}
+        >
+          <Provider store={store}>
+            <ThemeProvider>{children}</ThemeProvider>
+          </Provider>
+        </SWRConfig>
       </body>
     </html>
   );

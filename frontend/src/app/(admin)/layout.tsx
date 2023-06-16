@@ -1,6 +1,27 @@
+'use client';
+import { useEffect } from 'react';
+import useSWR from 'swr';
+import { useRouter } from 'next/navigation';
+
+import { ChildrenProps } from '@/types';
+import { USE_AUTH, routes } from '@/constants';
 import { Aside, HeaderAdmin } from '@/components';
 
-export default function Layout({ children }: { children: React.ReactNode }) {
+export const metadata = {
+  title: {
+    default: 'Products',
+    template: '%s',
+  },
+};
+
+export default function Layout({ children }: ChildrenProps) {
+  const router = useRouter();
+  const { data } = useSWR(USE_AUTH);
+
+  useEffect(() => {
+    if (!data) router.push(routes.login);
+  }, [router, data]);
+
   return (
     <div className="h-screen overflow-y-hidden">
       <HeaderAdmin />

@@ -1,3 +1,4 @@
+import { routes } from '@/constants';
 import { Company, Product, Web } from '@/assets/icons';
 
 import { IMenuList } from './types';
@@ -5,19 +6,19 @@ import { IMenuList } from './types';
 export const menuList: IMenuList[] = [
   {
     name: 'products',
-    href: '/admin',
+    href: routes.admin,
     Icon: Product,
   },
 
   {
     name: 'company',
-    href: '/admin/company',
+    href: routes.company,
     Icon: Company,
   },
 
   {
     name: 'webpage',
-    href: '/admin/webpage',
+    href: routes.webpage,
     Icon: Web,
   },
 ];

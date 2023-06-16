@@ -5,15 +5,22 @@ import { useRouter } from 'next/navigation';
 
 import { Login } from '@/assets/icons';
 import { deleteStorage } from '@/utils';
+import { useSWRConfig } from 'swr';
+
+import { removeTokensCookies } from '@/utils';
+import { USE_AUTH, routes } from '@/constants';
 import { Button, LanguageSelection, ThemeIcons } from '@/components';
 
 export function HeaderAdmin() {
   const router = useRouter();
   const [lang, setLang] = useState('ukrainian');
 
+  const { mutate } = useSWRConfig();
+
   const onExit = () => {
-    deleteStorage('token');
-    router.push('/login');
+    removeTokensCookies();
+    mutate(USE_AUTH, null);
+    router.push(routes.login);
   };
 
   return (
@@ -21,6 +28,7 @@ export function HeaderAdmin() {
       <Link href="/admin" className={`text-xl cursor-pointer font-pacifico`}>
         Belinda
       </Link>
+
       <div className="flex items-center gap-3 sm:gap-5 flex-nowrap">
         <LanguageSelection selectLang={lang} onSelect={setLang} />
 
