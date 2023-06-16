@@ -1,13 +1,14 @@
 'use client';
-import CommonLink from 'next/link';
 import Cookies from 'js-cookie';
+import CommonLink from 'next/link';
 import { Formik, Form } from 'formik';
 import { useRouter } from 'next/navigation';
+import { ToastContainerProps } from 'react-toastify';
 
 import { api } from '@/http';
 import { IAuth } from '@/types';
 import { Login } from '@/assets/icons';
-import { Button, InputField } from '@/components';
+import { Button, InputField, showMessage } from '@/components';
 
 import { initialValues, validationSchema } from './config';
 
@@ -16,6 +17,7 @@ export default function LogIn() {
   const onSubmit = async ({ role, password, remember }: IAuth) => {
     try {
       const response = await api.login({ role, password });
+      console.log(response);
 
       if (remember) localStorage.setItem('token', JSON.stringify(response));
       else sessionStorage.setItem('token', JSON.stringify(response));
@@ -23,7 +25,7 @@ export default function LogIn() {
       Cookies.set('isAuth', JSON.stringify(true), { expires: 7 });
       router.push('/admin');
     } catch (e: any) {
-      console.log(e.response);
+      showMessage.error(e.response.data.message);
     }
   };
 
