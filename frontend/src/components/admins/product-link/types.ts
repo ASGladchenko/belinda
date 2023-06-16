@@ -1,18 +1,21 @@
 export interface IProductLink {
-  id: number;
+  id: string;
   href: string;
   name: string;
-  modify?: boolean;
+  img?: string;
+  notModify?: boolean;
+  setId?: (id: string) => void;
+  onDelete: (id: string) => void;
 }
 
 export interface ISubCategory {
-  id: number;
+  id: string;
   url: string;
   name: string;
 }
 
 export interface IProduct {
-  id: number;
+  id: string;
   url: string;
   name: string;
   img_url?: string;

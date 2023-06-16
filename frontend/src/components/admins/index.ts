@@ -7,3 +7,4 @@ export { HeaderAdmin } from './header-admin';
 export { MainWrapper } from './main-wrapper';
 export { PageHead } from './page-header';
 export { ProductLink } from './product-link';
+export * from './product-root';

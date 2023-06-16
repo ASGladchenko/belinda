@@ -12,3 +12,7 @@ export interface IAuth {
   password: string;
   remember?: boolean;
 }
+
+export interface IRootData {
+  name: string;
+}

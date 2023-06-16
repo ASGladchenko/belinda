@@ -1,16 +1,17 @@
 'use client';
-import { Form, Formik, FormikValues } from 'formik';
-
+import { IRootData } from '@/types';
+import { productRoot } from '@/http';
 import { useDelayAnimation } from '@/hooks';
-import { initialValues, validationSchema } from '@/app/(login)/login/config';
 import {
+  Form,
   Overlay,
   PageHead,
-  InputField,
-  ProductLink,
   MainWrapper,
-  CategoryWrapper,
+  ProductRoot,
+  getInitialValues,
 } from '@/components';
+
+const url = '/category';
 
 import { categories } from '@/components/admins/mock/mockdata';
 
@@ -18,19 +19,22 @@ function Products() {
   const duration = 500;
   const { isOpen, isAnimation, setOpen } = useDelayAnimation(duration);
 
-  const onSubmit = (e: FormikValues) => {
-    console.log(e);
+  const onSubmit = async (values: IRootData) => {
+    try {
+      const response = await productRoot.create(values, url);
+      console.log(response);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setOpen(false);
+    }
   };
 
   return (
     <MainWrapper>
       <PageHead head="Categories" onClick={() => setOpen(true)} />
 
-      <CategoryWrapper>
-        {categories.map((category) => (
-          <ProductLink {...category} />
-        ))}
-      </CategoryWrapper>
+      <ProductRoot categories={categories} url={url} />
 
       <Overlay
         isOpen={isOpen}
@@ -38,20 +42,11 @@ function Products() {
         isAnimation={isAnimation}
         setClose={() => setOpen(false)}
       >
-        <Formik
+        <Form
           onSubmit={onSubmit}
-          initialValues={initialValues}
-          validationSchema={validationSchema}
-        >
-          <Form className="flex flex-col w-[400px] gap-5">
-            <h3 className="text-center select-none">Create Category</h3>
-            <InputField
-              name="newCategory"
-              label="Enter name"
-              className="text-white"
-            />
-          </Form>
-        </Formik>
+          onClose={() => setOpen(false)}
+          initialValues={getInitialValues()}
+        />
       </Overlay>
     </MainWrapper>
   );

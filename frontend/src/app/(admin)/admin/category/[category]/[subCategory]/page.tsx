@@ -6,6 +6,7 @@ import {
   MainWrapper,
   PageHead,
   ProductLink,
+  ProductRoot,
 } from '@/components';
 
 interface ISubCategory {
@@ -13,7 +14,7 @@ interface ISubCategory {
     subCategory: string;
   };
 }
-import { products } from '@/components/admins/mock/mockdata';
+// import { products } from '@/components/admins/mock/mockdata';
 
 const SubCategory = ({ params: { subCategory } }: ISubCategory) => {
   const router = useRouter();
@@ -26,12 +27,6 @@ const SubCategory = ({ params: { subCategory } }: ISubCategory) => {
         onClick={onCreate}
         head={`${subCategory.split('_').join(' ')} products:`}
       />
-
-      <CategoryWrapper>
-        {products.map((product) => (
-          <ProductLink {...product} modify={false} />
-        ))}
-      </CategoryWrapper>
     </MainWrapper>
   );
 };

@@ -6,7 +6,14 @@ import { Delete, Edit } from '@/assets/icons';
 import { getStyles } from './styles';
 import { IProductLink } from './types';
 
-export const ProductLink = ({ name, href, modify = true }: IProductLink) => {
+export const ProductLink = ({
+  id,
+  name,
+  href,
+  setId,
+  onDelete,
+  notModify,
+}: IProductLink) => {
   const { link, remove, edit } = getStyles();
 
   return (
@@ -14,7 +21,7 @@ export const ProductLink = ({ name, href, modify = true }: IProductLink) => {
       <p>{name}</p>
 
       <div className="flex gap-3">
-        {modify && (
+        {!notModify && (
           <Button
             type="button"
             className={edit}
@@ -22,6 +29,7 @@ export const ProductLink = ({ name, href, modify = true }: IProductLink) => {
             icon={<Edit width={24} height={22} />}
             onClick={(event) => {
               event.preventDefault();
+              if (setId) setId(id);
             }}
           />
         )}
@@ -33,6 +41,7 @@ export const ProductLink = ({ name, href, modify = true }: IProductLink) => {
           icon={<Delete width={24} height={24} />}
           onClick={(event) => {
             event.preventDefault();
+            onDelete(id);
           }}
         />
       </div>

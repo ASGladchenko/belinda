@@ -1,2 +1,2 @@
-export * as api from './api';
-export { belinda } from './interceptor';
+export * as auth from './auth';
+export * as productRoot from './productRoot';

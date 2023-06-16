@@ -3,9 +3,8 @@ import Cookies from 'js-cookie';
 import CommonLink from 'next/link';
 import { Formik, Form } from 'formik';
 import { useRouter } from 'next/navigation';
-import { ToastContainerProps } from 'react-toastify';
 
-import { api } from '@/http';
+import { auth } from '@/http';
 import { IAuth } from '@/types';
 import { Login } from '@/assets/icons';
 import { Button, InputField, showMessage } from '@/components';
@@ -16,8 +15,7 @@ export default function LogIn() {
   const router = useRouter();
   const onSubmit = async ({ role, password, remember }: IAuth) => {
     try {
-      const response = await api.login({ role, password });
-      console.log(response);
+      const response = await auth.login({ role, password });
 
       if (remember) localStorage.setItem('token', JSON.stringify(response));
       else sessionStorage.setItem('token', JSON.stringify(response));
