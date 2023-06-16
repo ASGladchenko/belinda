@@ -8,10 +8,4 @@ export const getStyles = ({ isAnimation }: { isAnimation: boolean }) => ({
       'opacity-1': isAnimation,
     },
   ),
-
-  window: clsx(
-    'max-w-[600px] bg-admin-lighten-main drop-shadow-darken drop-shadow-2xl dark:drop-shadow-darken dark:bg-admin-darken-main p-3',
-  ),
-
-  menu: 'flex justify-center gap-10',
 });

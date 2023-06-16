@@ -1,5 +1,5 @@
 'use client';
-import { MainWrapper, PageHead } from '@/components';
+import { CreateProduct, MainWrapper, PageHead } from '@/components';
 
 interface ISubCategory {
   params: {
@@ -13,7 +13,7 @@ const Create = ({ params: { product } }: ISubCategory) => {
   return (
     <MainWrapper>
       <PageHead head="Create" />
-      <h1> CREATE</h1>
+      <CreateProduct></CreateProduct>
     </MainWrapper>
   );
 };

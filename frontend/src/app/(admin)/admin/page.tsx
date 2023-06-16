@@ -37,8 +37,6 @@ function Products() {
         duration={duration}
         isAnimation={isAnimation}
         setClose={() => setOpen(false)}
-        // TODO: PRoblem with create !!!!!!!!!!!
-        onCreate={() => alert('Create')}
       >
         <Formik
           onSubmit={onSubmit}

@@ -5,7 +5,6 @@ import ReactDOM from 'react-dom';
 import { useOutsideClick } from '@/hooks/outSideClick';
 
 import { IOverlay } from './types';
-import { Button } from '../button';
 import { getStyles } from './styles';
 import { ChildrenProps } from '../../types';
 
@@ -24,12 +23,7 @@ export const Overlay = ({
 
   const [isTouched, setIsTouched] = useState(false);
 
-  const { overlay, window, menu } = getStyles({ isAnimation });
-
-  const handelCreate = async () => {
-    await onCreate();
-    setClose();
-  };
+  const { overlay } = getStyles({ isAnimation });
 
   useOutsideClick(childRef, () => {
     if (isTouched) {
@@ -98,21 +92,7 @@ export const Overlay = ({
       className={overlay}
       style={!isAnimation ? { transitionDelay: `${duration - 300}ms` } : {}}
     >
-      <div ref={childRef} className={window}>
-        {children}
-
-        <div className={menu}>
-          <Button text="Cancel" onClick={setClose} variant="outline-primary" />
-
-          {!!onCreate && (
-            <Button
-              text="Create"
-              onClick={handelCreate}
-              variant="outline-primary"
-            />
-          )}
-        </div>
-      </div>
+      <div ref={childRef}>{children}</div>
     </div>,
     document.body,
   );

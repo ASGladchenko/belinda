@@ -4,5 +4,5 @@ export interface IOverlay {
   setClose: () => void;
   isAnimation: boolean;
   children?: React.ReactNode;
-  onCreate: (() => Promise<void>) | (() => void);
+  onCreate?: (() => Promise<void>) | (() => void);
 }

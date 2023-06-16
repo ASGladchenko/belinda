@@ -15,3 +15,4 @@ export { default as Delete } from './admin/delete.svg';
 export { default as Edit } from './admin/edit.svg';
 export { default as Down } from './admin/arrowDown.svg';
 export { default as Search } from './admin/search.svg';
+export { default as Plus } from './admin/plus.svg';
