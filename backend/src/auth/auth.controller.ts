@@ -16,8 +16,8 @@ import {
   ApiUnauthorizedResponse,
 } from '@nestjs/swagger';
 
+import { AuthGuard } from '../guards';
 import { GetToken } from '../decorators';
-import { AuthGuard } from './auth.guard';
 import { RoleDto } from './dto/role.dto';
 import { RoleEntity } from './role.entity';
 import { AuthService } from './auth.service';
