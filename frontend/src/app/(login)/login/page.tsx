@@ -35,8 +35,8 @@ export default function LogIn() {
       }
 
       router.push(routes.admin);
-    } catch (e: any) {
-      console.log(e.response);
+    } catch (error: any) {
+      showMessage.error(error.response.data.message);
     }
   };
 
@@ -50,6 +50,8 @@ export default function LogIn() {
         <div className="flex flex-col w-full gap-7">
           <Formik
             onSubmit={onSubmit}
+            validateOnBlur={false}
+            validateOnChange={false}
             initialValues={initialValues}
             validationSchema={validationSchema}
           >

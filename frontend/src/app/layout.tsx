@@ -42,6 +42,7 @@ export default function RootLayout({ children }: ChildrenProps) {
         >
           <Provider store={store}>
             <ThemeProvider>{children}</ThemeProvider>
+            <Toast />
           </Provider>
         </SWRConfig>
       </body>
