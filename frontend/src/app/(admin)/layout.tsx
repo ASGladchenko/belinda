@@ -7,16 +7,9 @@ import { ChildrenProps } from '@/types';
 import { USE_AUTH, routes } from '@/constants';
 import { Aside, HeaderAdmin } from '@/components';
 
-export const metadata = {
-  title: {
-    default: 'Products',
-    template: '%s',
-  },
-};
-
 export default function Layout({ children }: ChildrenProps) {
   const router = useRouter();
-  const { data } = useSWR(USE_AUTH);
+  const { data, isLoading } = useSWR(USE_AUTH);
 
   useEffect(() => {
     if (!data) router.push(routes.login);
