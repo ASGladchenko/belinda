@@ -30,10 +30,10 @@ export const setClass = (variant: IVariant) => {
       [`${secondaryColor} ${outlineVariant} text-admin-secondary`]:
         variant === 'outline-secondary',
 
-      [`${ghostVariant} enabled:hover:bg-admin-secondaryActive`]:
+      [`${ghostVariant} enabled:hover:bg-admin-secondaryGhost`]:
         variant === 'ghost-secondary',
 
-      [`${ghostVariant} enabled:hover:bg-admin-primary`]:
+      [`${ghostVariant} enabled:hover:bg-admin-primaryGhost`]:
         variant === 'ghost-primary',
     },
   );

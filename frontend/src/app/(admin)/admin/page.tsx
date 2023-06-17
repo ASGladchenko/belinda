@@ -9,6 +9,7 @@ import {
   MainWrapper,
   ProductRoot,
   getInitialValues,
+  showMessage,
 } from '@/components';
 
 const url = '/category';
@@ -23,8 +24,9 @@ function Products() {
     try {
       const response = await productRoot.create(values, url);
       console.log(response);
-    } catch (error) {
-      console.log(error);
+      showMessage.success('Changes are successful');
+    } catch (error: any) {
+      showMessage.error(error.response.data.message);
     } finally {
       setOpen(false);
     }
@@ -34,7 +36,7 @@ function Products() {
     <MainWrapper>
       <PageHead head="Categories" onClick={() => setOpen(true)} />
 
-      <ProductRoot categories={categories} url={url} />
+      <ProductRoot categories={categories} url={url} title="Change category" />
 
       <Overlay
         isOpen={isOpen}
@@ -43,6 +45,7 @@ function Products() {
         setClose={() => setOpen(false)}
       >
         <Form
+          title="Create Category"
           onSubmit={onSubmit}
           onClose={() => setOpen(false)}
           initialValues={getInitialValues()}
