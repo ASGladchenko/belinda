@@ -13,6 +13,7 @@ import {
 import {
   ApiTags,
   ApiOperation,
+  ApiOkResponse,
   ApiCreatedResponse,
   ApiBadRequestResponse,
 } from '@nestjs/swagger';
@@ -28,22 +29,13 @@ export class CategoryController {
   constructor(private categoryService: CategoryService) {}
 
   @UseGuards(AuthGuard)
-  @Post()
-  @HttpCode(HttpStatus.CREATED)
-  @ApiOperation({ summary: 'Create category' })
-  @ApiBadRequestResponse({ description: 'BAD REQUEST' })
-  @ApiCreatedResponse({
-    type: CategoryDto,
-    description: 'CREATED',
-  })
-  async create(@Body() categoryDto: CategoryDto) {
-    return this.categoryService.create(categoryDto);
-  }
-
-  @UseGuards(AuthGuard)
   @Get()
   @HttpCode(HttpStatus.OK)
   @ApiOperation({ summary: 'Get categories' })
+  @ApiOkResponse({
+    type: [CategoryEntity],
+    description: 'OK',
+  })
   async findAll() {
     return this.categoryService.findAll();
   }
@@ -52,14 +44,35 @@ export class CategoryController {
   @Get(':id')
   @HttpCode(HttpStatus.OK)
   @ApiOperation({ summary: 'Get category by id' })
+  @ApiOkResponse({
+    type: CategoryEntity,
+    description: 'OK',
+  })
   findOne(@Param('id') id: string): Promise<CategoryEntity> {
     return this.categoryService.findOne(id);
+  }
+
+  @UseGuards(AuthGuard)
+  @Post()
+  @HttpCode(HttpStatus.CREATED)
+  @ApiOperation({ summary: 'Create category' })
+  @ApiBadRequestResponse({ description: 'BAD REQUEST' })
+  @ApiCreatedResponse({
+    type: CategoryEntity,
+    description: 'CREATED',
+  })
+  async create(@Body() categoryDto: CategoryDto) {
+    return this.categoryService.create(categoryDto);
   }
 
   @UseGuards(AuthGuard)
   @Put(':id')
   @HttpCode(HttpStatus.OK)
   @ApiOperation({ summary: 'Update category' })
+  @ApiOkResponse({
+    type: CategoryEntity,
+    description: 'OK',
+  })
   @ApiBadRequestResponse({ description: 'BAD REQUEST' })
   async update(
     @Param('id') id: string,
