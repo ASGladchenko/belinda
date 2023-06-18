@@ -5,8 +5,7 @@ export default function Home() {
     <>
       <ThemeIcons />
       <h1 className="text-6xl text-center h-[600px] flex  justify-center items-center">
-        {' '}
-        Home{' '}
+        Home
       </h1>
     </>
   );

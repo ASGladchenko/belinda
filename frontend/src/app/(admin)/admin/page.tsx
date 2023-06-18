@@ -1,6 +1,7 @@
 'use client';
 import { IRootData } from '@/types';
 import { productRoot } from '@/http';
+
 import { useDelayAnimation } from '@/hooks';
 import {
   Form,
