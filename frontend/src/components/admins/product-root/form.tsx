@@ -29,19 +29,20 @@ const Form = ({ initialValues, onClose, onSubmit, title }: ICategoryForm) => {
 
         <InputField name="name" label="Enter name" className="text-white" />
 
-        <div className="flex justify-between">
+        <div className="flex justify-end gap-5">
           <Button
+            type="button"
             text="Cancel"
-            variant="primary"
+            variant="secondary"
             onClick={onClose}
-            className=" max-w-[80px] md:max-w-[150px] w-full"
+            className=" max-w-[80px] md:max-w-[150px] w-full rounded-lg"
           />
 
           <Button
             type="submit"
             text="Create"
             variant="primary"
-            className=" max-w-[80px] md:max-w-[150px] w-full"
+            className=" max-w-[80px] md:max-w-[150px] w-full rounded-lg"
           />
         </div>
       </FormikForm>

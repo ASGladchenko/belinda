@@ -1,7 +1,9 @@
 'use client';
+import useSWR from 'swr';
+
 import { IRootData } from '@/types';
 import { productRoot } from '@/http';
-
+import { GET_CATEGORY } from '@/constants';
 import { useDelayAnimation } from '@/hooks';
 import {
   Form,
@@ -9,8 +11,8 @@ import {
   PageHead,
   MainWrapper,
   ProductRoot,
-  getInitialValues,
   showMessage,
+  getInitialValues,
 } from '@/components';
 
 const url = '/category';
@@ -21,10 +23,11 @@ function Products() {
   const duration = 500;
   const { isOpen, isAnimation, setOpen } = useDelayAnimation(duration);
 
+  const { data, isLoading } = useSWR(GET_CATEGORY, productRoot.getCategory);
+
   const onSubmit = async (values: IRootData) => {
     try {
       const response = await productRoot.create(values, url);
-      console.log(response);
       showMessage.success('Changes are successful');
     } catch (error: any) {
       showMessage.error(error.response.data.message);
@@ -37,7 +40,9 @@ function Products() {
     <MainWrapper>
       <PageHead head="Categories" onClick={() => setOpen(true)} />
 
-      <ProductRoot categories={categories} url={url} title="Change category" />
+      {data?.length > 0 && (
+        <ProductRoot categories={data} url={url} title="Change category" />
+      )}
 
       <Overlay
         isOpen={isOpen}

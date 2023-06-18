@@ -2,8 +2,8 @@ import { IRootData } from '@/types';
 
 import { belinda } from './interceptor';
 
-export const getCategory = () =>
-  belinda.get('/category').then(({ data }) => data);
+export const getCategory = (url: string) =>
+  belinda.get(url).then(({ data }) => data);
 
 export const getCategoryById = (id: string) =>
   belinda.get(`/category/${id}`).then(({ data }) => data);

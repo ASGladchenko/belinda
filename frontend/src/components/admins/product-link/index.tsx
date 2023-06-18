@@ -11,8 +11,8 @@ import { IProductLink } from './types';
 export const ProductLink = ({
   id,
   url,
-  name,
   href,
+  name,
   onEdit,
   notModify,
 }: IProductLink) => {
@@ -76,7 +76,7 @@ export const ProductLink = ({
             <span className="text-2xl capitalize">{name}?</span>
           </p>
 
-          <div className="flex justify-between w-full">
+          <div className="flex justify-end w-full gap-10">
             <Button
               text="Cancel"
               variant="primary"
@@ -86,7 +86,7 @@ export const ProductLink = ({
 
             <Button
               text="Delete"
-              variant="primary"
+              variant="secondary"
               onClick={() => onDelete(id)}
               className=" max-w-[80px] md:max-w-[150px] w-full"
             />

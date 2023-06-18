@@ -9,7 +9,7 @@ export const getStyles = () => {
     edit: `${baseBtn} enabled:hover:fill-emerald-600 dark:enabled:hover:fill-emerald-600`,
 
     removeContainer:
-      'w-screen md:w-[500px] bg-admin-lighten-main dark:bg-admin-darken-main p-10 flex flex-col gap-10',
+      'w-screen md:w-[500px] bg-admin-lighten-main dark:bg-admin-darken-main p-10 flex flex-col gap-10 md:rounded-md',
 
     text: 'font-medium text-center select-none text-admin-headPage dark:text-white',
   };

@@ -1,11 +1,16 @@
 'use client';
+import { IRootData } from '@/types';
+import { productRoot } from '@/http';
+import { useDelayAnimation } from '@/hooks';
 import {
-  CategoryWrapper,
-  MainWrapper,
+  Form,
+  Overlay,
   PageHead,
-  ProductLink,
+  MainWrapper,
+  ProductRoot,
+  showMessage,
+  getInitialValues,
 } from '@/components';
-import { sub_categories } from '@/components/admins/mock/mockdata';
 
 interface ICategory {
   params: {
@@ -13,23 +18,50 @@ interface ICategory {
   };
 }
 
-const Category = ({ params: { category } }: ICategory) => {
-  const onCreate = () => alert('create');
+const url = '/sub-category';
 
+import { sub_categories } from '@/components/admins/mock/mockdata';
+
+const Category = ({ params: { category } }: ICategory) => {
+  const duration = 500;
+  const { isOpen, isAnimation, setOpen } = useDelayAnimation(duration);
+
+  const onSubmit = async (values: IRootData) => {
+    try {
+      const response = await productRoot.create(values, url);
+      showMessage.success('Changes are successful');
+    } catch (error: any) {
+      showMessage.error(error.response.data.message);
+    } finally {
+      setOpen(false);
+    }
+  };
   return (
     <MainWrapper>
       <PageHead
-        head={`${
-          category[0].toUpperCase() + category.slice(1)
-        } subcategories :`}
-        onClick={onCreate}
+        head={`${category} subcategories :`}
+        onClick={() => setOpen(true)}
       />
 
-      <CategoryWrapper>
-        {sub_categories.map((s_category) => (
-          <ProductLink {...s_category} />
-        ))}
-      </CategoryWrapper>
+      <ProductRoot
+        categories={sub_categories}
+        url={url}
+        title="Change Subcategory"
+      />
+
+      <Overlay
+        isOpen={isOpen}
+        duration={duration}
+        isAnimation={isAnimation}
+        setClose={() => setOpen(false)}
+      >
+        <Form
+          title="Create Subcategory"
+          onSubmit={onSubmit}
+          onClose={() => setOpen(false)}
+          initialValues={getInitialValues()}
+        />
+      </Overlay>
     </MainWrapper>
   );
 };

@@ -5,8 +5,8 @@ import { Inter, Pacifico } from 'next/font/google';
 
 import { store } from '@/store';
 import { getCookies } from '@/utils';
-import { ChildrenProps } from '@/types';
 import { USE_AUTH } from '@/constants';
+import { ChildrenProps } from '@/types';
 import { Provider as ThemeProvider, Toast } from '@/components';
 
 import '../styles/global.css';
@@ -34,6 +34,7 @@ export const metadata = {
 
 export default function RootLayout({ children }: ChildrenProps) {
   const token = getCookies('refresh');
+  console.log(token);
 
   return (
     <html lang="en">

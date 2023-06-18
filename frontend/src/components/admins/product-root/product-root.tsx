@@ -27,7 +27,6 @@ export const ProductRoot = ({ categories, url, title }: IEdit) => {
   const onSubmit = async (values: IRootData) => {
     try {
       const response = await productRoot.edit(values, id, url);
-      console.log(response);
       showMessage.success('Changes are successful');
     } catch (error: any) {
       showMessage.error(error.response.data.message);
@@ -42,12 +41,12 @@ export const ProductRoot = ({ categories, url, title }: IEdit) => {
   };
 
   const initialValues = useMemo(() => {
-    return categories.find((category) => category.id === id);
+    return categories?.find((category) => category.id === id);
   }, [id]);
 
   return (
     <CategoryWrapper>
-      {categories.map((category) => (
+      {categories?.map((category) => (
         <ProductLink {...category} onEdit={onEdit} url={url} />
       ))}
 
