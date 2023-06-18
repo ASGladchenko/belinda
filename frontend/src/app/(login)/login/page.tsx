@@ -25,13 +25,13 @@ export default function LogIn() {
       mutate(USE_AUTH, response.refresh_token);
 
       if (remember) {
-        Cookies.set('access', JSON.stringify(response.access_token));
-        Cookies.set('refresh', JSON.stringify(response.refresh_token), {
+        Cookies.set('access', response.access_token);
+        Cookies.set('refresh', response.refresh_token, {
           expires: 7,
         });
       } else {
-        Cookies.set('access', JSON.stringify(response.access_token));
-        Cookies.set('refresh', JSON.stringify(response.refresh_token));
+        Cookies.set('access', response.access_token);
+        Cookies.set('refresh', response.refresh_token);
       }
 
       router.push(routes.admin);

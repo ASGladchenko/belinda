@@ -22,7 +22,7 @@ export class AuthService {
     private jwtService: JwtService,
   ) {}
 
-  async create(dto: RoleDto): Promise<any> {
+  async create(dto: RoleDto): Promise<Tokens> {
     const roleAdmin = await this.roleRepository.findOneBy({ role: dto.role });
 
     if (roleAdmin) {
@@ -59,33 +59,41 @@ export class AuthService {
     return tokens;
   }
 
-  async logout(tokens: DecodedToken) {
-    await this.updateRefreshToken(tokens.id, null);
-    return true;
-  }
-
   async refresh(decodedToken: DecodedToken): Promise<Tokens> {
-    const roleAdmin = await this.roleRepository.findOneBy({
-      id: decodedToken.id,
-    });
+    const roleAdmin = await this.findOne(decodedToken.id);
 
     if (!roleAdmin.refresh_token) throw new ForbiddenException();
 
-    const newTokens = await this.getTokens(decodedToken.id, decodedToken.role);
+    const { access_token } = await this.getTokens(
+      decodedToken.id,
+      decodedToken.role,
+    );
 
     return {
-      access_token: newTokens.access_token,
+      access_token,
       refresh_token: roleAdmin.refresh_token,
     };
   }
 
+  async logout(): Promise<boolean> {
+    const role = await this.roleRepository.findOneBy({
+      role: 'admin',
+    });
+    await this.updateRefreshToken(role.id, null);
+    return true;
+  }
+  findOne(id: string): Promise<RoleEntity> {
+    return this.roleRepository.findOneBy({
+      id,
+    });
+  }
   private async hashData(password: string) {
     return await bcrypt.hash(password, Number(process.env.SALT));
   }
 
   private async getTokens(id: string, role: string): Promise<Tokens> {
     const [at, rt] = await Promise.all([
-      this.jwtService.signAsync({ id, role }, { expiresIn: 30 }),
+      this.jwtService.signAsync({ id, role }, { expiresIn: 60 }),
       this.jwtService.signAsync({ id, role }, { expiresIn: 60 * 10 }),
     ]);
 
@@ -93,11 +101,11 @@ export class AuthService {
   }
 
   private async updateRefreshToken(id: string, rt: string | null) {
-    await this.roleRepository
-      .createQueryBuilder()
-      .update(RoleEntity)
-      .set({ refresh_token: rt })
-      .where('id = :id', { id })
-      .execute();
+    const roleAdmin = await this.findOne(id);
+
+    await this.roleRepository.save({
+      ...roleAdmin,
+      refresh_token: rt,
+    });
   }
 }
