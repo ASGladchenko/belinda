@@ -54,17 +54,6 @@ export class AuthController {
   }
 
   @UseGuards(AuthGuard)
-  @Post('logout')
-  @HttpCode(HttpStatus.OK)
-  @ApiOkResponse({
-    description: 'OK',
-  })
-  @ApiBadRequestResponse({ description: 'BAD REQUEST' })
-  async logout(@GetToken() decodedToken: DecodedToken): Promise<boolean> {
-    return this.authService.logout(decodedToken);
-  }
-
-  @UseGuards(AuthGuard)
   @Post('refresh')
   @HttpCode(HttpStatus.OK)
   @ApiOkResponse({
@@ -74,5 +63,15 @@ export class AuthController {
   @ApiBadRequestResponse({ description: 'BAD REQUEST' })
   async refresh(@GetToken() decodedToken: DecodedToken): Promise<Tokens> {
     return await this.authService.refresh(decodedToken);
+  }
+
+  @Post('logout')
+  @HttpCode(HttpStatus.OK)
+  @ApiOkResponse({
+    description: 'OK',
+  })
+  @ApiBadRequestResponse({ description: 'BAD REQUEST' })
+  async logout(): Promise<boolean> {
+    return this.authService.logout();
   }
 }
