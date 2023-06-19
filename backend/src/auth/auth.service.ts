@@ -93,8 +93,8 @@ export class AuthService {
 
   private async getTokens(id: string, role: string): Promise<Tokens> {
     const [at, rt] = await Promise.all([
-      this.jwtService.signAsync({ id, role }, { expiresIn: 30 }),
-      this.jwtService.signAsync({ id, role }, { expiresIn: 60 }),
+      this.jwtService.signAsync({ id, role }, { expiresIn: 60 * 5 }),
+      this.jwtService.signAsync({ id, role }, { expiresIn: 60 * 60 * 24 * 7 }),
     ]);
 
     return { access_token: at, refresh_token: rt };
