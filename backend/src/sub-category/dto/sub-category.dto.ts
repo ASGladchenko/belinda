@@ -1,7 +1,7 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { IsNotEmpty, IsOptional, IsString, MinLength } from 'class-validator';
 
-export class CategoryDto {
+export class SubCategoryDto {
   @ApiProperty({ uniqueItems: true, example: 'Фрукти' })
   @IsNotEmpty()
   @IsString()
@@ -18,7 +18,7 @@ export class CategoryDto {
   })
   name_en: string;
 
-  @ApiProperty({ example: 'Опис', required: false })
+  @ApiProperty({ example: 'Опис' })
   @IsString()
   @IsOptional()
   @MinLength(2, {
@@ -26,7 +26,7 @@ export class CategoryDto {
   })
   description?: string;
 
-  @ApiProperty({ example: 'Description', required: false })
+  @ApiProperty({ example: 'Description' })
   @IsString()
   @IsOptional()
   @MinLength(2, {

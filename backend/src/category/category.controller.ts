@@ -28,7 +28,7 @@ import { CategoryService } from './category.service';
 export class CategoryController {
   constructor(private categoryService: CategoryService) {}
 
-  @UseGuards(AuthGuard)
+  // @UseGuards(AuthGuard)
   @Get()
   @HttpCode(HttpStatus.OK)
   @ApiOperation({ summary: 'Get categories' })
@@ -40,7 +40,7 @@ export class CategoryController {
     return this.categoryService.findAll();
   }
 
-  @UseGuards(AuthGuard)
+  // @UseGuards(AuthGuard)
   @Get(':id')
   @HttpCode(HttpStatus.OK)
   @ApiOperation({ summary: 'Get category by id' })
@@ -52,7 +52,7 @@ export class CategoryController {
     return this.categoryService.findOne(id);
   }
 
-  @UseGuards(AuthGuard)
+  // @UseGuards(AuthGuard)
   @Post()
   @HttpCode(HttpStatus.CREATED)
   @ApiOperation({ summary: 'Create category' })
@@ -65,7 +65,7 @@ export class CategoryController {
     return this.categoryService.create(categoryDto);
   }
 
-  @UseGuards(AuthGuard)
+  // @UseGuards(AuthGuard)
   @Put(':id')
   @HttpCode(HttpStatus.OK)
   @ApiOperation({ summary: 'Update category' })
@@ -81,7 +81,7 @@ export class CategoryController {
     return this.categoryService.update(id, categoryDto);
   }
 
-  @UseGuards(AuthGuard)
+  // @UseGuards(AuthGuard)
   @Delete(':id')
   @HttpCode(HttpStatus.NO_CONTENT)
   @ApiOperation({ summary: 'Delete category' })

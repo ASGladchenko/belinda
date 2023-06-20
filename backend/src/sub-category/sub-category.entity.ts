@@ -1,10 +1,9 @@
+import { CategoryEntity } from './../category/category.entity';
 import { ApiProperty } from '@nestjs/swagger';
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 
-import { SubCategoryEntity } from '../sub-category/sub-category.entity';
-
-@Entity('categories')
-export class CategoryEntity {
+@Entity('sub_categories')
+export class SubCategoryEntity {
   @ApiProperty({ example: 'c77184ec-a8d2-4d29-bdd3-08202b6bce54' })
   @PrimaryGeneratedColumn('uuid')
   id: string;
@@ -21,10 +20,10 @@ export class CategoryEntity {
   @Column({ nullable: false })
   description: string;
 
-  @ApiProperty({ example: 'description', required: false })
+  @ApiProperty({ example: 'Description', required: false })
   @Column({ nullable: false })
   description_en: string;
 
-  @OneToMany(() => SubCategoryEntity, (subCategory) => subCategory.category)
-  subCategories: SubCategoryEntity[];
+  @ManyToOne(() => CategoryEntity, (category) => category.subCategories)
+  category: CategoryEntity;
 }

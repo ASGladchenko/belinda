@@ -55,6 +55,6 @@ export class CategoryService {
       throw new HttpException('Category missing', HttpStatus.BAD_REQUEST);
     }
 
-    return await this.categoryRepository.delete(id);
+    return this.categoryRepository.delete(id);
   }
 }
