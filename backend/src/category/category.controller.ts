@@ -36,7 +36,7 @@ export class CategoryController {
     type: [CategoryEntity],
     description: 'OK',
   })
-  async findAll() {
+  async findAll(): Promise<CategoryEntity[]> {
     return this.categoryService.findAll();
   }
 
@@ -61,7 +61,7 @@ export class CategoryController {
     type: CategoryEntity,
     description: 'CREATED',
   })
-  async create(@Body() categoryDto: CategoryDto) {
+  async create(@Body() categoryDto: CategoryDto): Promise<CategoryEntity> {
     return this.categoryService.create(categoryDto);
   }
 
@@ -77,7 +77,7 @@ export class CategoryController {
   async update(
     @Param('id') id: string,
     @Body() categoryDto: CategoryDto,
-  ): Promise<CategoryDto> {
+  ): Promise<CategoryEntity> {
     return this.categoryService.update(id, categoryDto);
   }
 

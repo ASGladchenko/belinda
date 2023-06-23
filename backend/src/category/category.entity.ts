@@ -1,7 +1,7 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 
-import { SubCategoryEntity } from '../sub-category/sub-category.entity';
+import { ProductEntity } from '../product/product.entity';
 
 @Entity('categories')
 export class CategoryEntity {
@@ -9,22 +9,14 @@ export class CategoryEntity {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @ApiProperty({ uniqueItems: true, example: 'Фрукти' })
+  @ApiProperty({ uniqueItems: true, example: 'Fruits' })
   @Column({ unique: true })
   name: string;
 
-  @ApiProperty({ uniqueItems: true, example: 'Fruits' })
+  @ApiProperty({ uniqueItems: true, example: 'Фрукти' })
   @Column({ unique: true })
-  name_en: string;
+  name_ua: string;
 
-  @ApiProperty({ example: 'Опис', required: false })
-  @Column({ nullable: false })
-  description: string;
-
-  @ApiProperty({ example: 'description', required: false })
-  @Column({ nullable: false })
-  description_en: string;
-
-  @OneToMany(() => SubCategoryEntity, (subCategory) => subCategory.category)
-  subCategories: SubCategoryEntity[];
+  @OneToMany(() => ProductEntity, (product) => product.category_id)
+  products: ProductEntity[];
 }

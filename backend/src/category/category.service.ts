@@ -3,6 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Injectable, HttpException, HttpStatus } from '@nestjs/common';
 
 import { CategoryDto } from './dto/category.dto';
+import { FileService } from '../file/file.service';
 import { CategoryEntity } from './category.entity';
 
 @Injectable()
@@ -10,6 +11,7 @@ export class CategoryService {
   constructor(
     @InjectRepository(CategoryEntity)
     private categoryRepository: Repository<CategoryEntity>,
+    private fileService: FileService,
   ) {}
 
   async create(categoryDto: CategoryDto): Promise<CategoryEntity> {
@@ -25,22 +27,32 @@ export class CategoryService {
     return await this.categoryRepository.save(newCategory);
   }
 
-  findAll(): Promise<CategoryEntity[]> {
-    return this.categoryRepository.find();
+  async findAll(): Promise<CategoryEntity[]> {
+    const categories = await this.categoryRepository.find({
+      relations: { products: true },
+    });
+
+    if (categories.length === 0) {
+      throw new HttpException('Categories not found', HttpStatus.BAD_REQUEST);
+    }
+
+    return categories;
   }
 
-  findOne(id: string): Promise<CategoryEntity> {
-    return this.categoryRepository.findOneBy({
+  async findOne(id: string): Promise<CategoryEntity> {
+    const category = await this.categoryRepository.findOneBy({
       id,
     });
-  }
-
-  async update(id: string, categoryDto: CategoryDto): Promise<CategoryDto> {
-    const category = await this.findOne(id);
 
     if (!category) {
-      throw new HttpException('Category missing', HttpStatus.BAD_REQUEST);
+      throw new HttpException('Category not found', HttpStatus.BAD_REQUEST);
     }
+
+    return category;
+  }
+
+  async update(id: string, categoryDto: CategoryDto): Promise<CategoryEntity> {
+    const category = await this.findOne(id);
 
     return await this.categoryRepository.save({
       ...category,
@@ -49,11 +61,16 @@ export class CategoryService {
   }
 
   async delete(id: string) {
-    const category = await this.findOne(id);
+    const category = await this.categoryRepository.findOne({
+      where: { id },
+      relations: ['products'],
+    });
 
     if (!category) {
-      throw new HttpException('Category missing', HttpStatus.BAD_REQUEST);
+      throw new HttpException('Category not found', HttpStatus.BAD_REQUEST);
     }
+
+    await this.fileService.deleteAll(category.products);
 
     return this.categoryRepository.delete(id);
   }
