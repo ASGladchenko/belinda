@@ -15,9 +15,13 @@ export class CategoryService {
   ) {}
 
   async create(categoryDto: CategoryDto): Promise<CategoryEntity> {
-    const existCategory = await this.categoryRepository.findOneBy({
-      name: categoryDto.name,
-    });
+    const existCategory = await this.categoryRepository
+      .createQueryBuilder('product')
+      .where('category.name = :name OR category.name_ua = :name_ua', {
+        name: categoryDto.name,
+        name_ua: categoryDto.name_ua,
+      })
+      .getOne();
 
     if (existCategory) {
       throw new HttpException('Category exists', HttpStatus.BAD_REQUEST);
