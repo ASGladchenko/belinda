@@ -6,7 +6,15 @@ export class CategoryDto {
   @IsNotEmpty()
   @IsString()
   @MinLength(2, {
-    message: 'Min 2 symbols',
+    message: 'Мінімум 2 символи',
   })
   name: string;
+
+  @ApiProperty({ uniqueItems: true, example: 'Фрукти' })
+  @IsNotEmpty()
+  @IsString()
+  @MinLength(2, {
+    message: 'Min 2 symbols',
+  })
+  name_ua: string;
 }
