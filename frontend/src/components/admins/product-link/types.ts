@@ -1,9 +1,10 @@
 export interface IProductLink {
   id: string;
   url: string;
-  href: string;
+  name_ua: string;
   name: string;
   img?: string;
+  baseHref: string;
   notModify?: boolean;
   onEdit?: (id: string) => void;
 }

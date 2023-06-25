@@ -1,4 +1,6 @@
 'use client';
+import { usePathname, useRouter } from 'next/navigation';
+
 import { IRootData } from '@/types';
 import { productRoot } from '@/http';
 import { useDelayAnimation } from '@/hooks';
@@ -20,15 +22,16 @@ interface ICategory {
 
 const url = '/sub-category';
 
-import { sub_categories } from '@/components/admins/mock/mockdata';
-
 const Category = ({ params: { category } }: ICategory) => {
+  const router = useRouter();
+  const path = usePathname();
+
   const duration = 500;
   const { isOpen, isAnimation, setOpen } = useDelayAnimation(duration);
 
   const onSubmit = async (values: IRootData) => {
     try {
-      const response = await productRoot.create(values, url);
+      await productRoot.create(values, url);
       showMessage.success('Changes are successful');
     } catch (error: any) {
       showMessage.error(error.response.data.message);
@@ -39,14 +42,15 @@ const Category = ({ params: { category } }: ICategory) => {
   return (
     <MainWrapper>
       <PageHead
-        head={`${category} subcategories :`}
-        onClick={() => setOpen(true)}
+        head={`${category} :`}
+        onClick={() => router.push(`${path}/create`)}
       />
 
       <ProductRoot
-        categories={sub_categories}
         url={url}
-        title="Change Subcategory"
+        categories={[]}
+        title="Change category:"
+        baseHref={`admin/category/${category}`}
       />
 
       <Overlay
@@ -56,7 +60,7 @@ const Category = ({ params: { category } }: ICategory) => {
         setClose={() => setOpen(false)}
       >
         <Form
-          title="Create Subcategory"
+          title="Create Product"
           onSubmit={onSubmit}
           onClose={() => setOpen(false)}
           initialValues={getInitialValues()}

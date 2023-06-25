@@ -34,7 +34,6 @@ export const metadata = {
 
 export default function RootLayout({ children }: ChildrenProps) {
   const token = getCookies('refresh');
-  console.log(token);
 
   return (
     <html lang="en">

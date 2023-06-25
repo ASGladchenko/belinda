@@ -1,6 +1,8 @@
 import Link from 'next/link';
+import useSWR from 'swr';
 
 import { productRoot } from '@/http';
+import { GET_CATEGORY } from '@/constants';
 import { useDelayAnimation } from '@/hooks';
 import { Delete, Edit } from '@/assets/icons';
 import { Button, Overlay, showMessage } from '@/components';
@@ -11,18 +13,22 @@ import { IProductLink } from './types';
 export const ProductLink = ({
   id,
   url,
-  href,
   name,
   onEdit,
+  baseHref,
   notModify,
 }: IProductLink) => {
   const { isOpen, isAnimation, setOpen } = useDelayAnimation(300);
+  console.log(url);
 
   const { link, remove, edit, removeContainer, text } = getStyles();
+  const { mutate } = useSWR(GET_CATEGORY, productRoot.getCategory);
 
   const onDelete = async (id: string) => {
     try {
       await productRoot.remove(id, url);
+      mutate();
+      showMessage.success('Changes are successful');
     } catch (error: any) {
       showMessage.error(error.response.data.message);
     } finally {
@@ -32,7 +38,7 @@ export const ProductLink = ({
 
   return (
     <>
-      <Link href={href} className={link}>
+      <Link href={baseHref + name} className={link}>
         <p>{name}</p>
 
         <div className="flex gap-3">

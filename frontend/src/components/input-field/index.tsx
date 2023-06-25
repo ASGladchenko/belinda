@@ -1,9 +1,9 @@
 import { Field, FieldProps } from 'formik';
 
 import { Input } from '../input';
+import { Checkbox } from '../checkbox';
 import { InputProps } from '../input/types';
 import { InputOnChangeEventType } from './types';
-import { Checkbox } from '../checkbox';
 
 export const InputField = ({ name, label, ...props }: InputProps) => {
   return (
@@ -17,14 +17,16 @@ export const InputField = ({ name, label, ...props }: InputProps) => {
 
         return (
           <>
-            {props.type === 'checkbox' ? (
+            {props.type === 'checkbox' && (
               <Checkbox
                 {...props}
                 name={name}
                 label={label}
                 onChange={(e) => change(e.target.checked)}
               />
-            ) : (
+            )}
+
+            {props.type !== 'checkbox' && (
               <Input
                 {...props}
                 label={label}

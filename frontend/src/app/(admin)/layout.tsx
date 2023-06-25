@@ -9,6 +9,7 @@ import { Aside, HeaderAdmin } from '@/components';
 
 export default function Layout({ children }: ChildrenProps) {
   const router = useRouter();
+  // TODO: added loader
   const { data, isLoading } = useSWR(USE_AUTH);
 
   useEffect(() => {

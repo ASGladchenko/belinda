@@ -1,2 +1,0 @@
-export const mainInput =
-  'p-2 w-full h-10 border text-text dark:text-admin-btnWhite bg-transparent enabled:border-zinc-400 dark:border-admin-darken-border enabled:focus:border-admin-primary enabled:dark:focus:border-admin-primary enabled:active:border-admin-primary disabled:bg-lighten-bg-body dark:disabled:bg-darken-bg-body rounded-lg transition-colors duration-300 ease-in-out focus-visible:outline-none';

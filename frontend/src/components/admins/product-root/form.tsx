@@ -27,7 +27,17 @@ const Form = ({ initialValues, onClose, onSubmit, title }: ICategoryForm) => {
       <FormikForm className={container}>
         <h2 className={`text-3xl capitalize ${text}`}>{title}</h2>
 
-        <InputField name="name" label="Enter name" className="text-white" />
+        <InputField
+          name="name"
+          className="text-white"
+          label="Enter name. *Only english letters"
+        />
+
+        <InputField
+          name="name_ua"
+          className="text-white"
+          label="Enter name in UA. *Only the Cyrillic alphabet "
+        />
 
         <div className="flex justify-end gap-5">
           <Button

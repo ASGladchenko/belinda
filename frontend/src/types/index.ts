@@ -15,4 +15,5 @@ export interface IAuth {
 
 export interface IRootData {
   name: string;
+  name_ua: string;
 }

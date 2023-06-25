@@ -8,7 +8,9 @@ import { getStyles } from './styles';
 
 export function MenuItem({ isNavBar, name, href, Icon }: IMenuItem) {
   const pathname = usePathname();
-  const isActive = pathname === href;
+  const isActive =
+    pathname === href || !!pathname.split('/')?.find((el) => name === el);
+
   const { border, title, icon, main } = getStyles(isActive, isNavBar);
 
   return (

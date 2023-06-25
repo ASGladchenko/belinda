@@ -8,9 +8,6 @@ export const getCategory = (url: string) =>
 export const getCategoryById = (id: string) =>
   belinda.get(`/category/${id}`).then(({ data }) => data);
 
-export const getSubCategory = () =>
-  belinda.get('/sub-category').then(({ data }) => data);
-
 export const getSubCategoryById = (id: string) =>
   belinda.get(`/sub-category/${id}`).then(({ data }) => data);
 

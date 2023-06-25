@@ -1,13 +1,15 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useMemo, useState } from 'react';
+import useSWR from 'swr';
 
 import { IRootData } from '@/types';
 import { productRoot } from '@/http';
+import { GET_CATEGORY } from '@/constants';
 import { useDelayAnimation } from '@/hooks';
 import {
-  CategoryWrapper,
   Overlay,
   ProductLink,
   showMessage,
+  CategoryWrapper,
 } from '@/components';
 import { IProductLink } from '@/components/admins/product-link/types';
 
@@ -17,16 +19,19 @@ import { getInitialValues } from './config';
 interface IEdit {
   url: string;
   title: string;
+  baseHref: string;
   categories: IProductLink[];
 }
 
-export const ProductRoot = ({ categories, url, title }: IEdit) => {
+export const ProductRoot = ({ categories, url, title, baseHref }: IEdit) => {
   const [id, setId] = useState('');
   const { isOpen, isAnimation, setOpen } = useDelayAnimation(300);
+  const { mutate } = useSWR(GET_CATEGORY, productRoot.getCategory);
 
   const onSubmit = async (values: IRootData) => {
     try {
-      const response = await productRoot.edit(values, id, url);
+      await mutate(productRoot.edit(values, id, url));
+
       showMessage.success('Changes are successful');
     } catch (error: any) {
       showMessage.error(error.response.data.message);
@@ -40,6 +45,8 @@ export const ProductRoot = ({ categories, url, title }: IEdit) => {
     setOpen(true);
   };
 
+  console.log(categories);
+
   const initialValues = useMemo(() => {
     return categories?.find((category) => category.id === id);
   }, [id]);
@@ -47,12 +54,17 @@ export const ProductRoot = ({ categories, url, title }: IEdit) => {
   return (
     <CategoryWrapper>
       {categories?.map((category) => (
-        <ProductLink {...category} onEdit={onEdit} url={url} />
+        <ProductLink
+          {...category}
+          url={url}
+          onEdit={onEdit}
+          baseHref={baseHref}
+        />
       ))}
 
       <Overlay
-        isOpen={isOpen}
         duration={300}
+        isOpen={isOpen}
         isAnimation={isAnimation}
         setClose={() => {
           setOpen(false);

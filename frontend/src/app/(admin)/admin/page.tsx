@@ -17,17 +17,19 @@ import {
 
 const url = '/category';
 
-import { categories } from '@/components/admins/mock/mockdata';
-
-function Products() {
+function Category() {
   const duration = 500;
   const { isOpen, isAnimation, setOpen } = useDelayAnimation(duration);
 
-  const { data, isLoading } = useSWR(GET_CATEGORY, productRoot.getCategory);
+  const { data, isLoading, mutate } = useSWR(
+    GET_CATEGORY,
+    productRoot.getCategory,
+  );
 
   const onSubmit = async (values: IRootData) => {
     try {
-      const response = await productRoot.create(values, url);
+      await productRoot.create(values, url);
+      mutate(data);
       showMessage.success('Changes are successful');
     } catch (error: any) {
       showMessage.error(error.response.data.message);
@@ -36,12 +38,23 @@ function Products() {
     }
   };
 
+  console.log(data);
+
   return (
     <MainWrapper>
       <PageHead head="Categories" onClick={() => setOpen(true)} />
 
-      {data?.length > 0 && (
-        <ProductRoot categories={data} url={url} title="Change category" />
+      {!data?.length ? (
+        <h2 className="text-3xl font-semibold text-admin-headPage dark:text-white">
+          Your Categories list is empty
+        </h2>
+      ) : (
+        <ProductRoot
+          url={url}
+          categories={data}
+          title="Change category"
+          baseHref="admin/category/"
+        />
       )}
 
       <Overlay
@@ -61,4 +74,4 @@ function Products() {
   );
 }
 
-export default Products;
+export default Category;

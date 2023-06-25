@@ -2,7 +2,6 @@ import axios from 'axios';
 import Cookies from 'js-cookie';
 
 import { getCookies, removeTokensCookies } from '@/utils';
-import { ref } from 'yup';
 
 const initBelinda = ({ onAuthError }: { onAuthError: () => void }) => {
   axios.defaults.baseURL = 'http://31.202.177.131:5200/api';
@@ -29,13 +28,11 @@ const initBelinda = ({ onAuthError }: { onAuthError: () => void }) => {
         return Promise.reject(error);
       }
 
-      if (error.response.status === 401 && originalRequest.isRetry) {
+      if (error.response.status === 401 && originalRequest.headers.isRetry) {
         onAuthError();
       }
 
-      if (error.response.status === 401 && !originalRequest.isRetry) {
-        originalRequest.isRetry = true;
-
+      if (error.response.status === 401 && !originalRequest.headers.isRetry) {
         try {
           const response = await axios.post(
             `/auth/refresh`,
@@ -43,10 +40,10 @@ const initBelinda = ({ onAuthError }: { onAuthError: () => void }) => {
             {
               headers: {
                 refresh: `${refresh}`,
+                isRetry: true,
               },
             },
           );
-          console.log(response);
 
           Cookies.set('access', response.data.access_token);
 
