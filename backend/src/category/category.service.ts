@@ -16,7 +16,7 @@ export class CategoryService {
 
   async create(categoryDto: CategoryDto): Promise<CategoryEntity> {
     const existCategory = await this.categoryRepository
-      .createQueryBuilder('product')
+      .createQueryBuilder('category')
       .where('category.name = :name OR category.name_ua = :name_ua', {
         name: categoryDto.name,
         name_ua: categoryDto.name_ua,
