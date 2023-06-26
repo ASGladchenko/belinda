@@ -32,13 +32,13 @@ const Category = ({ params: { category } }: ICategory) => {
   const onSubmit = async (values: IRootData) => {
     try {
       await productRoot.create(values, url);
-      showMessage.success('Changes are successful');
     } catch (error: any) {
       showMessage.error(error.response.data.message);
     } finally {
       setOpen(false);
     }
   };
+
   return (
     <MainWrapper>
       <PageHead
@@ -60,8 +60,8 @@ const Category = ({ params: { category } }: ICategory) => {
         setClose={() => setOpen(false)}
       >
         <Form
-          title="Create Product"
           onSubmit={onSubmit}
+          title="Create Product"
           onClose={() => setOpen(false)}
           initialValues={getInitialValues()}
         />

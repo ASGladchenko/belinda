@@ -7,6 +7,7 @@ import { GET_CATEGORY } from '@/constants';
 import { useDelayAnimation } from '@/hooks';
 import {
   Form,
+  Loader,
   Overlay,
   PageHead,
   MainWrapper,
@@ -14,6 +15,7 @@ import {
   showMessage,
   getInitialValues,
 } from '@/components';
+import { spawn } from 'child_process';
 
 const url = '/category';
 
@@ -29,7 +31,7 @@ function Category() {
   const onSubmit = async (values: IRootData) => {
     try {
       await productRoot.create(values, url);
-      mutate(data);
+      mutate([...data, values]);
       showMessage.success('Changes are successful');
     } catch (error: any) {
       showMessage.error(error.response.data.message);
@@ -37,24 +39,26 @@ function Category() {
       setOpen(false);
     }
   };
-
-  console.log(data);
+  console.log(isLoading, 'isLoading');
 
   return (
     <MainWrapper>
       <PageHead head="Categories" onClick={() => setOpen(true)} />
 
-      {!data?.length ? (
-        <h2 className="text-3xl font-semibold text-admin-headPage dark:text-white">
-          Your Categories list is empty
-        </h2>
-      ) : (
+      {isLoading && <Loader />}
+
+      {data?.length > 0 && !isLoading && (
         <ProductRoot
           url={url}
           categories={data}
           title="Change category"
           baseHref="admin/category/"
         />
+      )}
+      {!data?.length && !isLoading && (
+        <h2 className="text-2xl font-medium select-none text-admin-headPage dark:text-white font-inter">
+          List is empty
+        </h2>
       )}
 
       <Overlay

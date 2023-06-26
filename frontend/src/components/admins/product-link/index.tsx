@@ -19,16 +19,19 @@ export const ProductLink = ({
   notModify,
 }: IProductLink) => {
   const { isOpen, isAnimation, setOpen } = useDelayAnimation(300);
-  console.log(url);
 
   const { link, remove, edit, removeContainer, text } = getStyles();
-  const { mutate } = useSWR(GET_CATEGORY, productRoot.getCategory);
+  const { data, mutate } = useSWR<any>(GET_CATEGORY);
 
   const onDelete = async (id: string) => {
     try {
       await productRoot.remove(id, url);
-      mutate();
-      showMessage.success('Changes are successful');
+
+      if (data?.length) {
+        mutate(data?.filter((item: any) => item.id !== id));
+      }
+
+      showMessage.success('Deleted');
     } catch (error: any) {
       showMessage.error(error.response.data.message);
     } finally {

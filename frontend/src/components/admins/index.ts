@@ -4,6 +4,7 @@ export { CategoryWrapper } from './category-wrapper';
 export { CreateProduct } from './create';
 export { Crumps } from './crumps';
 export { HeaderAdmin } from './header-admin';
+export { Loader } from './loader';
 export { MainWrapper } from './main-wrapper';
 export { PageHead } from './page-header';
 export { ProductLink } from './product-link';
