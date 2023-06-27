@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react';
-import useSWR from 'swr';
+import useSWRConfig from 'swr';
 
 import { IRootData } from '@/types';
 import { productRoot } from '@/http';
@@ -26,12 +26,11 @@ interface IEdit {
 export const ProductRoot = ({ categories, url, title, baseHref }: IEdit) => {
   const [id, setId] = useState('');
   const { isOpen, isAnimation, setOpen } = useDelayAnimation(300);
-  const { mutate } = useSWR(GET_CATEGORY, productRoot.getCategory);
+  const { mutate, isLoading } = useSWRConfig(GET_CATEGORY);
 
   const onSubmit = async (values: IRootData) => {
     try {
       await mutate(productRoot.edit(values, id, url));
-
       showMessage.success('Changes are successful');
     } catch (error: any) {
       showMessage.error(error.response.data.message);
@@ -45,38 +44,42 @@ export const ProductRoot = ({ categories, url, title, baseHref }: IEdit) => {
     setOpen(true);
   };
 
-  console.log(categories);
-
   const initialValues = useMemo(() => {
     return categories?.find((category) => category.id === id);
   }, [id]);
 
-  return (
-    <CategoryWrapper>
-      {categories?.map((category) => (
-        <ProductLink
-          {...category}
-          url={url}
-          onEdit={onEdit}
-          baseHref={baseHref}
-        />
-      ))}
+  console.log(categories?.length > 0, 'notEmpty productRoot');
 
-      <Overlay
-        duration={300}
-        isOpen={isOpen}
-        isAnimation={isAnimation}
-        setClose={() => {
-          setOpen(false);
-        }}
-      >
-        <Form
-          title={title}
-          onSubmit={onSubmit}
-          onClose={() => setOpen(false)}
-          initialValues={getInitialValues(initialValues)}
-        />
-      </Overlay>
-    </CategoryWrapper>
+  return (
+    <>
+      {categories?.length > 0 && (
+        <CategoryWrapper>
+          {categories?.map((category) => (
+            <ProductLink
+              {...category}
+              url={url}
+              onEdit={onEdit}
+              baseHref={baseHref}
+            />
+          ))}
+
+          <Overlay
+            duration={300}
+            isOpen={isOpen}
+            isAnimation={isAnimation}
+            setClose={() => {
+              setOpen(false);
+            }}
+          >
+            <Form
+              title={title}
+              onSubmit={onSubmit}
+              onClose={() => setOpen(false)}
+              initialValues={getInitialValues(initialValues)}
+            />
+          </Overlay>
+        </CategoryWrapper>
+      )}
+    </>
   );
 };
