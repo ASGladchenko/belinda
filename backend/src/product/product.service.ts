@@ -22,21 +22,11 @@ export class ProductService {
 
     const category = await this.categoryService.findOne(categoryId);
 
-    const existProduct = await this.productRepository
-      .createQueryBuilder('product')
-      .where('product.name = :name OR product.name_ua = :name_ua', {
-        name: productDto.name,
-        name_ua: productDto.name_ua,
-      })
-      .getOne();
-
     if (!category) {
       throw new HttpException('Category not found', HttpStatus.BAD_REQUEST);
     }
 
-    if (existProduct) {
-      throw new HttpException('Product exists', HttpStatus.BAD_REQUEST);
-    }
+    await this.checkDuplicate(productDto);
 
     if (file) {
       const imgUrl = await this.fileService.create(file);
@@ -80,6 +70,8 @@ export class ProductService {
   ): Promise<ProductEntity> {
     const product = await this.findOne(id);
 
+    await this.checkDuplicate(productDto);
+
     if (file) {
       const imgUrl = await this.fileService.create(file);
       productDto.img_url = imgUrl;
@@ -99,5 +91,23 @@ export class ProductService {
     }
 
     return this.productRepository.delete(id);
+  }
+
+  async checkDuplicate(
+    productDto: ProductDto | UpdateProductDto,
+  ): Promise<boolean> {
+    const existProduct = await this.productRepository
+      .createQueryBuilder('product')
+      .where('product.name = :name OR product.name_ua = :name_ua', {
+        name: productDto.name,
+        name_ua: productDto.name_ua,
+      })
+      .getOne();
+
+    if (existProduct) {
+      throw new HttpException('Product exists', HttpStatus.BAD_REQUEST);
+    }
+
+    return true;
   }
 }

@@ -15,17 +15,7 @@ export class CategoryService {
   ) {}
 
   async create(categoryDto: CategoryDto): Promise<CategoryEntity> {
-    const existCategory = await this.categoryRepository
-      .createQueryBuilder('category')
-      .where('category.name = :name OR category.name_ua = :name_ua', {
-        name: categoryDto.name,
-        name_ua: categoryDto.name_ua,
-      })
-      .getOne();
-
-    if (existCategory) {
-      throw new HttpException('Category exists', HttpStatus.BAD_REQUEST);
-    }
+    await this.checkDuplicate(categoryDto);
 
     const newCategory = await this.categoryRepository.create(categoryDto);
     return await this.categoryRepository.save(newCategory);
@@ -57,6 +47,7 @@ export class CategoryService {
 
   async update(id: string, categoryDto: CategoryDto): Promise<CategoryEntity> {
     const category = await this.findOne(id);
+    await this.checkDuplicate(categoryDto);
 
     return await this.categoryRepository.save({
       ...category,
@@ -77,5 +68,21 @@ export class CategoryService {
     await this.fileService.deleteAll(category.products);
 
     return this.categoryRepository.delete(id);
+  }
+
+  async checkDuplicate(categoryDto: CategoryDto): Promise<boolean> {
+    const existCategory = await this.categoryRepository
+      .createQueryBuilder('category')
+      .where('category.name = :name OR category.name_ua = :name_ua', {
+        name: categoryDto.name,
+        name_ua: categoryDto.name_ua,
+      })
+      .getOne();
+
+    if (existCategory) {
+      throw new HttpException('Category exists', HttpStatus.BAD_REQUEST);
+    }
+
+    return true;
   }
 }
