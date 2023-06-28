@@ -7,6 +7,7 @@ import { FileModule } from '../file/file.module';
 import { ProductService } from './product.service';
 import { ProductController } from './product.controller';
 import { CategoryModule } from '../category/category.module';
+import { DuplicateModule } from '../duplicate/duplicate.module';
 
 @Module({
   controllers: [ProductController],
@@ -16,6 +17,7 @@ import { CategoryModule } from '../category/category.module';
     JwtModule.register({ secret: process.env.SECRET_KEY }),
     FileModule,
     CategoryModule,
+    DuplicateModule,
   ],
 })
 export class ProductModule {}

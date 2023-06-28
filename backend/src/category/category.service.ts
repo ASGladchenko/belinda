@@ -5,17 +5,22 @@ import { Injectable, HttpException, HttpStatus } from '@nestjs/common';
 import { CategoryDto } from './dto/category.dto';
 import { FileService } from '../file/file.service';
 import { CategoryEntity } from './category.entity';
+import { DuplicateService } from '../duplicate/duplicate.service';
 
 @Injectable()
 export class CategoryService {
   constructor(
     @InjectRepository(CategoryEntity)
     private categoryRepository: Repository<CategoryEntity>,
+    private duplicateService: DuplicateService,
     private fileService: FileService,
   ) {}
 
   async create(categoryDto: CategoryDto): Promise<CategoryEntity> {
-    await this.checkDuplicate(categoryDto);
+    await this.duplicateService.check(this.categoryRepository, {
+      name: categoryDto.name,
+      name_ua: categoryDto.name_ua,
+    });
 
     const newCategory = await this.categoryRepository.create(categoryDto);
     return await this.categoryRepository.save(newCategory);
@@ -47,7 +52,24 @@ export class CategoryService {
 
   async update(id: string, categoryDto: CategoryDto): Promise<CategoryEntity> {
     const category = await this.findOne(id);
-    await this.checkDuplicate(categoryDto);
+
+    const fieldsToCheck = {};
+
+    if (category.name !== categoryDto.name) {
+      fieldsToCheck['name'] = categoryDto.name;
+    }
+
+    if (category.name_ua !== categoryDto.name_ua) {
+      fieldsToCheck['name_ua'] = categoryDto.name_ua;
+    }
+
+    if (Object.keys(fieldsToCheck).length > 0) {
+      await this.duplicateService.check(
+        this.categoryRepository,
+        fieldsToCheck,
+        id,
+      );
+    }
 
     return await this.categoryRepository.save({
       ...category,
@@ -68,21 +90,5 @@ export class CategoryService {
     await this.fileService.deleteAll(category.products);
 
     return this.categoryRepository.delete(id);
-  }
-
-  async checkDuplicate(categoryDto: CategoryDto): Promise<boolean> {
-    const existCategory = await this.categoryRepository
-      .createQueryBuilder('category')
-      .where('category.name = :name OR category.name_ua = :name_ua', {
-        name: categoryDto.name,
-        name_ua: categoryDto.name_ua,
-      })
-      .getOne();
-
-    if (existCategory) {
-      throw new HttpException('Category exists', HttpStatus.BAD_REQUEST);
-    }
-
-    return true;
   }
 }

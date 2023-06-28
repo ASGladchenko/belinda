@@ -7,6 +7,7 @@ import { ProductDto } from './dto/product.dto';
 import { ProductEntity } from './product.entity';
 import { FileService } from '../file/file.service';
 import { CategoryService } from '../category/category.service';
+import { DuplicateService } from '../duplicate/duplicate.service';
 
 @Injectable()
 export class ProductService {
@@ -14,6 +15,7 @@ export class ProductService {
     @InjectRepository(ProductEntity)
     private productRepository: Repository<ProductEntity>,
     private categoryService: CategoryService,
+    private duplicateService: DuplicateService,
     private fileService: FileService,
   ) {}
 
@@ -26,7 +28,10 @@ export class ProductService {
       throw new HttpException('Category not found', HttpStatus.BAD_REQUEST);
     }
 
-    await this.checkDuplicate(productDto);
+    await this.duplicateService.check(this.productRepository, {
+      name: productDto.name,
+      name_ua: productDto.name_ua,
+    });
 
     if (file) {
       const imgUrl = await this.fileService.create(file);
@@ -70,7 +75,23 @@ export class ProductService {
   ): Promise<ProductEntity> {
     const product = await this.findOne(id);
 
-    await this.checkDuplicate(productDto);
+    const fieldsToCheck = {};
+
+    if (product.name !== productDto.name) {
+      fieldsToCheck['name'] = productDto.name;
+    }
+
+    if (product.name_ua !== productDto.name_ua) {
+      fieldsToCheck['name_ua'] = productDto.name_ua;
+    }
+
+    if (Object.keys(fieldsToCheck).length > 0) {
+      await this.duplicateService.check(
+        this.productRepository,
+        fieldsToCheck,
+        id,
+      );
+    }
 
     if (file) {
       const imgUrl = await this.fileService.create(file);
@@ -91,23 +112,5 @@ export class ProductService {
     }
 
     return this.productRepository.delete(id);
-  }
-
-  async checkDuplicate(
-    productDto: ProductDto | UpdateProductDto,
-  ): Promise<boolean> {
-    const existProduct = await this.productRepository
-      .createQueryBuilder('product')
-      .where('product.name = :name OR product.name_ua = :name_ua', {
-        name: productDto.name,
-        name_ua: productDto.name_ua,
-      })
-      .getOne();
-
-    if (existProduct) {
-      throw new HttpException('Product exists', HttpStatus.BAD_REQUEST);
-    }
-
-    return true;
   }
 }
