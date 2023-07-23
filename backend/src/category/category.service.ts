@@ -5,23 +5,22 @@ import { Injectable, HttpException, HttpStatus } from '@nestjs/common';
 import { CategoryDto } from './dto/category.dto';
 import { FileService } from '../file/file.service';
 import { CategoryEntity } from './category.entity';
+import { DuplicateService } from '../duplicate/duplicate.service';
 
 @Injectable()
 export class CategoryService {
   constructor(
     @InjectRepository(CategoryEntity)
     private categoryRepository: Repository<CategoryEntity>,
+    private duplicateService: DuplicateService,
     private fileService: FileService,
   ) {}
 
   async create(categoryDto: CategoryDto): Promise<CategoryEntity> {
-    const existCategory = await this.categoryRepository.findOneBy({
+    await this.duplicateService.check(this.categoryRepository, {
       name: categoryDto.name,
+      name_ua: categoryDto.name_ua,
     });
-
-    if (existCategory) {
-      throw new HttpException('Category exists', HttpStatus.BAD_REQUEST);
-    }
 
     const newCategory = await this.categoryRepository.create(categoryDto);
     return await this.categoryRepository.save(newCategory);
@@ -53,6 +52,24 @@ export class CategoryService {
 
   async update(id: string, categoryDto: CategoryDto): Promise<CategoryEntity> {
     const category = await this.findOne(id);
+
+    const fieldsToCheck = {};
+
+    if (category.name !== categoryDto.name) {
+      fieldsToCheck['name'] = categoryDto.name;
+    }
+
+    if (category.name_ua !== categoryDto.name_ua) {
+      fieldsToCheck['name_ua'] = categoryDto.name_ua;
+    }
+
+    if (Object.keys(fieldsToCheck).length > 0) {
+      await this.duplicateService.check(
+        this.categoryRepository,
+        fieldsToCheck,
+        id,
+      );
+    }
 
     return await this.categoryRepository.save({
       ...category,

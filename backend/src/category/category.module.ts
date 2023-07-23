@@ -6,6 +6,7 @@ import { FileModule } from '../file/file.module';
 import { CategoryEntity } from './category.entity';
 import { CategoryService } from './category.service';
 import { CategoryController } from './category.controller';
+import { DuplicateModule } from '../duplicate/duplicate.module';
 
 @Module({
   controllers: [CategoryController],
@@ -14,6 +15,7 @@ import { CategoryController } from './category.controller';
     TypeOrmModule.forFeature([CategoryEntity]),
     JwtModule.register({ secret: process.env.SECRET_KEY }),
     FileModule,
+    DuplicateModule,
   ],
   exports: [CategoryService],
 })
