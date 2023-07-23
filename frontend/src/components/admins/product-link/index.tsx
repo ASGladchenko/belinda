@@ -9,6 +9,7 @@ import { Button, Overlay, showMessage } from '@/components';
 
 import { getStyles } from './styles';
 import { IProductLink } from './types';
+import { useState } from 'react';
 
 export const ProductLink = ({
   id,
@@ -17,15 +18,21 @@ export const ProductLink = ({
   onEdit,
   baseHref,
   notModify,
+  swrStorage,
 }: IProductLink) => {
+  const [isFetching, setIsFetching] = useState(false);
   const { isOpen, isAnimation, setOpen } = useDelayAnimation(300);
 
   const { link, remove, edit, removeContainer, text } = getStyles();
-  const { data, mutate } = useSWR<any>(GET_CATEGORY);
+  const { data, mutate } = useSWR<any>(swrStorage);
+  console.log(swrStorage);
 
   const onDelete = async (id: string) => {
+    setIsFetching(true);
     try {
       await productRoot.remove(id, url);
+
+      console.log(data);
 
       if (data?.length) {
         mutate(data?.filter((item: any) => item.id !== id));
@@ -36,12 +43,13 @@ export const ProductLink = ({
       showMessage.error(error.response.data.message);
     } finally {
       setOpen(false);
+      setIsFetching(false);
     }
   };
 
   return (
     <>
-      <Link href={baseHref + name} className={link}>
+      <Link href={baseHref + id} className={link}>
         <p>{name}</p>
 
         <div className="flex gap-3">
@@ -96,6 +104,8 @@ export const ProductLink = ({
             <Button
               text="Delete"
               variant="secondary"
+              disabled={isFetching}
+              isFetching={isFetching}
               onClick={() => onDelete(id)}
               className=" max-w-[80px] md:max-w-[150px] w-full"
             />

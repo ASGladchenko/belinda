@@ -7,7 +7,7 @@ import { showMessage } from '@/components/toast';
 import { AddedImg, IHandleImageChange, IOnClear } from './types';
 
 const AddedImg = ({ imgUrl, name }: AddedImg) => {
-  const [previewURL, setPreviewURL] = useState<string>('');
+  const [previewURL, setPreviewURL] = useState<string>(imgUrl);
 
   const handleImageChange = ({ event, form }: IHandleImageChange) => {
     const file = event.target.files && event.target.files[0];
@@ -31,17 +31,6 @@ const AddedImg = ({ imgUrl, name }: AddedImg) => {
     form.setFieldValue(name, '');
     setPreviewURL('');
   };
-
-  // const handleImageUpload = () => {
-  //   if (selectedImage) {
-  //     const formData = new FormData();
-  //     formData.append('imageFile', selectedImage);
-
-  //     // Здесь вы можете выполнить AJAX-запрос или использовать библиотеку для работы с сетью, чтобы отправить formData на сервер
-
-  //     console.log('Загружено изображение:', selectedImage.name);
-  //   }
-  // };
 
   return (
     <Field name={name}>

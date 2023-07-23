@@ -11,6 +11,7 @@ export interface IButton extends Omit<CustomButton, 'ref'> {
   icon?: ReactNode;
   variant: IVariant;
   iconRight?: boolean;
+  isFetching?: boolean;
 }
 
 export type IVariant =

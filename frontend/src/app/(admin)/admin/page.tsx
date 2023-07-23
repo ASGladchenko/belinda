@@ -15,12 +15,13 @@ import {
   showMessage,
   getInitialValues,
 } from '@/components';
-import { spawn } from 'child_process';
+import { useState } from 'react';
 
 const url = '/category';
 
-function Category() {
+const Categories = () => {
   const duration = 500;
+  const [isFetching, setIsFetching] = useState(false);
   const { isOpen, isAnimation, setOpen } = useDelayAnimation(duration);
 
   const { data, isLoading, mutate } = useSWR(
@@ -29,17 +30,23 @@ function Category() {
   );
 
   const onSubmit = async (values: IRootData) => {
+    setIsFetching(true);
+
     try {
-      await productRoot.create(values, url);
-      mutate([...data, values]);
+      if (data?.length) {
+        await mutate([...data, await productRoot.create(values, url)]);
+      } else {
+        await mutate([await productRoot.create(values, url)]);
+      }
+
       showMessage.success('Changes are successful');
+      setOpen(false);
     } catch (error: any) {
       showMessage.error(error.response.data.message);
     } finally {
-      setOpen(false);
+      setIsFetching(false);
     }
   };
-  console.log(isLoading, 'isLoading');
 
   return (
     <MainWrapper>
@@ -52,10 +59,12 @@ function Category() {
           url={url}
           categories={data}
           title="Change category"
+          swrStorage={GET_CATEGORY}
           baseHref="admin/category/"
         />
       )}
-      {!data?.length && !isLoading && (
+
+      {!data && (
         <h2 className="text-2xl font-medium select-none text-admin-headPage dark:text-white font-inter">
           List is empty
         </h2>
@@ -68,14 +77,15 @@ function Category() {
         setClose={() => setOpen(false)}
       >
         <Form
-          title="Create Category"
           onSubmit={onSubmit}
+          isLoading={isFetching}
+          title="Create Category"
           onClose={() => setOpen(false)}
           initialValues={getInitialValues()}
         />
       </Overlay>
     </MainWrapper>
   );
-}
+};
 
-export default Category;
+export default Categories;

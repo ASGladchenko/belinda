@@ -10,12 +10,20 @@ interface ICategoryForm {
   title: string;
   isEdit?: boolean;
   onClose: () => void;
+  isLoading?: boolean;
   initialValues: IRootData;
   onSubmit: (values: IRootData) => void;
 }
 
-const Form = ({ initialValues, onClose, onSubmit, title }: ICategoryForm) => {
+const Form = ({
+  title,
+  onClose,
+  onSubmit,
+  isLoading,
+  initialValues,
+}: ICategoryForm) => {
   const { text, container } = getStyles();
+
   return (
     <Formik
       onSubmit={onSubmit}
@@ -52,6 +60,8 @@ const Form = ({ initialValues, onClose, onSubmit, title }: ICategoryForm) => {
             type="submit"
             text="Create"
             variant="primary"
+            disabled={isLoading}
+            isFetching={isLoading}
             className=" max-w-[80px] md:max-w-[150px] w-full rounded-lg"
           />
         </div>

@@ -32,7 +32,12 @@ const Input = ({
           )}
 
           <div className="flex flex-col w-full gap-2">
-            <textarea className={textarea} {...props} />
+            <textarea
+              className={textarea}
+              {...props}
+              name={name}
+              value={value}
+            />
             {error && <span className="text-admin-warning">{error}</span>}
           </div>
         </label>

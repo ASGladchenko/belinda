@@ -1,20 +1,14 @@
 export interface IProductLink {
   id: string;
   url: string;
-  name_ua: string;
   name: string;
   img?: string;
+  name_ua: string;
   baseHref: string;
+  swrStorage: string;
   notModify?: boolean;
   onEdit?: (id: string) => void;
 }
-
-export interface ISubCategory {
-  id: string;
-  url: string;
-  name: string;
-}
-
 export interface IProduct {
   id: string;
   url: string;

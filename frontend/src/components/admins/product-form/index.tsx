@@ -1,22 +1,23 @@
 'use client';
-import { Form, Formik, FormikValues } from 'formik';
+import useSWR from 'swr';
+import { usePathname } from 'next/navigation';
+import { Form, Formik } from 'formik';
 
+import { ACTIVE_PRODUCT } from '@/constants';
 import { AddedImg, Button, CategoryWrapper, InputField } from '@/components';
-import { seasonality } from '@/app/(admin)/admin/category/[category]/mock';
 
-import { initialValues, validationSchema } from './config';
+import { IProductForm } from './types';
+import { validationSchema } from './config';
 
-export const CreateProduct = () => {
-  const onSubmit = (values: FormikValues) => {
-    console.log(values);
-  };
+import { seasonality } from '@/app/(admin)/admin/category/[categoryId]/mock';
+
+export const ProductForm = ({ onSubmit, initialValues }: IProductForm) => {
+  const path = usePathname();
 
   return (
     <CategoryWrapper>
       <Formik
-        validateOnBlur={false}
         onSubmit={onSubmit}
-        validateOnChange={false}
         initialValues={initialValues}
         validationSchema={validationSchema}
       >
@@ -24,18 +25,18 @@ export const CreateProduct = () => {
           <div className="flex flex-col items-center justify-between w-full gap-5 sm:flex-row max-w-[600px]">
             <div className="flex flex-col gap-5 sm:gap-3 w-full sm:w-[300px] ">
               <InputField
-                name="base_name"
+                name="name"
                 type="text"
                 label="Enter Base name of products"
               />
               <InputField
                 type="text"
-                name="name"
+                name="name_ua"
                 label="Enter name of products"
               />
             </div>
 
-            <AddedImg imgUrl="" name="image" />
+            <AddedImg imgUrl={initialValues.img_url} name="img_url" />
           </div>
 
           <div className="flex flex-wrap justify-between w-full gap-3">
@@ -44,8 +45,8 @@ export const CreateProduct = () => {
               return (
                 <div className="w-full max-w-[64px] flex">
                   <InputField
-                    type="checkbox"
                     name={month}
+                    type="checkbox"
                     label={month[0].toUpperCase() + month.slice(1, 3)}
                   />
                 </div>
@@ -55,13 +56,14 @@ export const CreateProduct = () => {
 
           <InputField
             type="textarea"
-            name="base_description"
+            name="description"
             label="Enter Base Description of products"
           />
 
           <InputField
             type="textarea"
-            name="description"
+            id="description_ua"
+            name="description_ua"
             label="Enter Description of products"
           />
 
