@@ -1,8 +1,8 @@
 'use client';
 import { useState } from 'react';
 
+import { getStyles } from './styles';
 import { ThemeIcons } from '../theme-icons';
-import { getStyles } from '../header/styles';
 import { client_data } from '../content-data';
 
 export const NavBar = () => {
