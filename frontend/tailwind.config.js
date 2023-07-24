@@ -74,10 +74,12 @@ module.exports = {
       fontFamily: {
         pacifico: ['var(--font-pacifico)', 'sans-serif'],
         inter: ['var(--font-inter)', 'sans-serif'],
+        jost: ['var(--font-jost)', 'sans-serif'],
       },
 
       transitionProperty: {
         ...defaultTheme.transitionProperty,
+        height: 'height',
         width: 'width, max-width',
         aside: 'transform, width, max-width',
         rotate: 'rotate',

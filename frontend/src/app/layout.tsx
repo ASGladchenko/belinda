@@ -1,7 +1,7 @@
 'use client';
 import { SWRConfig } from 'swr';
 import { Provider } from 'react-redux';
-import { Inter, Pacifico } from 'next/font/google';
+import { Inter, Pacifico, Jost } from 'next/font/google';
 
 import { store } from '@/store';
 import { getCookies } from '@/utils';
@@ -24,6 +24,12 @@ export const pacifico = Pacifico({
   display: 'swap',
 });
 
+export const jost = Jost({
+  subsets: ['latin'],
+  variable: '--font-jost',
+  display: 'swap',
+});
+
 export const metadata = {
   title: {
     default: 'Belinda',
@@ -37,7 +43,9 @@ export default function RootLayout({ children }: ChildrenProps) {
 
   return (
     <html lang="en">
-      <body className={`${pacifico.variable} ${inter.variable}`}>
+      <body
+        className={`${pacifico.variable} ${jost.variable} ${inter.variable}`}
+      >
         <SWRConfig
           value={{
             fallback: { [USE_AUTH]: token },
