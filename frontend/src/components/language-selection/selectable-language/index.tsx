@@ -1,3 +1,5 @@
+import Cookies from 'js-cookie';
+
 import { ISelectableLanguage } from '../types';
 
 export function SelectableLanguage({
@@ -11,13 +13,14 @@ export function SelectableLanguage({
     'flex items-center gap-3  px-3 py-2 text-sm text-black transition duration-300 dark:text-white  hover:bg-admin-lighten-main dark:hover:bg-admin-darken-main';
 
   const onClick = () => {
-    onSelect(name);
+    onSelect(abb);
+    Cookies.set('lang', abb);
     onClose();
   };
 
   return (
     <div data-lang={abb} onClick={onClick} className={classChild}>
-      <Icon width={24} height={24} />
+      {Icon}
       <span className="text-sm capitalize select-none">{name}</span>
     </div>
   );

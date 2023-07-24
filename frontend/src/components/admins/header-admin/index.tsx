@@ -1,10 +1,8 @@
 'use client';
-import { useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 
 import { Login } from '@/assets/icons';
-import { deleteStorage } from '@/utils';
 import { useSWRConfig } from 'swr';
 
 import { removeTokensCookies } from '@/utils';
@@ -13,7 +11,6 @@ import { Button, LanguageSelection, ThemeIcons } from '@/components';
 
 export function HeaderAdmin() {
   const router = useRouter();
-  const [lang, setLang] = useState('ukrainian');
 
   const { mutate } = useSWRConfig();
 
@@ -30,7 +27,7 @@ export function HeaderAdmin() {
       </Link>
 
       <div className="flex items-center gap-3 sm:gap-5 flex-nowrap">
-        <LanguageSelection selectLang={lang} onSelect={setLang} />
+        <LanguageSelection />
 
         <ThemeIcons />
 
