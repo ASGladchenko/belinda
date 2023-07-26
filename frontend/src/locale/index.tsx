@@ -1,17 +1,17 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 
-import { getCookies } from '@/utils';
 import { FileType, LanguageType, TypedLocaleTranslations } from '@/types';
 
 import { files } from './translated-files';
+import { LanguageContext } from '@/context';
 
 export const LocaleText = <T extends FileType>(
   LocalePage: T,
+  lang: LanguageType,
 ): TypedLocaleTranslations<T> => {
   try {
     const localeData = files[LocalePage];
-    const language = getCookies('lang') as LanguageType;
-    const translations = localeData[language];
+    const translations = localeData[lang];
 
     if (!translations) {
       return {} as TypedLocaleTranslations<T>;
@@ -24,11 +24,12 @@ export const LocaleText = <T extends FileType>(
 };
 
 export const useLocaleText = <T extends FileType>(langPage: T) => {
+  const { language } = useContext(LanguageContext);
   const [lang, setLang] = useState<TypedLocaleTranslations<T>>({});
 
   useEffect(() => {
-    setLang(LocaleText(langPage));
-  }, [langPage]);
+    setLang(LocaleText(langPage, language as LanguageType));
+  }, [language]);
 
   return lang;
 };

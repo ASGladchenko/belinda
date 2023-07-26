@@ -1,6 +1,7 @@
 import { Inter, Pacifico } from 'next/font/google';
 
 import { ChildrenProps } from '@/types';
+import { LanguageProvider } from '@/context';
 import { Provider as ThemeProvider, Toast } from '@/components';
 
 import { ProviderSwr } from './provider-swr';
@@ -35,7 +36,9 @@ export default function RootLayout({ children }: ChildrenProps) {
       <body className={`${pacifico.variable} ${inter.variable}`}>
         <ProviderSwr>
           <ProviderRedux>
-            <ThemeProvider>{children}</ThemeProvider>
+            <LanguageProvider>
+              <ThemeProvider>{children}</ThemeProvider>
+            </LanguageProvider>
             <Toast />
           </ProviderRedux>
         </ProviderSwr>

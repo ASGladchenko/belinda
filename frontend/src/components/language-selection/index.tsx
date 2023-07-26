@@ -1,29 +1,23 @@
 'use client';
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useContext, useEffect, useMemo, useState } from 'react';
 
-import { getCookies } from '@/utils';
 import { Tooltip } from '@/components';
+import { LanguageContext } from '@/context';
 
 import { languages } from './config';
 import { SelectableLanguage } from './selectable-language';
 
 export function LanguageSelection() {
-  const language = getCookies('lang');
+  const { language, setLanguage } = useContext(LanguageContext);
 
-  const [lang, setLang] = useState('ua');
   const [isOpen, setIsOpen] = useState(false);
 
-  useEffect(() => {
-    if (language) {
-      setLang(language);
-    }
-  }, [language]);
-
   const { Icon, selectable } = useMemo(() => {
-    const selectedLang = languages.find((item) => item.abb === lang);
-    const selectable = languages.filter((item) => item.abb !== lang);
+    const selectedLang = languages.find((item) => item.abb === language);
+    const selectable = languages.filter((item) => item.abb !== language);
+
     return { Icon: selectedLang?.Icon, selectable };
-  }, [lang]);
+  }, [language]);
 
   return (
     <div onClick={() => setIsOpen(!isOpen)} className="relative cursor-pointer">
@@ -34,7 +28,7 @@ export function LanguageSelection() {
           <SelectableLanguage
             {...item}
             key={item.abb}
-            onSelect={setLang}
+            setLanguage={setLanguage}
             onClose={() => setIsOpen(false)}
           />
         ))}
