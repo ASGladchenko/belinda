@@ -1,16 +1,17 @@
 'use client';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-
-import { Login } from '@/assets/icons';
 import { useSWRConfig } from 'swr';
 
+import { Login } from '@/assets/icons';
+import { useLocaleText } from '@/locale';
 import { removeTokensCookies } from '@/utils';
 import { USE_AUTH, routes } from '@/constants';
 import { Button, LanguageSelection, ThemeIcons } from '@/components';
 
 export function HeaderAdmin() {
   const router = useRouter();
+  const t = useLocaleText('headerAdmin');
 
   const { mutate } = useSWRConfig();
 
@@ -32,8 +33,8 @@ export function HeaderAdmin() {
         <ThemeIcons />
 
         <Button
-          text="Exit"
           type="button"
+          text={t.enter}
           onClick={onExit}
           variant="ghost-primary"
           className="px-2 py-1"

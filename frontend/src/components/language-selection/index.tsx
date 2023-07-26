@@ -10,7 +10,7 @@ import { SelectableLanguage } from './selectable-language';
 export function LanguageSelection() {
   const language = getCookies('lang');
 
-  const [lang, setLang] = useState('uk');
+  const [lang, setLang] = useState('ua');
   const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {

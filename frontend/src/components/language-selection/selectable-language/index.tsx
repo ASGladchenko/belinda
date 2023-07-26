@@ -1,5 +1,7 @@
 import Cookies from 'js-cookie';
 
+import { expiresLang } from '@/constants';
+
 import { ISelectableLanguage } from '../types';
 
 export function SelectableLanguage({
@@ -14,7 +16,7 @@ export function SelectableLanguage({
 
   const onClick = () => {
     onSelect(abb);
-    Cookies.set('lang', abb);
+    Cookies.set('lang', abb, { expires: expiresLang });
     onClose();
   };
 

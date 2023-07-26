@@ -28,7 +28,6 @@ export default function LogIn() {
         Cookies.set('access', response.access_token);
         Cookies.set('refresh', `${response.refresh_token}`, {
           expires: 7,
-          // 'max-age': 1 * 60 * 1000,
         });
       } else {
         Cookies.set('access', response.access_token);

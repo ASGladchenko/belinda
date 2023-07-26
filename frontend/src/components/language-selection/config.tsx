@@ -5,7 +5,7 @@ import { ILanguages } from './types';
 export const languages: ILanguages[] = [
   {
     name: 'ukrainian',
-    abb: 'uk',
+    abb: 'ua',
     Icon: <Ua width={24} height={24} />,
   },
   {
