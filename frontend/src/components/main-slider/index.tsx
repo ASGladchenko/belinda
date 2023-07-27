@@ -29,8 +29,8 @@ export const SliderMain = () => {
           disableOnInteraction: false,
         }}
       >
-        {Object.keys(Images).map((item) => (
-          <SwiperSlide>
+        {Object.keys(Images).map((item, index) => (
+          <SwiperSlide key={item + index}>
             <div
               className={card}
               style={{ backgroundImage: `url(${(Images as any)[item].src})` }}
