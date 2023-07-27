@@ -48,8 +48,6 @@ export const ProductRoot = ({ categories, url, title, baseHref }: IEdit) => {
     return categories?.find((category) => category.id === id);
   }, [id]);
 
-  console.log(categories?.length > 0, 'notEmpty productRoot');
-
   return (
     <>
       {categories?.length > 0 && (
@@ -59,6 +57,7 @@ export const ProductRoot = ({ categories, url, title, baseHref }: IEdit) => {
               {...category}
               url={url}
               onEdit={onEdit}
+              key={category.id}
               baseHref={baseHref}
             />
           ))}

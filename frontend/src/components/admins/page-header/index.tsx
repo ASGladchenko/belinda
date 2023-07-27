@@ -1,10 +1,8 @@
-'use client';
 import { Add } from '@/assets/icons';
 import { Button, Crumps } from '@/components';
 
-import { BreadCrumps } from '../crumps/helpers';
-
 import { IPageHead } from './types';
+import { BreadCrumps } from '../crumps/helpers';
 
 const PageHead = ({ head, onClick, maxCrumps }: IPageHead) => {
   const crumps = BreadCrumps();

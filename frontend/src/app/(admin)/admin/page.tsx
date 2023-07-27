@@ -39,7 +39,6 @@ function Category() {
       setOpen(false);
     }
   };
-  console.log(isLoading, 'isLoading');
 
   return (
     <MainWrapper>
