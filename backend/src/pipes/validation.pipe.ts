@@ -11,7 +11,7 @@ import {
 @Injectable()
 export class ValidationPipe implements PipeTransform<any> {
   async transform(value: any, metadata: ArgumentMetadata): Promise<any> {
-    if (!(value instanceof metadata.metatype)) {
+    if (metadata.type !== 'body') {
       return value;
     }
 

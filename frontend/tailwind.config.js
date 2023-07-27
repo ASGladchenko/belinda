@@ -29,14 +29,17 @@ module.exports = {
           warning: '#E76971',
           btnWhite: '#F5F5FB',
 
+          headPage: '#170c6b',
+
           primary: '#6259ca',
           primaryHover: '#403fad',
           primaryActive: '#6259CACC',
-          headPage: '#170c6b',
+          primaryGhost: 'rgba(98, 89, 202, 0.3);',
 
           secondary: '#f1388b',
           secondaryHover: '#ec3487',
           secondaryActive: '#f75da2',
+          secondaryGhost: 'rgba(247, 93, 162, 0.4);',
 
           overlay: 'rgba(36, 36, 61, 0.6);',
           overlay1: 'rgba(234, 237, 247, 0.4);',
@@ -91,6 +94,8 @@ module.exports = {
         rotate: 'rotate',
         links: 'padding, transform, color',
         opacity: 'opacity',
+        color: 'background-color, color',
+        h: 'height',
       },
 
       backgroundImage: {

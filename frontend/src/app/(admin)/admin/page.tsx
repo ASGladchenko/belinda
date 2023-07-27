@@ -1,48 +1,80 @@
 'use client';
+import useSWR from 'swr';
 
-import { Form, Formik, FormikValues } from 'formik';
-
+import { IRootData } from '@/types';
+import { productRoot } from '@/http';
+import { GET_CATEGORY } from '@/constants';
 import { useDelayAnimation } from '@/hooks';
-import { InputField, Overlay, PageHead } from '@/components';
-import { initialValues, validationSchema } from '@/app/(login)/login/config';
+import {
+  Form,
+  Loader,
+  Overlay,
+  PageHead,
+  MainWrapper,
+  ProductRoot,
+  showMessage,
+  getInitialValues,
+} from '@/components';
+import { spawn } from 'child_process';
 
-const duration = 500;
-function Products() {
+const url = '/category';
+
+function Category() {
+  const duration = 500;
   const { isOpen, isAnimation, setOpen } = useDelayAnimation(duration);
 
-  const onSubmit = (e: FormikValues) => {
-    console.log(e);
+  const { data, isLoading, mutate } = useSWR(
+    GET_CATEGORY,
+    productRoot.getCategory,
+  );
+
+  const onSubmit = async (values: IRootData) => {
+    try {
+      await productRoot.create(values, url);
+      mutate([...data, values]);
+      showMessage.success('Changes are successful');
+    } catch (error: any) {
+      showMessage.error(error.response.data.message);
+    } finally {
+      setOpen(false);
+    }
   };
 
   return (
-    <div className="flex flex-col flex-wrap items-center justify-center">
-      <PageHead head="Products" onClick={() => setOpen(true)} />
+    <MainWrapper>
+      <PageHead head="Categories" onClick={() => setOpen(true)} />
+
+      {isLoading && <Loader />}
+
+      {data?.length > 0 && !isLoading && (
+        <ProductRoot
+          url={url}
+          categories={data}
+          title="Change category"
+          baseHref="admin/category/"
+        />
+      )}
+      {!data?.length && !isLoading && (
+        <h2 className="text-2xl font-medium select-none text-admin-headPage dark:text-white font-inter">
+          List is empty
+        </h2>
+      )}
 
       <Overlay
         isOpen={isOpen}
         duration={duration}
         isAnimation={isAnimation}
         setClose={() => setOpen(false)}
-        // TODO: PRoblem with create !!!!!!!!!!!
-        onCreate={() => alert('Create')}
       >
-        <Formik
+        <Form
+          title="Create Category"
           onSubmit={onSubmit}
-          initialValues={initialValues}
-          validationSchema={validationSchema}
-        >
-          <Form className="flex flex-col w-[400px] gap-5">
-            <h3 className="text-center select-none">Create Category</h3>
-            <InputField
-              name="newCategory"
-              label="Enter name"
-              className="text-white"
-            />
-          </Form>
-        </Formik>
+          onClose={() => setOpen(false)}
+          initialValues={getInitialValues()}
+        />
       </Overlay>
-    </div>
+    </MainWrapper>
   );
 }
 
-export default Products;
+export default Category;

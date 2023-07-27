@@ -1,13 +1,11 @@
-'use client';
-import { SWRConfig } from 'swr';
-import { Provider } from 'react-redux';
 import { Inter, Pacifico, Jost } from 'next/font/google';
 
-import { store } from '@/store';
-import { getCookies } from '@/utils';
 import { ChildrenProps } from '@/types';
-import { USE_AUTH } from '@/constants';
-import { Provider as ThemeProvider } from '@/components';
+import { LanguageProvider } from '@/context';
+import { Provider as ThemeProvider, Toast } from '@/components';
+
+import { ProviderSwr } from './provider-swr';
+import { ProviderRedux } from './provider-redux';
 
 import '../styles/global.css';
 
@@ -39,22 +37,19 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }: ChildrenProps) {
-  const token = getCookies('refresh');
-
   return (
-    <html lang="en" className="scroll-smooth">
+    <html lang="en">
       <body
-        className={`${pacifico.variable} ${jost.variable} ${inter.variable}`}
+        className={`${pacifico.variable} ${jost.variable}  ${inter.variable}`}
       >
-        <SWRConfig
-          value={{
-            fallback: { [USE_AUTH]: token },
-          }}
-        >
-          <Provider store={store}>
-            <ThemeProvider>{children}</ThemeProvider>
-          </Provider>
-        </SWRConfig>
+        <ProviderSwr>
+          <ProviderRedux>
+            <LanguageProvider>
+              <ThemeProvider>{children}</ThemeProvider>
+            </LanguageProvider>
+            <Toast />
+          </ProviderRedux>
+        </ProviderSwr>
       </body>
     </html>
   );

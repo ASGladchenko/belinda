@@ -9,6 +9,7 @@ export { LanguageSelection } from './language-selection';
 export { Overlay } from './overlay';
 export { Provider } from './provider';
 export { ThemeIcons } from './theme-icons';
+export { Toast, showMessage } from './toast';
 export { Tooltip } from './tooltip';
 export { NavBar } from './nav-bar';
 export * from './admins';

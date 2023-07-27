@@ -3,43 +3,72 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Injectable, HttpException, HttpStatus } from '@nestjs/common';
 
 import { CategoryDto } from './dto/category.dto';
+import { FileService } from '../file/file.service';
 import { CategoryEntity } from './category.entity';
+import { DuplicateService } from '../duplicate/duplicate.service';
 
 @Injectable()
 export class CategoryService {
   constructor(
     @InjectRepository(CategoryEntity)
     private categoryRepository: Repository<CategoryEntity>,
+    private duplicateService: DuplicateService,
+    private fileService: FileService,
   ) {}
 
   async create(categoryDto: CategoryDto): Promise<CategoryEntity> {
-    const existCategory = await this.categoryRepository.findOneBy({
+    await this.duplicateService.check(this.categoryRepository, {
       name: categoryDto.name,
+      name_ua: categoryDto.name_ua,
     });
-
-    if (existCategory) {
-      throw new HttpException('Category exists', HttpStatus.BAD_REQUEST);
-    }
 
     const newCategory = await this.categoryRepository.create(categoryDto);
     return await this.categoryRepository.save(newCategory);
   }
 
-  findAll(): Promise<CategoryEntity[]> {
-    return this.categoryRepository.find();
+  async findAll(): Promise<CategoryEntity[]> {
+    const categories = await this.categoryRepository.find({
+      relations: { products: true },
+    });
+
+    if (categories.length === 0) {
+      throw new HttpException('Categories not found', HttpStatus.BAD_REQUEST);
+    }
+
+    return categories;
   }
 
-  findOne(id: string): Promise<CategoryEntity> {
-    return this.categoryRepository.findOneBy({
+  async findOne(id: string): Promise<CategoryEntity> {
+    const category = await this.categoryRepository.findOneBy({
       id,
     });
-  }
-
-  async update(id: string, categoryDto: CategoryDto): Promise<CategoryDto> {
-    const category = await this.findOne(id);
 
     if (!category) {
-      throw new HttpException('Category missing', HttpStatus.BAD_REQUEST);
+      throw new HttpException('Category not found', HttpStatus.BAD_REQUEST);
+    }
+
+    return category;
+  }
+
+  async update(id: string, categoryDto: CategoryDto): Promise<CategoryEntity> {
+    const category = await this.findOne(id);
+
+    const fieldsToCheck = {};
+
+    if (category.name !== categoryDto.name) {
+      fieldsToCheck['name'] = categoryDto.name;
+    }
+
+    if (category.name_ua !== categoryDto.name_ua) {
+      fieldsToCheck['name_ua'] = categoryDto.name_ua;
+    }
+
+    if (Object.keys(fieldsToCheck).length > 0) {
+      await this.duplicateService.check(
+        this.categoryRepository,
+        fieldsToCheck,
+        id,
+      );
     }
 
     return await this.categoryRepository.save({
@@ -49,12 +78,17 @@ export class CategoryService {
   }
 
   async delete(id: string) {
-    const category = await this.findOne(id);
+    const category = await this.categoryRepository.findOne({
+      where: { id },
+      relations: ['products'],
+    });
 
     if (!category) {
-      throw new HttpException('Category missing', HttpStatus.BAD_REQUEST);
+      throw new HttpException('Category not found', HttpStatus.BAD_REQUEST);
     }
 
-    return await this.categoryRepository.delete(id);
+    await this.fileService.deleteAll(category.products);
+
+    return this.categoryRepository.delete(id);
   }
 }

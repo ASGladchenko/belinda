@@ -12,7 +12,7 @@ export const setClass = (variant: IVariant) => {
   const outlineVariant = 'bg-transparent enabled:hover:text-white';
 
   const ghostVariant =
-    'enabled:text-black dark:enable:text-black dark:enabled:hover:text-white enabled:dark:text-white border-transparent';
+    'enabled:text-black dark:enabled:text-white dark:enabled:fill-white enabled:hover:fill-white enabled:hover:text-white enabled:dark:text-white border-transparent';
 
   const baseVariant = 'enabled:text-white enabled:dark:text-white ';
 
@@ -30,10 +30,10 @@ export const setClass = (variant: IVariant) => {
       [`${secondaryColor} ${outlineVariant} text-admin-secondary`]:
         variant === 'outline-secondary',
 
-      [`${ghostVariant} enabled:hover:bg-admin-secondaryActive`]:
+      [`${ghostVariant} enabled:hover:bg-admin-secondaryGhost`]:
         variant === 'ghost-secondary',
 
-      [`${ghostVariant} enabled:hover:bg-admin-lighten-main dark:enabled:hover:bg-admin-darken-main`]:
+      [`${ghostVariant} enabled:hover:bg-admin-primaryGhost`]:
         variant === 'ghost-primary',
     },
   );

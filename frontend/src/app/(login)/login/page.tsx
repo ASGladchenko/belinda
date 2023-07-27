@@ -6,18 +6,18 @@ import { Formik, Form } from 'formik';
 import useSWRMutation from 'swr/mutation';
 import { useRouter } from 'next/navigation';
 
-import { api } from '@/http';
+import { auth } from '@/http';
 import { IAuth } from '@/types';
 import { Login } from '@/assets/icons';
 import { USE_AUTH, routes } from '@/constants';
-import { Button, InputField } from '@/components';
+import { Button, InputField, showMessage } from '@/components';
 
 import { initialValues, validationSchema } from './config';
 
 export default function LogIn() {
   const router = useRouter();
   const { mutate } = useSWRConfig();
-  const { trigger, isMutating } = useSWRMutation('/auth/login', api.login);
+  const { trigger, isMutating } = useSWRMutation('/auth/login', auth.login);
 
   const onSubmit = async ({ role, password, remember }: IAuth) => {
     try {
@@ -26,7 +26,7 @@ export default function LogIn() {
 
       if (remember) {
         Cookies.set('access', response.access_token);
-        Cookies.set('refresh', response.refresh_token, {
+        Cookies.set('refresh', `${response.refresh_token}`, {
           expires: 7,
         });
       } else {
@@ -35,8 +35,8 @@ export default function LogIn() {
       }
 
       router.push(routes.admin);
-    } catch (e: any) {
-      console.log(e.response);
+    } catch (error: any) {
+      showMessage.error(error.response.data.message);
     }
   };
 
@@ -50,6 +50,8 @@ export default function LogIn() {
         <div className="flex flex-col w-full gap-7">
           <Formik
             onSubmit={onSubmit}
+            validateOnBlur={false}
+            validateOnChange={false}
             initialValues={initialValues}
             validationSchema={validationSchema}
           >

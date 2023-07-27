@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 
-import { mainInput } from './class';
+import { getStyles } from './styles';
 import { InputProps } from './types';
 import { SwitchPassword } from './switch';
 
@@ -19,39 +19,59 @@ const Input = ({
   const { currentType, switcher } = SwitchPassword(isTypePassword);
   const changingType = isTypePassword ? currentType : type;
 
-  const inputClass = clsx(mainInput, {
-    'border-admin-warning dark:border-admin-warning': error,
-    'pr-8': isTypePassword,
-  });
+  const { textarea, mainInput } = getStyles(error, isTypePassword);
 
   return (
-    <label className='flex flex-col'>
-      {label && (
-        <span className='pl-1 mb-1 text-sm text-text dark:text-admin-btnWhite'>{label}</span>
+    <>
+      {type === 'textarea' && (
+        <label className="flex flex-col w-full gap-3">
+          {label && (
+            <span className="pl-1 mb-1 text-sm text-text dark:text-admin-btnWhite">
+              {label}
+            </span>
+          )}
+
+          <div className="flex flex-col w-full gap-2">
+            <textarea className={textarea} {...props} />
+            {error && <span className="text-admin-warning">{error}</span>}
+          </div>
+        </label>
       )}
 
-      <div className='relative'>
-        <input
-          name={name}
-          value={value}
-          id={id ?? name}
-          type={changingType}
-          disabled={disabled}
-          placeholder={placeholder}
-          {...props}
-          onChange={(e) => {
-            if (props.onChange) {
-              props.onChange(e);
-            }
-          }}
-          className={inputClass}
-        />
+      {type !== 'textarea' && (
+        <label className="flex flex-col">
+          {label && (
+            <span className="pl-1 mb-1 text-sm text-text dark:text-admin-btnWhite">
+              {label}
+            </span>
+          )}
 
-        {isTypePassword && switcher}
-      </div>
+          <div className="relative">
+            <input
+              name={name}
+              value={value}
+              id={id ?? name}
+              type={changingType}
+              disabled={disabled}
+              placeholder={placeholder}
+              {...props}
+              onChange={(e) => {
+                if (props.onChange) {
+                  props.onChange(e);
+                }
+              }}
+              className={mainInput}
+            />
 
-      {error && <span className='mt-1 text-xs text-admin-warning'>{error}</span>}
-    </label>
+            {isTypePassword && switcher}
+          </div>
+
+          {error && (
+            <span className="mt-1 text-xs text-admin-warning">{error}</span>
+          )}
+        </label>
+      )}
+    </>
   );
 };
 

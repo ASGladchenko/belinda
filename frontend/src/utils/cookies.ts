@@ -8,4 +8,6 @@ export const getCookies = (key: string) => {
 export const removeTokensCookies = () => {
   Cookies.remove('access');
   Cookies.remove('refresh');
+  // TODO : Check this variant
+  // window.location.pathname = '/login';
 };

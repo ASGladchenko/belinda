@@ -1,5 +1,5 @@
 'use client';
-import { useEffect } from 'react';
+import { Suspense, useEffect } from 'react';
 import useSWR from 'swr';
 import { useRouter } from 'next/navigation';
 
@@ -9,6 +9,7 @@ import { Aside, HeaderAdmin } from '@/components';
 
 export default function Layout({ children }: ChildrenProps) {
   const router = useRouter();
+  // TODO: added loader
   const { data, isLoading } = useSWR(USE_AUTH);
 
   useEffect(() => {
@@ -22,7 +23,7 @@ export default function Layout({ children }: ChildrenProps) {
       <div className="flex flex-nowrap h-[calc(100%-65px)]">
         <Aside />
 
-        <main className="[position:] w-full p-5 overflow-y-auto bg-admin-lighten-main dark:bg-admin-darken-main">
+        <main className="relative w-full p-5 overflow-y-auto bg-admin-lighten-main dark:bg-admin-darken-main">
           {children}
         </main>
       </div>

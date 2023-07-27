@@ -1,17 +1,17 @@
 'use client';
-import { useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useSWRConfig } from 'swr';
 
 import { Login } from '@/assets/icons';
+import { useLocaleText } from '@/locale';
 import { removeTokensCookies } from '@/utils';
 import { USE_AUTH, routes } from '@/constants';
 import { Button, LanguageSelection, ThemeIcons } from '@/components';
 
 export function HeaderAdmin() {
   const router = useRouter();
-  const [lang, setLang] = useState('ukrainian');
+  const t = useLocaleText('headerAdmin');
 
   const { mutate } = useSWRConfig();
 
@@ -26,14 +26,15 @@ export function HeaderAdmin() {
       <Link href="/admin" className={`text-xl cursor-pointer font-pacifico`}>
         Belinda
       </Link>
-      <div className="flex items-center gap-6 flex-nowrap">
-        <LanguageSelection selectLang={lang} onSelect={setLang} />
+
+      <div className="flex items-center gap-3 sm:gap-5 flex-nowrap">
+        <LanguageSelection />
 
         <ThemeIcons />
 
         <Button
-          text="Exit"
           type="button"
+          text={t.enter}
           onClick={onExit}
           variant="ghost-primary"
           className="px-2 py-1"

@@ -1,31 +1,34 @@
 'use client';
-import React, { useState } from 'react';
+import React, { useContext, useEffect, useMemo, useState } from 'react';
 
 import { Tooltip } from '@/components';
+import { LanguageContext } from '@/context';
 
 import { languages } from './config';
-import { ILanguageSelection } from './types';
 import { SelectableLanguage } from './selectable-language';
 
-export function LanguageSelection({
-  selectLang,
-  onSelect,
-}: ILanguageSelection) {
+export function LanguageSelection() {
+  const { language, setLanguage } = useContext(LanguageContext);
+
   const [isOpen, setIsOpen] = useState(false);
 
-  const [{ Icon }] = languages.filter((lang) => lang.name === selectLang);
-  const selectable = languages.filter((lang) => lang.name !== selectLang);
+  const { Icon, selectable } = useMemo(() => {
+    const selectedLang = languages.find((item) => item.abb === language);
+    const selectable = languages.filter((item) => item.abb !== language);
+
+    return { Icon: selectedLang?.Icon, selectable };
+  }, [language]);
 
   return (
     <div onClick={() => setIsOpen(!isOpen)} className="relative cursor-pointer">
-      <Icon width={24} height={24} />
+      {Icon}
 
       <Tooltip isOpen={isOpen} setIsOpen={() => setIsOpen(false)}>
-        {selectable.map((lang, index) => (
+        {selectable.map((item) => (
           <SelectableLanguage
-            key={`${index}_${lang.abb}`}
-            {...lang}
-            onSelect={onSelect}
+            {...item}
+            key={item.abb}
+            setLanguage={setLanguage}
             onClose={() => setIsOpen(false)}
           />
         ))}
