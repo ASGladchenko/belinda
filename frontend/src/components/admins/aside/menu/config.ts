@@ -5,20 +5,29 @@ import { IMenuList } from './types';
 
 export const menuList: IMenuList[] = [
   {
-    name: 'category',
+    name: '',
     href: routes.admin,
     Icon: Product,
   },
 
   {
-    name: 'company',
+    name: '',
     href: routes.company,
     Icon: Company,
   },
 
   {
-    name: 'webpage',
+    name: '',
     href: routes.webpage,
     Icon: Web,
   },
 ];
+
+export function getModifiedMenu(menuText: string[]) {
+  return menuList.map((item, index) => {
+    return {
+      ...item,
+      name: menuText[index],
+    };
+  });
+}

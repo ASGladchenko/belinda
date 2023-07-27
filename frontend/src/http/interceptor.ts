@@ -8,9 +8,11 @@ const initBelinda = ({ onAuthError }: { onAuthError: () => void }) => {
 
   axios.interceptors.request.use((config) => {
     const access = getCookies('access');
+    const lang = getCookies('lang');
 
     if (access) {
       config.headers.Authorization = `Bearer ${access}`;
+      config.headers['Accept-Language'] = lang;
     }
 
     return config;
