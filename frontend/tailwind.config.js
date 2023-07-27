@@ -19,6 +19,12 @@ module.exports = {
         white: '#FFFFFF',
         text: '#1D212F',
 
+        client: {
+          light: {
+            header: 'rgba(255, 255, 255, 0.3)',
+          },
+        },
+
         admin: {
           warning: '#E76971',
           btnWhite: '#F5F5FB',

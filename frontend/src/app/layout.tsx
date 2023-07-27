@@ -42,7 +42,7 @@ export default function RootLayout({ children }: ChildrenProps) {
   const token = getCookies('refresh');
 
   return (
-    <html lang="en">
+    <html lang="en" className="scroll-smooth">
       <body
         className={`${pacifico.variable} ${jost.variable} ${inter.variable}`}
       >

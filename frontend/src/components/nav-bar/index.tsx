@@ -1,13 +1,16 @@
 'use client';
-import { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { getStyles } from './styles';
 import { ThemeIcons } from '../theme-icons';
 import { client_data } from '../content-data';
+import { LanguageSelection } from '../language-selection';
 
 export const NavBar = () => {
+  const [lang, setLang] = useState('ukrainian');
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [isOpenDropDown, setIsOpenDropDown] = useState<boolean>(false);
+
   const {
     link,
     nav_bar,
@@ -19,6 +22,11 @@ export const NavBar = () => {
     burger_container,
   } = getStyles(isOpen, isOpenDropDown);
 
+  useEffect(() => {
+    if (isOpen) document.body.classList.add('overflow-hidden');
+    if (!isOpen) document.body.classList.remove('overflow-hidden');
+  }, [isOpen]);
+
   return (
     <>
       <div className={nav_bar} onClick={() => setIsOpen(!isOpen)}>
@@ -29,7 +37,7 @@ export const NavBar = () => {
         <span className={btn_close} onClick={() => setIsOpen(false)}></span>
 
         {client_data.nav_bar.map(({ name, path, menu }) => (
-          <>
+          <React.Fragment key={name}>
             {!menu && (
               <a href={path} className={link}>
                 {name}
@@ -46,15 +54,21 @@ export const NavBar = () => {
                 </p>
                 <div className={dropDown}>
                   {menu.map(({ name, path }) => (
-                    <a href={path} className={`${link} ${dropDownLink}`}>
+                    <a
+                      href={path}
+                      key={name}
+                      className={`${link} ${dropDownLink}`}
+                    >
                       {name}
                     </a>
                   ))}
                 </div>
               </div>
             )}
-          </>
+          </React.Fragment>
         ))}
+
+        <LanguageSelection selectLang={lang} onSelect={setLang} />
 
         <ThemeIcons />
       </div>

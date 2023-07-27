@@ -4,7 +4,9 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <div className="font-jost">
       <Header />
-      <main className="h-[1600px]">{children}</main>
+      <main id="main" className="h-[1600px]">
+        {children}
+      </main>
       <Footer />
     </div>
   );

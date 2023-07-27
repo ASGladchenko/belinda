@@ -2,8 +2,9 @@ import clsx from 'clsx';
 
 export const getStyles = (isScrollHeader: boolean) => ({
   header: clsx(
-    'h-[100px] w-full sticky flex justify-center items-center top-0',
-    { 'backdrop-blur-[2px]': isScrollHeader },
+    'h-[100px] w-full fixed flex justify-center bg-client-light-header items-center top-0 z-999  dark:bg-transparent',
+    { 'backdrop-blur-[4px]': isScrollHeader },
+    { 'backdrop-blur-[0] ': !isScrollHeader },
   ),
 
   container: clsx(

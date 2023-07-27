@@ -1,5 +1,5 @@
 'use client';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { NavBar } from '../nav-bar';
 import { getStyles } from './styles';
 
@@ -7,10 +7,17 @@ export const Header = () => {
   const [isScrollHeader, setIsScrollHeader] = useState(false);
   const { header, container, logo } = getStyles(isScrollHeader);
 
-  window.addEventListener('scroll', () => {
-    if (window.scrollY >= 80 && !isScrollHeader) setIsScrollHeader(true);
-    if (window.scrollY < 90 && isScrollHeader) setIsScrollHeader(false);
-  });
+  useEffect(() => {
+    window.addEventListener('scroll', () => {
+      if (window.scrollY >= 80 && !isScrollHeader) {
+        setIsScrollHeader(true);
+      }
+
+      if (window.scrollY < 90 && isScrollHeader) {
+        setIsScrollHeader(false);
+      }
+    });
+  }, [isScrollHeader]);
 
   return (
     <header className={header}>

@@ -4,7 +4,7 @@ export const getStyles = (isOpen: boolean, isOpenDropDown: boolean) => ({
   nav_bar: clsx('cursor-pointer h-[30px] flex items-center justify-center'),
 
   burgerIcon: clsx(
-    "relative block lg:hidden bg-black w-[30px] h-[2px] after:block after:content-[''] after:w-[30px] after:h-[2px] after:bg-black dark:after:bg-white dark:before:bg-white dark:bg-white after:absolute before:block before:content-[''] before:w-[30px] before:h-[2px] before:bg-black before:absolute after:origin-[-4px]-left before:origin-[-12px]-right ",
+    "relative block lg:hidden rounded bg-black w-[30px] h-[3px] after:block after:content-[''] after:w-[30px] after:h-[3px] after:bg-black dark:after:bg-white dark:before:bg-white dark:bg-white after:absolute before:block before:content-[''] before:w-[30px] before:h-[3px] before:bg-black before:rounded after:rounded before:absolute after:origin-[-4px]-left before:origin-[-12px]-right ",
     {
       'bg-transparent after:left-0 before:left-0 after:rotate-45 before:-rotate-45 after:transition before:transition transition':
         isOpen,
@@ -16,13 +16,13 @@ export const getStyles = (isOpen: boolean, isOpenDropDown: boolean) => ({
   ),
 
   burger_container: clsx(
-    'fixed w-screen min-h-screen lg:min-h-fit lg:w-fit lg:w-full lg:relative flex flex-col lg:flex-row items-center gap-8 lg:max-w-[600px] lg:justify-between top-0 right-0 transition bg-black lg:bg-transparent text-white lg:text-black p-[50px] lg:p-0  duration-300 dark:text-white',
+    'fixed w-screen min-h-screen lg:min-h-fit lg:w-fit lg:w-full lg:relative flex flex-col lg:flex-row items-center gap-8 lg:gap-0 lg:max-w-[600px] lg:justify-between top-0 right-0 transition bg-black lg:bg-transparent text-white lg:text-black p-[50px] lg:p-0  duration-300 dark:text-white',
     { 'translate-x-full lg:translate-x-0': !isOpen },
     { 'translate-x-0': isOpen },
   ),
 
   btn_close: clsx(
-    'absolute top-[24px] right-[24px] w-[30px] h-[30px] block after:content-[""] after:block after:w-full after:h-[2px] after:bg-white after:absolute after:top-1/2 after:center after:rotate-45 before:content-[""] before:block before:top-1/2 before:w-full before:h-[2px] before:bg-white before:absolute before:bottom-0 before:origin-center before:-rotate-45 cursor-pointer lg:hidden',
+    'absolute top-[24px] right-[24px] w-[30px] h-[30px] block after:content-[""] after:block after:w-full after:h-[3px] after:bg-white after:absolute after:top-1/2 after:center after:rotate-45 before:content-[""] before:block before:top-1/2 before:w-full before:h-[3px] before:bg-white before:absolute before:bottom-0 before:origin-center before:-rotate-45 cursor-pointer lg:hidden',
   ),
 
   link: clsx(

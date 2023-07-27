@@ -13,6 +13,5 @@ export const client_data = {
       ],
     },
     { name: 'контакты', path: '/' },
-    { name: 'en', path: '/' },
   ],
 };
