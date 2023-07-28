@@ -3,13 +3,13 @@ import React, { useEffect, useState } from 'react';
 
 import { getStyles } from './styles';
 import { ThemeIcons } from '../theme-icons';
-import { client_data } from '../content-data';
+import { translatedNavbar } from '../content-data';
 import { LanguageSelection } from '../language-selection';
 
 export const NavBar = () => {
-  const [lang, setLang] = useState('ukrainian');
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [isOpenDropDown, setIsOpenDropDown] = useState<boolean>(false);
+  const navbar = translatedNavbar();
 
   const {
     link,
@@ -36,7 +36,7 @@ export const NavBar = () => {
       <div className={burger_container}>
         <span className={btn_close} onClick={() => setIsOpen(false)}></span>
 
-        {client_data.nav_bar.map(({ name, path, menu }) => (
+        {navbar.map(({ name, path, menu }) => (
           <React.Fragment key={name}>
             {!menu && (
               <a href={path} className={link}>
@@ -68,7 +68,7 @@ export const NavBar = () => {
           </React.Fragment>
         ))}
 
-        <LanguageSelection selectLang={lang} onSelect={setLang} />
+        <LanguageSelection />
 
         <ThemeIcons />
       </div>

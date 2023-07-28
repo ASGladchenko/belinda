@@ -40,7 +40,7 @@ export default function RootLayout({ children }: ChildrenProps) {
   return (
     <html lang="en">
       <body
-        className={`${pacifico.variable} ${jost.variable}  ${inter.variable}`}
+        className={`${pacifico.variable} ${jost.variable} ${inter.variable}`}
       >
         <ProviderSwr>
           <ProviderRedux>
