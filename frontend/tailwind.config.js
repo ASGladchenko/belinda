@@ -98,16 +98,59 @@ module.exports = {
         h: 'height',
       },
 
+      container: {
+        'max-width': '1900px',
+        center: true,
+        padding: {
+          DEFAULT: '20px',
+        },
+      },
+
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'gradient-conic':
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
       },
+
       zIndex: {
         ...defaultTheme.zIndex,
         100: '100',
         999: '999',
         1000: '1000',
+      },
+
+      keyframes: {
+        scale: {
+          '50%': { transform: 'scale(1.03)' },
+          '100%': { transform: 'scale(1)' },
+        },
+
+        left_appearance: {
+          '0%': { transform: 'translateX(-20%)', opacity: 0 },
+          '70%': { opacity: 0.6 },
+          '100%': { transform: 'translateX(0)', opacity: 1 },
+        },
+
+        down_appearance: {
+          '0%': { transform: 'translateY(20%)', opacity: 0 },
+          '70%': { opacity: 0.6 },
+          '100%': { transform: 'translateY(0)', opacity: 1 },
+        },
+      },
+
+      animation: {
+        'scale-4': 'scale 4s ease-in-out infinite',
+        'left-appearance': 'left_appearance 0.5s ease-in-out forwards',
+        'down-appearance': 'down_appearance 0.6s ease-in-out forwards',
+      },
+
+      backgroundSize: {
+        auto: 'auto',
+        cover: 'cover',
+        contain: 'contain',
+        '50%': '50%',
+        '100%': '100%',
+        '150%': '150%',
       },
     },
   },

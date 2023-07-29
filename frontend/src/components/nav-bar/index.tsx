@@ -53,10 +53,10 @@ export const NavBar = () => {
                   {name} <span className={toogleDropDown}>&#9660;</span>
                 </p>
                 <div className={dropDown}>
-                  {menu.map(({ name, path }) => (
+                  {menu.map(({ name, path }, index) => (
                     <a
                       href={path}
-                      key={name}
+                      key={name + index}
                       className={`${link} ${dropDownLink}`}
                     >
                       {name}

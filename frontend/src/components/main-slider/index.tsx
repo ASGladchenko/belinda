@@ -14,7 +14,7 @@ export const SliderMain = () => {
   const { wrapper, title, card } = getStyles();
 
   return (
-    <div className={wrapper}>
+    <section className={wrapper}>
       <h1 className={title}>FOUR SEASON'S TRADING</h1>
 
       <Swiper
@@ -38,6 +38,6 @@ export const SliderMain = () => {
           </SwiperSlide>
         ))}
       </Swiper>
-    </div>
+    </section>
   );
 };
