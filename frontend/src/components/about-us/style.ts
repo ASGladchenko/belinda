@@ -9,11 +9,14 @@ export const getStyles = (inView: boolean) => ({
     'animate-left-appearance': inView,
   }),
 
-  content: clsx('text-base font-jost opacity-0', {
+  content: clsx('text-base font-jost opacity-0 text-justify lg:text-start', {
     'animate-down-appearance': inView,
   }),
 
   img: clsx(
-    'hidden w-full duration-500 bg-center bg-100% bg-no-repeat lg:block animate-scale-4',
+    'hidden w-full duration-500 bg-center bg-100% bg-no-repeat lg:block backdrop-grayscale-[20%]',
+    {
+      ' animate-scale-4': inView,
+    },
   ),
 });

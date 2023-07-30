@@ -20,6 +20,13 @@ module.exports = {
         text: '#1D212F',
 
         client: {
+          advantages: {
+            green: '#34af5b',
+            yellow: '#ebb133',
+            orange: '#e38039',
+            blue: '#34a6dc',
+          },
+
           light: {
             header: 'rgba(255, 255, 255, 0.3)',
           },
@@ -126,13 +133,25 @@ module.exports = {
         },
 
         left_appearance: {
-          '0%': { transform: 'translateX(-20%)', opacity: 0 },
+          '0%': { transform: 'translateX(-5%)', opacity: 0 },
+          '70%': { opacity: 0.6 },
+          '100%': { transform: 'translateX(0)', opacity: 1 },
+        },
+
+        left_appearance_md: {
+          '0%': { transform: 'translateX(-15%)', opacity: 0 },
           '70%': { opacity: 0.6 },
           '100%': { transform: 'translateX(0)', opacity: 1 },
         },
 
         down_appearance: {
-          '0%': { transform: 'translateY(20%)', opacity: 0 },
+          '0%': { transform: 'translateY(5%)', opacity: 0 },
+          '70%': { opacity: 0.6 },
+          '100%': { transform: 'translateY(0)', opacity: 1 },
+        },
+
+        down_appearance_md: {
+          '0%': { transform: 'translateY(15%)', opacity: 0 },
           '70%': { opacity: 0.6 },
           '100%': { transform: 'translateY(0)', opacity: 1 },
         },
@@ -140,8 +159,11 @@ module.exports = {
 
       animation: {
         'scale-4': 'scale 4s ease-in-out infinite',
-        'left-appearance': 'left_appearance 0.5s ease-in-out forwards',
-        'down-appearance': 'down_appearance 0.6s ease-in-out forwards',
+        'left-appearance': 'left_appearance 0.33s ease-in-out forwards',
+        'down-appearance': 'down_appearance 0.37s ease-in-out forwards',
+        'left-appearance-md': 'left_appearance_md 0.5s ease-in-out forwards',
+        'down-appearance-md': 'down_appearance_md 0.5s ease-in-out forwards',
+        'left-appearance-revers': 'left_appearance_md 0.5s ease-in-out revers',
       },
 
       backgroundSize: {

@@ -38,9 +38,9 @@ export const metadata = {
 
 export default function RootLayout({ children }: ChildrenProps) {
   return (
-    <html lang="en">
+    <html lang="en" className="scroll-smooth">
       <body
-        className={`${pacifico.variable} ${jost.variable} ${inter.variable}`}
+        className={` ${pacifico.variable} ${jost.variable} ${inter.variable}`}
       >
         <ProviderSwr>
           <ProviderRedux>

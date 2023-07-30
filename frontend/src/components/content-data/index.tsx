@@ -5,7 +5,7 @@ export const translatedNavbar = () => {
 
   return [
     { name: text.home, path: '/' },
-    { name: text.about, path: '/' },
+    { name: text.about, path: '#aboutUs' },
     { name: text.services, path: '/' },
     {
       name: text.products,
