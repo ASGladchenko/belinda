@@ -155,6 +155,12 @@ module.exports = {
           '70%': { opacity: 0.6 },
           '100%': { transform: 'translateY(0)', opacity: 1 },
         },
+
+        down_appearance_xxl: {
+          '0%': { transform: 'translateY(200%)', opacity: 0 },
+          '70%': { opacity: 0.6 },
+          '100%': { transform: 'translateY(0)', opacity: 1 },
+        },
       },
 
       animation: {
@@ -163,7 +169,8 @@ module.exports = {
         'down-appearance': 'down_appearance 0.37s ease-in-out forwards',
         'left-appearance-md': 'left_appearance_md 0.5s ease-in-out forwards',
         'down-appearance-md': 'down_appearance_md 0.5s ease-in-out forwards',
-        'left-appearance-revers': 'left_appearance_md 0.5s ease-in-out revers',
+        'down-appearance-xxl': 'down_appearance_xxl 0.5s ease-in-out forwards',
+        'left-appearance-revers': 'left_appearance_md 0.33s ease-in-out revers',
       },
 
       backgroundSize: {

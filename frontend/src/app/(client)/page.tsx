@@ -1,7 +1,4 @@
-import { Buns } from '@/components/buns';
-import { AboutUs } from '@/components/about-us';
-import { Advantages } from '@/components/advantages';
-import { SliderMain } from '@/components/main-slider';
+import { AboutUs, Advantages, Buns, Offer, SliderMain } from '@/components';
 
 export default function Home() {
   return (
@@ -10,6 +7,7 @@ export default function Home() {
       <AboutUs />
       <Buns />
       <Advantages />
+      <Offer />
     </div>
   );
 }

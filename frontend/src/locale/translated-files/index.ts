@@ -1,15 +1,17 @@
-import { bunsBox } from './bunsBox';
-import { asideAdmin } from './asideAdmin';
-import { headerAdmin } from './headerAdmin';
 import { aboutClient } from './aboutClient';
-import { headerClient } from './headerClient';
 import { advantagesClient } from './advantagesClient';
+import { asideAdmin } from './asideAdmin';
+import { bunsBox } from './bunsBox';
+import { headerAdmin } from './headerAdmin';
+import { headerClient } from './headerClient';
+import { offerClient } from './offerClient';
 
 export const files = {
   bunsBox,
   asideAdmin,
-  headerAdmin,
   aboutClient,
+  headerAdmin,
+  offerClient,
   headerClient,
   advantagesClient,
 };

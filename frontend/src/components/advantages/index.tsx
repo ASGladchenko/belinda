@@ -19,12 +19,12 @@ export const Advantages = () => {
         <h3 className="text-center uppercase text-[32px] font-bold mb-2 leading-[100%]">
           {advantageBlock.title}
         </h3>
-        <div className="flex flex-wrap justify-center">
+        <div className="flex flex-wrap justify-center ">
           {advantages.map((advantage, index) => (
             <AnimationBlock
               key={`advantage-card-${index}`}
               animation="animate-left-appearance-md"
-              styles=" w-full md:max-w-[50%] opacity-0 ani"
+              styles=" w-full md:max-w-[50%] opacity-0"
             >
               <AdvantagesCard index={index} advantage={advantage} />
             </AnimationBlock>

@@ -7,7 +7,7 @@ export const AdvantagesCard = ({ index, advantage }: IAdvantagesCard) => {
         {index + 1}
       </span>
 
-      <p className="">{advantage}</p>
+      <p>{advantage}</p>
     </div>
   );
 };
