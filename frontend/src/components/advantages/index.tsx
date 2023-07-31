@@ -1,26 +1,36 @@
 'use client';
-import { AnimationBlock } from '../animation-block';
+import { useLocaleText } from '@/locale';
+
+import bg from '../../assets/advantages/bgblur.jpg';
+
 import { AdvantagesCard } from './advantages-card';
-import { getCardsData } from './cardsData';
+import { AnimationBlock } from '../animation-block';
 
 export const Advantages = () => {
-  const cards = getCardsData();
+  const advantageBlock = useLocaleText('advantagesClient');
+  const advantages = Object.values(advantageBlock).slice(1);
 
   return (
-    <section className="container flex flex-wrap justify-center py-[20px] md:py-[50px]">
-      {cards.map((card, index) => (
-        <AnimationBlock
-          key={`advantages-${index}`}
-          animation={
-            index % 2 === 0
-              ? 'animate-left-appearance-md'
-              : 'animate-down-appearance-md'
-          }
-          styles=" h-full opacity-0 w-full md:max-w-[50%] xl:max-w-[25%]"
-        >
-          <AdvantagesCard {...card} />
-        </AnimationBlock>
-      ))}
+    <section
+      className="py-[60px] bg-cover"
+      style={{ backgroundImage: `url(${bg.src})` }}
+    >
+      <div className="container text-white ">
+        <h3 className="text-center uppercase text-[32px] font-bold mb-2 leading-[100%]">
+          {advantageBlock.title}
+        </h3>
+        <div className="flex flex-wrap justify-center">
+          {advantages.map((advantage, index) => (
+            <AnimationBlock
+              key={`advantage-card-${index}`}
+              animation="animate-left-appearance-md"
+              styles=" w-full md:max-w-[50%] opacity-0 ani"
+            >
+              <AdvantagesCard index={index} advantage={advantage} />
+            </AnimationBlock>
+          ))}
+        </div>
+      </div>
     </section>
   );
 };

@@ -1,6 +1,7 @@
 export interface IAnimationBlock {
   styles?: string;
   animation: string;
+  triggerOnce?: boolean;
 }
 
 export interface IGetStyles {

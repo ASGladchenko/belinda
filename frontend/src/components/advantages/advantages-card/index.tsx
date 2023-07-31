@@ -1,35 +1,13 @@
-import { getStyles } from './style';
 import { IAdvantagesCard } from './types';
 
-export const AdvantagesCard = ({
-  text,
-  title,
-  bgImg,
-  background,
-}: IAdvantagesCard) => {
-  const { card, head, content } = getStyles(background);
-
+export const AdvantagesCard = ({ index, advantage }: IAdvantagesCard) => {
   return (
-    <>
-      {bgImg && (
-        <div
-          style={{ backgroundImage: `url(${bgImg})` }}
-          className={card}
-        ></div>
-      )}
+    <div className="relative w-full px-[30px] md:px-[60px] py-[40px] ">
+      <span className="absolute top-0 left-0 md:translate-x-1/2 text-[100px] leading-[100%] opacity-10 font-bold ">
+        {index + 1}
+      </span>
 
-      {background && (
-        <div className={card}>
-          <h3
-            style={{ fontSize: 'calc(calc(1.325rem + .9vw))' }}
-            className={head}
-          >
-            {title}
-          </h3>
-
-          <p className={content}>{text}</p>
-        </div>
-      )}
-    </>
+      <p className="">{advantage}</p>
+    </div>
   );
 };

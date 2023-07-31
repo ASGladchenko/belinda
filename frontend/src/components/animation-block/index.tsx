@@ -10,10 +10,11 @@ export const AnimationBlock = ({
   styles,
   children,
   animation,
+  triggerOnce,
 }: ChildrenProps<IAnimationBlock>) => {
   const { ref, inView } = useInView({
     threshold: 0.2,
-    triggerOnce: true,
+    triggerOnce: triggerOnce ? triggerOnce : false,
   });
 
   const { animationBlock } = getStyles({ inView, animation, styles });

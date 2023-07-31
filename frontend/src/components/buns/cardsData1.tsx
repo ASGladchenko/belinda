@@ -1,12 +1,12 @@
 import { useLocaleText } from '@/locale';
 
-import * as Images from '../../assets/advantages';
+import * as Images from '../../assets/buns';
 
 export const getCardsData = () => {
-  const box1 = useLocaleText('advantagesBox1');
-  const box2 = useLocaleText('advantagesBox2');
-  const box3 = useLocaleText('advantagesBox3');
-  const box4 = useLocaleText('advantagesBox4');
+  const box1 = useLocaleText('bunsBox1');
+  const box2 = useLocaleText('bunsBox2');
+  const box3 = useLocaleText('bunsBox3');
+  const box4 = useLocaleText('bunsBox4');
 
   return [
     {

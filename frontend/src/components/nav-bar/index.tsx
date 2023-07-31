@@ -1,5 +1,7 @@
 'use client';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
+
+import { useOutsideClick } from '@/hooks';
 
 import { getStyles } from './styles';
 import { ThemeIcons } from '../theme-icons';
@@ -7,9 +9,11 @@ import { translatedNavbar } from '../content-data';
 import { LanguageSelection } from '../language-selection';
 
 export const NavBar = () => {
+  const ref = useRef<HTMLDivElement>(null);
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [isOpenDropDown, setIsOpenDropDown] = useState<boolean>(false);
   const navbar = translatedNavbar();
+  useOutsideClick(ref, () => setIsOpenDropDown(false));
 
   const {
     link,
@@ -45,7 +49,10 @@ export const NavBar = () => {
             )}
 
             {menu && (
-              <div className="relative overflow-hidden lg:overflow-visible">
+              <div
+                ref={ref}
+                className="relative overflow-hidden lg:overflow-visible"
+              >
                 <p
                   className={`${link} flex gap-1 items-center`}
                   onClick={() => setIsOpenDropDown(!isOpenDropDown)}
