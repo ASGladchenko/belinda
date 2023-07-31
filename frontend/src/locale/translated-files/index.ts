@@ -4,6 +4,7 @@ import { asideAdmin } from './asideAdmin';
 import { bunsBox } from './bunsBox';
 import { headerAdmin } from './headerAdmin';
 import { headerClient } from './headerClient';
+import { footerClient } from './footerClient';
 import { offerClient } from './offerClient';
 
 export const files = {
@@ -13,5 +14,6 @@ export const files = {
   headerAdmin,
   offerClient,
   headerClient,
+  footerClient,
   advantagesClient,
 };

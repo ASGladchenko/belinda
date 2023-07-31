@@ -12,7 +12,7 @@ export const Advantages = () => {
 
   return (
     <section
-      className="py-[60px] bg-cover"
+      className="py-[60px] bg-cover relative z-10"
       style={{ backgroundImage: `url(${bg.src})` }}
     >
       <div className="container text-white ">

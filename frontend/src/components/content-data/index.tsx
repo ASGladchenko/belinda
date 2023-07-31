@@ -59,3 +59,13 @@ export const translatedBuns = () => {
     },
   ];
 };
+
+export const translatedFooterNavbar = () => {
+  const text = useLocaleText('footerClient');
+
+  return [
+    { name: text.about, path: '#aboutUs' },
+    { name: text.products, path: '/' },
+    { name: text.contacts, path: '/' },
+  ];
+};
