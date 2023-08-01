@@ -1,12 +1,13 @@
-import { ThemeIcons } from '@/components';
+import { AboutUs, Advantages, Buns, Offer, SliderMain } from '@/components';
 
 export default function Home() {
   return (
-    <>
-      <ThemeIcons />
-      <h1 className="text-6xl text-center h-[600px] flex  justify-center items-center">
-        Home
-      </h1>
-    </>
+    <div>
+      <SliderMain />
+      <AboutUs />
+      <Buns />
+      <Advantages />
+      <Offer />
+    </div>
   );
 }
