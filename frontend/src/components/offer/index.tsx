@@ -1,8 +1,9 @@
 import { useLocaleText } from '@/locale';
 
+import * as HeadImgs from '@/assets/main-swiper';
+import MainImg from '@/assets/offer/bgblur2.jpg';
+
 import { AnimationBlock } from '../animation-block';
-import * as HeadImgs from '../../assets/main-swiper';
-import MainImg from '../../assets/offer/bgblur2.jpg';
 import { AdvantagesCard } from '../advantages/advantages-card';
 
 export const Offer = () => {

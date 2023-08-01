@@ -2,12 +2,12 @@
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, EffectFade } from 'swiper/modules';
 
+import * as Images from '@/assets/main-swiper/index';
+
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/effect-fade';
-import * as Images from '../../assets/main-swiper/index';
-
 import { getStyles } from './style';
 
 export const SliderMain = () => {

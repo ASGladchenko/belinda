@@ -1,5 +1,5 @@
+import * as Buns from '@/assets/buns';
 import { useLocaleText } from '@/locale';
-import * as Buns from '../../assets/buns';
 
 export const translatedNavbar = () => {
   const text = useLocaleText('headerClient');

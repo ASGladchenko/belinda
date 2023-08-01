@@ -2,8 +2,9 @@
 import { useLocaleText } from '@/locale';
 import { useInView } from 'react-intersection-observer';
 
+import About from '@/assets/about-us/about.png';
+
 import { getStyles } from './style';
-import About from '../../assets/about-us/about.png';
 
 export const AboutUs = () => {
   const text = useLocaleText('aboutClient');

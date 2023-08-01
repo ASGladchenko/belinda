@@ -1,7 +1,7 @@
 'use client';
 import { useLocaleText } from '@/locale';
 
-import bg from '../../assets/advantages/bgblur.jpg';
+import bg from '@/assets/advantages/bgblur.jpg';
 
 import { AdvantagesCard } from './advantages-card';
 import { AnimationBlock } from '../animation-block';
