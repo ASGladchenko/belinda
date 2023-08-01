@@ -1,4 +1,5 @@
 'use client';
+import Link from 'next/link';
 import React, { useEffect, useRef, useState } from 'react';
 
 import { useOutsideClick } from '@/hooks';
@@ -43,9 +44,9 @@ export const NavBar = () => {
         {navbar.map(({ name, path, menu }) => (
           <React.Fragment key={name}>
             {!menu && (
-              <a href={path} className={link}>
+              <Link href={path} className={link}>
                 {name}
-              </a>
+              </Link>
             )}
 
             {menu && (

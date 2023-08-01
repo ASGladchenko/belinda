@@ -1,4 +1,5 @@
 'use client';
+import Link from 'next/link';
 import { useState, useEffect } from 'react';
 
 import { NavBar } from '../nav-bar';
@@ -23,9 +24,9 @@ export const Header = () => {
   return (
     <header className={header}>
       <div className={container}>
-        <a href="/" className={logo}>
+        <Link href="/" className={logo}>
           Bellinda
-        </a>
+        </Link>
         <NavBar />
       </div>
     </header>
