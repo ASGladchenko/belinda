@@ -28,7 +28,7 @@ export const Offer = () => {
         className="w-full bg-cover"
         style={{ backgroundImage: `url(${MainImg.src})` }}
       >
-        <div className="container px-0 md:px-[inherit] flex flex-wrap justify-center gap-2 py-[60px] md:gap-0 text-white">
+        <div className="container flex flex-wrap justify-center gap-2 py-[60px] md:gap-0 text-white">
           {offers.map((offer, index) => (
             <AnimationBlock
               key={`advantage-card-${index}`}

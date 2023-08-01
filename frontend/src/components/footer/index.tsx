@@ -30,8 +30,8 @@ export const Footer = () => {
         <p className="opacity-70">bellinda@email.some</p>
 
         <div className="flex items-center justify-between pt-[30px] w-full">
-          <p className="text-[8px] sm:text-sm opacity-60">{text.company}</p>
           <p className="text-[8px] sm:text-sm opacity-60">{text.slogan}</p>
+          <p className="text-[8px] sm:text-sm opacity-60">{text.company}</p>
         </div>
       </div>
     </footer>
