@@ -4,10 +4,10 @@ import { Field, FieldProps } from 'formik';
 
 import { Plus } from '@/assets/icons';
 import { showMessage } from '@/components/toast';
-import { AddedImg, IHandleImageChange, IOnClear } from './types';
+import { IAddedImg, IHandleImageChange, IOnClear } from './types';
 
-const AddedImg = ({ imgUrl, name }: AddedImg) => {
-  const [previewURL, setPreviewURL] = useState<string>(imgUrl);
+const AddedImg = ({ imgUrl, name }: IAddedImg) => {
+  const [previewURL, setPreviewURL] = useState<string>('');
 
   const handleImageChange = ({ event, form }: IHandleImageChange) => {
     const file = event.target.files && event.target.files[0];
@@ -49,6 +49,7 @@ const AddedImg = ({ imgUrl, name }: AddedImg) => {
               />
 
               {previewURL && (
+                // TODO Change to div structure
                 <img
                   alt="Preview"
                   className="block w-full"

@@ -12,7 +12,7 @@ import {
 import { product } from '@/http';
 import { getInitialValues } from '@/components/admins/product-form/config';
 import { IProduct } from '@/components/admins/product-form/types';
-import { ACTIVE_PRODUCT } from '@/constants';
+import axios from 'axios';
 
 interface ISubCategory {
   params: {
@@ -21,13 +21,9 @@ interface ISubCategory {
 }
 
 const Product = ({ params: { product: productID } }: ISubCategory) => {
-  console.log(product);
-
   const { data, isLoading } = useSWR(productID, () =>
     product.getProductById(productID),
   );
-
-  console.log(data, isLoading);
 
   const initialValues =
     isLoading || !data ? ({} as IProduct) : getInitialValues(data);
@@ -47,10 +43,10 @@ const Product = ({ params: { product: productID } }: ISubCategory) => {
 
     try {
       await product.edit(formData, productID);
-    } catch (error: any) {
-      console.log(error.response.data.message);
-
-      showMessage.error(error.response.data.message);
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        showMessage.error(error.response?.data.message);
+      }
     }
   };
 

@@ -1,5 +1,5 @@
 'use client';
-import { Suspense, useEffect } from 'react';
+import { useEffect } from 'react';
 import useSWR from 'swr';
 import { useRouter } from 'next/navigation';
 
@@ -9,8 +9,7 @@ import { Aside, HeaderAdmin } from '@/components';
 
 export default function Layout({ children }: ChildrenProps) {
   const router = useRouter();
-  // TODO: added loader
-  const { data, isLoading } = useSWR(USE_AUTH);
+  const { data } = useSWR(USE_AUTH);
 
   useEffect(() => {
     if (!data) router.push(routes.login);

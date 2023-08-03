@@ -1,7 +1,8 @@
 'use client';
 import useSWR from 'swr';
+import axios from 'axios';
 import { FormikValues } from 'formik';
-import { usePathname, useRouter } from 'next/navigation';
+import { usePathname } from 'next/navigation';
 
 import { product, productRoot } from '@/http';
 import { ACTIVE_CATEGORY } from '@/constants';
@@ -15,8 +16,6 @@ const Create = () => {
   const { data } = useSWR(ACTIVE_CATEGORY, () =>
     productRoot.getCategoryById(categoryId),
   );
-
-  console.log(path.slice());
 
   const onSubmit = async (values: FormikValues) => {
     const { name, name_ua, description, description_ua, img_url } = values;
@@ -34,8 +33,10 @@ const Create = () => {
     try {
       await product.create(formData);
       // route.push()
-    } catch (error: any) {
-      showMessage.error(error.response.data.message);
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        showMessage.error(error.response?.data.message);
+      }
     }
   };
 

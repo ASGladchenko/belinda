@@ -1,6 +1,7 @@
-import { Inter, Pacifico } from 'next/font/google';
+import { Inter, Pacifico, Jost } from 'next/font/google';
 
 import { ChildrenProps } from '@/types';
+import { LanguageProvider } from '@/context';
 import { Provider as ThemeProvider, Toast } from '@/components';
 
 import { ProviderSwr } from './provider-swr';
@@ -21,6 +22,12 @@ export const pacifico = Pacifico({
   display: 'swap',
 });
 
+export const jost = Jost({
+  subsets: ['latin'],
+  variable: '--font-jost',
+  display: 'swap',
+});
+
 export const metadata = {
   title: {
     default: 'Belinda',
@@ -31,11 +38,15 @@ export const metadata = {
 
 export default function RootLayout({ children }: ChildrenProps) {
   return (
-    <html lang="en">
-      <body className={`${pacifico.variable} ${inter.variable}`}>
+    <html lang="en" className="scroll-smooth">
+      <body
+        className={` ${pacifico.variable} ${jost.variable} ${inter.variable}`}
+      >
         <ProviderSwr>
           <ProviderRedux>
-            <ThemeProvider>{children}</ThemeProvider>
+            <LanguageProvider>
+              <ThemeProvider>{children}</ThemeProvider>
+            </LanguageProvider>
             <Toast />
           </ProviderRedux>
         </ProviderSwr>

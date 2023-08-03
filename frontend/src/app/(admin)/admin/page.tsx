@@ -1,5 +1,7 @@
 'use client';
+import { useState } from 'react';
 import useSWR from 'swr';
+import axios from 'axios';
 
 import { IRootData } from '@/types';
 import { productRoot } from '@/http';
@@ -15,7 +17,6 @@ import {
   showMessage,
   getInitialValues,
 } from '@/components';
-import { useState } from 'react';
 
 const url = '/category';
 
@@ -40,9 +41,10 @@ const Categories = () => {
       }
 
       showMessage.success('Changes are successful');
-      setOpen(false);
-    } catch (error: any) {
-      showMessage.error(error.response.data.message);
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        showMessage.error(error.response?.data.message);
+      }
     } finally {
       setIsFetching(false);
     }

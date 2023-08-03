@@ -1,4 +1,6 @@
+'use client';
 import { useMemo, useState } from 'react';
+import axios from 'axios';
 import { useSWRConfig } from 'swr';
 
 import { IRootData } from '@/types';
@@ -45,8 +47,10 @@ export const ProductRoot = ({
       mutate(GET_CATEGORY);
       showMessage.success('Changes are successful');
       setOpen(false);
-    } catch (error: any) {
-      showMessage.error(error.response.data.message);
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        showMessage.error(error.response?.data.message);
+      }
     } finally {
       setIsFetching(false);
     }

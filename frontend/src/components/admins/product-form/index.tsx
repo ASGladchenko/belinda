@@ -1,9 +1,6 @@
 'use client';
-import useSWR from 'swr';
-import { usePathname } from 'next/navigation';
 import { Form, Formik } from 'formik';
 
-import { ACTIVE_PRODUCT } from '@/constants';
 import { AddedImg, Button, CategoryWrapper, InputField } from '@/components';
 
 import { IProductForm } from './types';
@@ -12,8 +9,6 @@ import { validationSchema } from './config';
 import { seasonality } from '@/app/(admin)/admin/category/[categoryId]/mock';
 
 export const ProductForm = ({ onSubmit, initialValues }: IProductForm) => {
-  const path = usePathname();
-
   return (
     <CategoryWrapper>
       <Formik
@@ -25,10 +20,11 @@ export const ProductForm = ({ onSubmit, initialValues }: IProductForm) => {
           <div className="flex flex-col items-center justify-between w-full gap-5 sm:flex-row max-w-[600px]">
             <div className="flex flex-col gap-5 sm:gap-3 w-full sm:w-[300px] ">
               <InputField
-                name="name"
                 type="text"
+                name="base_name"
                 label="Enter Base name of products"
               />
+
               <InputField
                 type="text"
                 name="name_ua"
@@ -41,9 +37,12 @@ export const ProductForm = ({ onSubmit, initialValues }: IProductForm) => {
 
           <div className="flex flex-wrap justify-between w-full gap-3">
             <h3 className="w-full text-center"> Seasonality</h3>
-            {seasonality.map((month) => {
+            {seasonality.map((month, idx) => {
               return (
-                <div className="w-full max-w-[64px] flex">
+                <div
+                  key={`seasonality-${idx}`}
+                  className="w-full max-w-[64px] flex"
+                >
                   <InputField
                     name={month}
                     type="checkbox"
@@ -68,9 +67,9 @@ export const ProductForm = ({ onSubmit, initialValues }: IProductForm) => {
           />
 
           <Button
-            variant="primary"
             type="submit"
             text="Confirm"
+            variant="primary"
             className="w-[200px] self-end rounded-lg"
           />
         </Form>

@@ -1,11 +1,12 @@
 'use client';
 import useSWR from 'swr';
+import axios from 'axios';
 import { usePathname, useRouter } from 'next/navigation';
 
 import { IRootData } from '@/types';
 import { productRoot } from '@/http';
 import { useDelayAnimation } from '@/hooks';
-import { ACTIVE_CATEGORY, PRODUCTS } from '@/constants';
+import { ACTIVE_CATEGORY } from '@/constants';
 import {
   Form,
   Overlay,
@@ -43,8 +44,10 @@ const ProductList = ({ params: { categoryId } }: ICategory) => {
   const onSubmit = async (values: IRootData) => {
     try {
       await productRoot.create(values, url);
-    } catch (error: any) {
-      showMessage.error(error.response.data.message);
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        showMessage.error(error.response?.data.message);
+      }
     } finally {
       setOpen(false);
     }

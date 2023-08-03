@@ -1,8 +1,8 @@
-import Link from 'next/link';
+import axios from 'axios';
 import useSWR from 'swr';
+import Link from 'next/link';
 
 import { productRoot } from '@/http';
-import { GET_CATEGORY } from '@/constants';
 import { useDelayAnimation } from '@/hooks';
 import { Delete, Edit } from '@/assets/icons';
 import { Button, Overlay, showMessage } from '@/components';
@@ -24,23 +24,20 @@ export const ProductLink = ({
   const { isOpen, isAnimation, setOpen } = useDelayAnimation(300);
 
   const { link, remove, edit, removeContainer, text } = getStyles();
-  const { data, mutate } = useSWR<any>(swrStorage);
-  console.log(swrStorage);
+  const { data, mutate } = useSWR(swrStorage);
 
   const onDelete = async (id: string) => {
     setIsFetching(true);
     try {
       await productRoot.remove(id, url);
-
-      console.log(data);
-
       if (data?.length) {
-        mutate(data?.filter((item: any) => item.id !== id));
+        mutate(data?.filter((item) => item.id !== id));
       }
 
       showMessage.success('Deleted');
-    } catch (error: any) {
-      showMessage.error(error.response.data.message);
+    } catch (error) {
+      if (axios.isAxiosError(error)){
+      showMessage.error(error.response?.data.message);}
     } finally {
       setOpen(false);
       setIsFetching(false);

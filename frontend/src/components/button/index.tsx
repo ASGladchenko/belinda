@@ -1,4 +1,3 @@
-'use client';
 import clsx from 'clsx';
 import { IButton } from './type';
 import { setClass } from './helpers';

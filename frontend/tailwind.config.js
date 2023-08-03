@@ -19,6 +19,19 @@ module.exports = {
         white: '#FFFFFF',
         text: '#1D212F',
 
+        client: {
+          advantages: {
+            green: '#34af5b',
+            yellow: '#ebb133',
+            orange: '#e38039',
+            blue: '#34a6dc',
+          },
+
+          light: {
+            header: 'rgba(255, 255, 255, 0.3)',
+          },
+        },
+
         admin: {
           warning: '#E76971',
           btnWhite: '#F5F5FB',
@@ -77,10 +90,12 @@ module.exports = {
       fontFamily: {
         pacifico: ['var(--font-pacifico)', 'sans-serif'],
         inter: ['var(--font-inter)', 'sans-serif'],
+        jost: ['var(--font-jost)', 'sans-serif'],
       },
 
       transitionProperty: {
         ...defaultTheme.transitionProperty,
+        height: 'height',
         width: 'width, max-width',
         aside: 'transform, width, max-width',
         rotate: 'rotate',
@@ -90,16 +105,81 @@ module.exports = {
         h: 'height',
       },
 
+      container: {
+        'max-width': '1900px',
+        center: true,
+        padding: {
+          DEFAULT: '20px',
+        },
+      },
+
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'gradient-conic':
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
       },
+
       zIndex: {
         ...defaultTheme.zIndex,
         100: '100',
         999: '999',
         1000: '1000',
+      },
+
+      keyframes: {
+        scale: {
+          '50%': { transform: 'scale(1.03)' },
+          '100%': { transform: 'scale(1)' },
+        },
+
+        left_appearance: {
+          '0%': { transform: 'translateX(-5%)', opacity: 0 },
+          '70%': { opacity: 0.6 },
+          '100%': { transform: 'translateX(0)', opacity: 1 },
+        },
+
+        left_appearance_md: {
+          '0%': { transform: 'translateX(-15%)', opacity: 0 },
+          '70%': { opacity: 0.6 },
+          '100%': { transform: 'translateX(0)', opacity: 1 },
+        },
+
+        down_appearance: {
+          '0%': { transform: 'translateY(5%)', opacity: 0 },
+          '70%': { opacity: 0.6 },
+          '100%': { transform: 'translateY(0)', opacity: 1 },
+        },
+
+        down_appearance_md: {
+          '0%': { transform: 'translateY(15%)', opacity: 0 },
+          '70%': { opacity: 0.6 },
+          '100%': { transform: 'translateY(0)', opacity: 1 },
+        },
+
+        down_appearance_xxl: {
+          '0%': { transform: 'translateY(200%)', opacity: 0 },
+          '70%': { opacity: 0.6 },
+          '100%': { transform: 'translateY(0)', opacity: 1 },
+        },
+      },
+
+      animation: {
+        'scale-4': 'scale 4s ease-in-out infinite',
+        'left-appearance': 'left_appearance 0.33s ease-in-out forwards',
+        'down-appearance': 'down_appearance 0.37s ease-in-out forwards',
+        'left-appearance-md': 'left_appearance_md 0.5s ease-in-out forwards',
+        'down-appearance-md': 'down_appearance_md 0.5s ease-in-out forwards',
+        'down-appearance-xxl': 'down_appearance_xxl 0.5s ease-in-out forwards',
+        'left-appearance-revers': 'left_appearance_md 0.33s ease-in-out revers',
+      },
+
+      backgroundSize: {
+        auto: 'auto',
+        cover: 'cover',
+        contain: 'contain',
+        '50%': '50%',
+        '100%': '100%',
+        '150%': '150%',
       },
     },
   },
