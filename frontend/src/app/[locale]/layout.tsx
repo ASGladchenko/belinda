@@ -7,7 +7,7 @@ import { Provider as ThemeProvider, Toast } from '@/components';
 import { ProviderSwr } from './provider-swr';
 import { ProviderRedux } from './provider-redux';
 
-import '../styles/global.css';
+import '../../styles/global.css';
 
 export const inter = Inter({
   subsets: ['latin'],

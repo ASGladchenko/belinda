@@ -23,7 +23,7 @@ export function HeaderAdmin() {
 
   return (
     <header className="relative flex items-center justify-between transition w-full h-[65px] bg-admin-lighten-second dark:bg-admin-darken-second border-b border-admin-lighten-border dark:border-admin-darken-border drop-shadow-lg dark:drop-shadow-lg duration-0 px-8 z-999">
-      <Link href="/admin" className={`text-xl cursor-pointer font-pacifico`}>
+      <Link href="/" className="text-xl cursor-pointer font-pacifico">
         Belinda
       </Link>
 
