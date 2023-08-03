@@ -1,3 +1,5 @@
+import { notFound } from 'next/navigation';
+import { useLocale as UseLocale } from 'next-intl';
 import { Inter, Pacifico, Jost } from 'next/font/google';
 
 import { ChildrenProps } from '@/types';
@@ -36,9 +38,22 @@ export const metadata = {
   description: 'Belinda is a personal website',
 };
 
-export default function RootLayout({ children }: ChildrenProps) {
+export function generateStaticParams() {
+  return [{ locale: 'en' }, { locale: 'de' }];
+}
+
+export default async function RootLayout({
+  children,
+  params,
+}: ChildrenProps<{ params: { locale: string } }>) {
+  const locale = UseLocale();
+
+  if (params.locale !== locale) {
+    notFound();
+  }
+
   return (
-    <html lang="en" className="scroll-smooth">
+    <html lang={locale} className="scroll-smooth">
       <body
         className={` ${pacifico.variable} ${jost.variable} ${inter.variable}`}
       >

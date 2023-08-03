@@ -1,23 +1,18 @@
-'use client';
-import { useEffect } from 'react';
-import useSWR from 'swr';
-import { useRouter } from 'next/navigation';
-
 import { ChildrenProps } from '@/types';
-import { USE_AUTH, routes } from '@/constants';
+import { useTranslations } from 'next-intl';
+
 import { Aside, HeaderAdmin } from '@/components';
 
-export default function Layout({ children }: ChildrenProps) {
-  const router = useRouter();
-  const { data } = useSWR(USE_AUTH);
+import { RedirectLogin } from './redirect-login';
 
-  useEffect(() => {
-    if (!data) router.push(routes.login);
-  }, [router, data]);
+export default function LayoutAdmin({ children }: ChildrenProps) {
+  const t = useTranslations('header-admin');
 
   return (
     <div className="h-screen overflow-y-hidden">
-      <HeaderAdmin />
+      <RedirectLogin />
+
+      <HeaderAdmin text={t('exit')} />
 
       <div className="flex flex-nowrap h-[calc(100%-65px)]">
         <Aside />
