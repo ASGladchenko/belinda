@@ -1,22 +1,18 @@
 'use client';
-import { Form, Formik, FormikValues } from 'formik';
+import { Form, Formik } from 'formik';
 
 import { AddedImg, Button, CategoryWrapper, InputField } from '@/components';
 
-import { seasonality } from './mock';
-import { initialValues, validationSchema } from './config';
+import { IProductForm } from './types';
+import { validationSchema } from './config';
 
-export const CreateProduct = () => {
-  const onSubmit = (values: FormikValues) => {
-    console.log(values);
-  };
+import { seasonality } from '@/app/(admin)/admin/category/[categoryId]/mock';
 
+export const ProductForm = ({ onSubmit, initialValues }: IProductForm) => {
   return (
     <CategoryWrapper>
       <Formik
         onSubmit={onSubmit}
-        validateOnBlur={false}
-        validateOnChange={false}
         initialValues={initialValues}
         validationSchema={validationSchema}
       >
@@ -31,12 +27,12 @@ export const CreateProduct = () => {
 
               <InputField
                 type="text"
-                name="name"
+                name="name_ua"
                 label="Enter name of products"
               />
             </div>
 
-            <AddedImg imgUrl="" name="image" />
+            <AddedImg imgUrl={initialValues.img_url} name="img_url" />
           </div>
 
           <div className="flex flex-wrap justify-between w-full gap-3">
@@ -59,13 +55,14 @@ export const CreateProduct = () => {
 
           <InputField
             type="textarea"
-            name="base_description"
+            name="description"
             label="Enter Base Description of products"
           />
 
           <InputField
             type="textarea"
-            name="description"
+            id="description_ua"
+            name="description_ua"
             label="Enter Description of products"
           />
 

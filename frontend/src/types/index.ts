@@ -38,3 +38,12 @@ export interface IRootData {
   name: string;
   name_ua: string;
 }
+
+export interface IProductSend {
+  name: string;
+  name_ua: string;
+  categoryId: string;
+  img_url?: File | '';
+  description?: string;
+  description_ua?: string;
+}

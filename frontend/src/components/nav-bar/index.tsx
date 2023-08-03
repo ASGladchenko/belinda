@@ -41,8 +41,8 @@ export const NavBar = () => {
       <div className={burger_container}>
         <span className={btn_close} onClick={() => setIsOpen(false)}></span>
 
-        {navbar.map(({ name, path, menu }) => (
-          <React.Fragment key={name}>
+        {navbar.map(({ name, path, menu }, idx) => (
+          <React.Fragment key={`menu-${idx}`}>
             {!menu && (
               <Link href={path} className={link}>
                 {name}
@@ -61,10 +61,10 @@ export const NavBar = () => {
                   {name} <span className={toogleDropDown}>&#9660;</span>
                 </p>
                 <div className={dropDown}>
-                  {menu.map(({ name, path }, index) => (
+                  {menu.map(({ name, path }, idx) => (
                     <a
                       href={path}
-                      key={name + index}
+                      key={`menu-item-${idx}`}
                       className={`${link} ${dropDownLink}`}
                     >
                       {name}

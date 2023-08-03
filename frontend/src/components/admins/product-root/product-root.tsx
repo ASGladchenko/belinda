@@ -1,5 +1,7 @@
+'use client';
 import { useMemo, useState } from 'react';
-import useSWRConfig from 'swr';
+import axios from 'axios';
+import { useSWRConfig } from 'swr';
 
 import { IRootData } from '@/types';
 import { productRoot } from '@/http';
@@ -20,22 +22,37 @@ interface IEdit {
   url: string;
   title: string;
   baseHref: string;
+  swrStorage: string;
+  notModify?: boolean;
   categories: IProductLink[];
 }
 
-export const ProductRoot = ({ categories, url, title, baseHref }: IEdit) => {
+export const ProductRoot = ({
+  categories,
+  url,
+  title,
+  baseHref,
+  notModify,
+  swrStorage,
+}: IEdit) => {
   const [id, setId] = useState('');
+  const [isFetching, setIsFetching] = useState(false);
+  const { mutate } = useSWRConfig();
   const { isOpen, isAnimation, setOpen } = useDelayAnimation(300);
-  const { mutate, isLoading } = useSWRConfig(GET_CATEGORY);
 
   const onSubmit = async (values: IRootData) => {
     try {
-      await mutate(productRoot.edit(values, id, url));
+      setIsFetching(true);
+      await productRoot.edit(values, id, url);
+      mutate(GET_CATEGORY);
       showMessage.success('Changes are successful');
-    } catch (error: any) {
-      showMessage.error(error.response.data.message);
-    } finally {
       setOpen(false);
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        showMessage.error(error.response?.data.message);
+      }
+    } finally {
+      setIsFetching(false);
     }
   };
 
@@ -46,19 +63,21 @@ export const ProductRoot = ({ categories, url, title, baseHref }: IEdit) => {
 
   const initialValues = useMemo(() => {
     return categories?.find((category) => category.id === id);
-  }, [id]);
+  }, [id, categories]);
 
   return (
     <>
       {categories?.length > 0 && (
         <CategoryWrapper>
-          {categories?.map((category) => (
+          {categories?.map((category, idx) => (
             <ProductLink
               {...category}
               url={url}
               onEdit={onEdit}
-              key={category.id}
+              key={`product-link-${idx}`}
               baseHref={baseHref}
+              notModify={notModify}
+              swrStorage={swrStorage}
             />
           ))}
 
@@ -73,6 +92,7 @@ export const ProductRoot = ({ categories, url, title, baseHref }: IEdit) => {
             <Form
               title={title}
               onSubmit={onSubmit}
+              isLoading={isFetching}
               onClose={() => setOpen(false)}
               initialValues={getInitialValues(initialValues)}
             />

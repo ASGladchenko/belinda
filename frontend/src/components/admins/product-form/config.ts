@@ -1,19 +1,20 @@
 import * as Yup from 'yup';
+import { IProduct } from './types';
 
 const baseNameRegExp = /^[A-Za-z0-9\s.,!?;:()"'-]*$/;
 const rusRegExp = /^[А-Яа-яЁё0-9\s.,!?;:()"'-]*$/;
 
 export const validationSchema = Yup.object().shape({
-  name: Yup.string()
+  name_ua: Yup.string()
     .matches(rusRegExp, 'Only the Cyrillic alphabet')
     .required('Обязательное поле')
     .min(5, 'Мінімум 5 символів'),
-  base_name: Yup.string()
+  name: Yup.string()
     .matches(baseNameRegExp, 'Only English letters')
     .required('Обязательное поле')
     .min(5, 'Мінімум 5 символів'),
-  base_description: Yup.string(),
   description: Yup.string(),
+  description_ua: Yup.string(),
   january: Yup.bool(),
   february: Yup.bool(),
   march: Yup.bool(),
@@ -47,3 +48,12 @@ export const initialValues = {
   november: false,
   december: false,
 };
+
+export const getInitialValues = (initial?: IProduct) => ({
+  id: initial?.id || '',
+  name: initial?.name || '',
+  name_ua: initial?.name_ua || '',
+  img_url: initial?.img_url || '',
+  description: initial?.description || '',
+  description_ua: initial?.description_ua || '',
+});

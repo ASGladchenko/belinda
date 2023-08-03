@@ -32,17 +32,6 @@ const AddedImg = ({ imgUrl, name }: IAddedImg) => {
     setPreviewURL('');
   };
 
-  // const handleImageUpload = () => {
-  //   if (selectedImage) {
-  //     const formData = new FormData();
-  //     formData.append('imageFile', selectedImage);
-
-  //     // Здесь вы можете выполнить AJAX-запрос или использовать библиотеку для работы с сетью, чтобы отправить formData на сервер
-
-  //     console.log('Загружено изображение:', selectedImage.name);
-  //   }
-  // };
-
   return (
     <Field name={name}>
       {({ form }: FieldProps) => {

@@ -2,12 +2,16 @@ import clsx from 'clsx';
 import { IButton } from './type';
 import { setClass } from './helpers';
 
+import './styles.css';
+
 export const Button = ({
   icon,
   text,
   variant,
+  disabled,
   className,
   iconRight,
+  isFetching,
   ...rest
 }: IButton) => {
   const btnStyles = setClass(variant);
@@ -17,9 +21,16 @@ export const Button = ({
     <button
       {...rest}
       className={className ? `${btnStyles} ${className}` : btnStyles}
+      disabled={disabled}
     >
-      {icon && <div className={classIcon}>{icon}</div>}
-      {text && <span className="select-none">{text}</span>}
+      {!isFetching ? (
+        <>
+          {icon && <div className={classIcon}>{icon}</div>}
+          {text && <span className="select-none">{text}</span>}
+        </>
+      ) : (
+        <span className="loader-btn"></span>
+      )}
     </button>
   );
 };

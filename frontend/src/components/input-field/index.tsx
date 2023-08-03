@@ -32,6 +32,7 @@ export const InputField = ({ name, label, ...props }: InputProps) => {
                 label={label}
                 error={error}
                 {...fieldProps}
+                name={name}
                 onChange={(e) =>
                   change(typeof e === 'string' ? e : e.target.value)
                 }
