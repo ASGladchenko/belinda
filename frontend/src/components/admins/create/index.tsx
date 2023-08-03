@@ -2,8 +2,8 @@
 import { Form, Formik, FormikValues } from 'formik';
 
 import { AddedImg, Button, CategoryWrapper, InputField } from '@/components';
-import { seasonality } from '@/app/(admin)/admin/category/[category]/mock';
 
+import { seasonality } from './mock';
 import { initialValues, validationSchema } from './config';
 
 export const CreateProduct = () => {
@@ -14,8 +14,8 @@ export const CreateProduct = () => {
   return (
     <CategoryWrapper>
       <Formik
-        validateOnBlur={false}
         onSubmit={onSubmit}
+        validateOnBlur={false}
         validateOnChange={false}
         initialValues={initialValues}
         validationSchema={validationSchema}
@@ -24,10 +24,11 @@ export const CreateProduct = () => {
           <div className="flex flex-col items-center justify-between w-full gap-5 sm:flex-row max-w-[600px]">
             <div className="flex flex-col gap-5 sm:gap-3 w-full sm:w-[300px] ">
               <InputField
-                name="base_name"
                 type="text"
+                name="base_name"
                 label="Enter Base name of products"
               />
+
               <InputField
                 type="text"
                 name="name"
@@ -40,12 +41,15 @@ export const CreateProduct = () => {
 
           <div className="flex flex-wrap justify-between w-full gap-3">
             <h3 className="w-full text-center"> Seasonality</h3>
-            {seasonality.map((month) => {
+            {seasonality.map((month, idx) => {
               return (
-                <div className="w-full max-w-[64px] flex">
+                <div
+                  key={`seasonality-${idx}`}
+                  className="w-full max-w-[64px] flex"
+                >
                   <InputField
-                    type="checkbox"
                     name={month}
+                    type="checkbox"
                     label={month[0].toUpperCase() + month.slice(1, 3)}
                   />
                 </div>
@@ -66,9 +70,9 @@ export const CreateProduct = () => {
           />
 
           <Button
-            variant="primary"
             type="submit"
             text="Confirm"
+            variant="primary"
             className="w-[200px] self-end rounded-lg"
           />
         </Form>

@@ -1,9 +1,9 @@
 import { useLocaleText } from '@/locale';
-import { translatedFooterNavbar } from '../content-data';
+import { TranslatedFooterNavbar } from '../content-data';
 
 export const Footer = () => {
   const text = useLocaleText('footerClient');
-  const navbar = translatedFooterNavbar();
+  const navbar = TranslatedFooterNavbar();
 
   return (
     <footer className="bg-black py-[30px] md:py-[60px] text-white">

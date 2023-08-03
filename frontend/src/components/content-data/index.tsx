@@ -1,7 +1,7 @@
 import * as Buns from '@/assets/buns';
 import { useLocaleText } from '@/locale';
 
-export const translatedNavbar = () => {
+export const TranslatedNavbar = () => {
   const text = useLocaleText('headerClient');
 
   return [
@@ -17,11 +17,11 @@ export const translatedNavbar = () => {
         { name: text.seasonality, path: '/' },
       ],
     },
-    { name: text.contacts, path: '/' },
+    { name: text.contacts, path: '/contacts' },
   ];
 };
 
-export const translatedBuns = () => {
+export const TranslatedBuns = () => {
   const bunsContent = useLocaleText('bunsBox');
 
   return [
@@ -60,7 +60,7 @@ export const translatedBuns = () => {
   ];
 };
 
-export const translatedFooterNavbar = () => {
+export const TranslatedFooterNavbar = () => {
   const text = useLocaleText('footerClient');
 
   return [

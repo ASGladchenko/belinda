@@ -1,5 +1,6 @@
 'use client';
 import useSWR from 'swr';
+import axios from 'axios';
 
 import { IRootData } from '@/types';
 import { productRoot } from '@/http';
@@ -15,7 +16,6 @@ import {
   showMessage,
   getInitialValues,
 } from '@/components';
-import { spawn } from 'child_process';
 
 const url = '/category';
 
@@ -33,8 +33,10 @@ function Category() {
       await productRoot.create(values, url);
       mutate([...data, values]);
       showMessage.success('Changes are successful');
-    } catch (error: any) {
-      showMessage.error(error.response.data.message);
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        showMessage.error(error.response?.data.message);
+      }
     } finally {
       setOpen(false);
     }

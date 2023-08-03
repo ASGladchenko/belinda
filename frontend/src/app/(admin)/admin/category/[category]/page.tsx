@@ -1,4 +1,5 @@
 'use client';
+import axios from 'axios';
 import { usePathname, useRouter } from 'next/navigation';
 
 import { IRootData } from '@/types';
@@ -32,8 +33,10 @@ const Category = ({ params: { category } }: ICategory) => {
   const onSubmit = async (values: IRootData) => {
     try {
       await productRoot.create(values, url);
-    } catch (error: any) {
-      showMessage.error(error.response.data.message);
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        showMessage.error(error.response?.data.message);
+      }
     } finally {
       setOpen(false);
     }

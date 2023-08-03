@@ -6,14 +6,14 @@ import { useOutsideClick } from '@/hooks';
 
 import { getStyles } from './styles';
 import { ThemeIcons } from '../theme-icons';
-import { translatedNavbar } from '../content-data';
+import { TranslatedNavbar } from '../content-data';
 import { LanguageSelection } from '../language-selection';
 
 export const NavBar = () => {
   const ref = useRef<HTMLDivElement>(null);
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [isOpenDropDown, setIsOpenDropDown] = useState<boolean>(false);
-  const navbar = translatedNavbar();
+  const navbar = TranslatedNavbar();
   useOutsideClick(ref, () => setIsOpenDropDown(false));
 
   const {

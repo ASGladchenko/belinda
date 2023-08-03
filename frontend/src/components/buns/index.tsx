@@ -1,10 +1,10 @@
 'use client';
 import { BunsCard } from './buns-card';
-import { translatedBuns } from '../content-data';
+import { TranslatedBuns } from '../content-data';
 import { AnimationBlock } from '../animation-block';
 
 export const Buns = () => {
-  const cards = translatedBuns();
+  const cards = TranslatedBuns();
 
   return (
     <section className="flex flex-wrap justify-center ">
