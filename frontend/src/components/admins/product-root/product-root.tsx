@@ -69,12 +69,12 @@ export const ProductRoot = ({
     <>
       {categories?.length > 0 && (
         <CategoryWrapper>
-          {categories?.map((category) => (
+          {categories?.map((category, idx) => (
             <ProductLink
               {...category}
               url={url}
               onEdit={onEdit}
-              key={category.id}
+              key={`product-link-${idx}`}
               baseHref={baseHref}
               notModify={notModify}
               swrStorage={swrStorage}
