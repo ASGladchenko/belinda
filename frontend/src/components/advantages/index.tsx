@@ -1,14 +1,11 @@
-'use client';
-import { useLocaleText } from '@/locale';
-
 import bg from '@/assets/advantages/bgblur.jpg';
 
+import { IAdvantages } from './types';
 import { AdvantagesCard } from './advantages-card';
 import { AnimationBlock } from '../animation-block';
 
-export const Advantages = () => {
-  const advantageBlock = useLocaleText('advantagesClient');
-  const advantages = Object.values(advantageBlock).slice(1);
+export const Advantages = ({ title, ...props }: IAdvantages) => {
+  const advantages = Object.values(props);
 
   return (
     <section
@@ -17,14 +14,15 @@ export const Advantages = () => {
     >
       <div className="container text-white ">
         <h3 className="text-center uppercase text-[32px] font-bold mb-2 leading-[100%]">
-          {advantageBlock.title}
+          {title}
         </h3>
+
         <div className="flex flex-wrap justify-center ">
-          {advantages.map((advantage, index) => (
+          {advantages?.map((advantage, index) => (
             <AnimationBlock
               key={`advantage-card-${index}`}
               animation="animate-left-appearance-md"
-              styles=" w-full md:max-w-[50%] opacity-0"
+              styles="w-full md:max-w-[50%] opacity-0"
             >
               <AdvantagesCard index={index} advantage={advantage} />
             </AnimationBlock>

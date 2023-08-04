@@ -1,5 +1,5 @@
 import { getStyles } from './style';
-import { IBunsCard } from './types';
+import { IBunsCard } from '../types';
 
 export const BunsCard = ({ text, title, bgImg, background }: IBunsCard) => {
   const { card, head, content } = getStyles(background);

@@ -6,7 +6,6 @@ export interface ILanguages {
 
 export interface ISelectableLanguage extends ILanguages {
   onClose: () => void;
-  setLanguage: IOnSelect;
 }
 
 export type IOnSelectArgs = string;

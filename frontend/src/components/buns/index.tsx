@@ -1,10 +1,10 @@
-'use client';
+import { IBuns } from './types';
 import { BunsCard } from './buns-card';
-import { TranslatedBuns } from '../content-data';
+import { translatedBuns } from './config';
 import { AnimationBlock } from '../animation-block';
 
-export const Buns = () => {
-  const cards = TranslatedBuns();
+export const Buns = (props: IBuns) => {
+  const cards = translatedBuns(props);
 
   return (
     <section className="flex flex-wrap justify-center ">

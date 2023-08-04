@@ -1,4 +1,4 @@
-import { IAdvantagesCard } from './types';
+import { IAdvantagesCard } from '../types';
 
 export const AdvantagesCard = ({ index, advantage }: IAdvantagesCard) => {
   return (

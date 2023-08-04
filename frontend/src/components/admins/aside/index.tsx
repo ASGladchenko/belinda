@@ -1,12 +1,13 @@
 'use client';
 import { useState } from 'react';
 
+import { IAsideText } from '@/types';
 import { Right } from '@/assets/icons';
 
 import Menu from './menu';
 import { getStyles } from './styles';
 
-export function Aside() {
+export function Aside(props: IAsideText) {
   const [isNavBar, setIsNavBar] = useState(false);
   const { aside, switcher, header } = getStyles(isNavBar);
 
@@ -25,7 +26,7 @@ export function Aside() {
       <h2 className={header}>Dashboard</h2>
 
       <div className="w-full h-[95%] overflow-y-auto scroll lg:pb-0 lg:h-full overflow-x-hidden">
-        <Menu isNavBar={isNavBar} />
+        <Menu isNavBar={isNavBar} {...props} />
       </div>
     </aside>
   );

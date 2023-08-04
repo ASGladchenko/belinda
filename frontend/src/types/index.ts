@@ -1,27 +1,11 @@
 import { PropsWithChildren } from 'react';
 
-import { files } from '@/locale/translated-files';
-
 export type ChildrenProps<T = unknown> = PropsWithChildren<T>;
+export type ParamsProps<T = unknown> = PropsWithChildren<T>;
 export type LanguageType = 'ua' | 'en';
-
-export interface LocaleTranslations {
-  [key: string]: string;
+export interface IParams {
+  params: { locale: string };
 }
-
-export interface Translations {
-  en: LocaleTranslations;
-  ua: LocaleTranslations;
-}
-
-export type FileType = keyof typeof files;
-
-type AllTranslations = {
-  [key in FileType]: Translations;
-};
-
-export type TypedLocaleTranslations<T extends FileType> =
-  AllTranslations[T][LanguageType];
 
 export interface Params {
   params: { id: string };
@@ -46,4 +30,29 @@ export interface IProductSend {
   img_url?: File | '';
   description?: string;
   description_ua?: string;
+}
+
+export interface IAsideText {
+  about: string;
+  company: string;
+  webPage: string;
+}
+
+export interface IHeaderClient {
+  home: string;
+  about: string;
+  locale: string;
+  fruits: string;
+  services: string;
+  products: string;
+  contacts: string;
+  vegetables: string;
+  seasonality: string;
+}
+
+export interface IFooter {
+  about: string;
+  slogan: string;
+  products: string;
+  contacts: string;
 }

@@ -1,4 +1,3 @@
-'use client';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, EffectFade } from 'swiper/modules';
 
@@ -15,7 +14,7 @@ export const SliderMain = () => {
 
   return (
     <section className={wrapper}>
-      <h1 className={title}>FOUR SEASON'S TRADING</h1>
+      <h1 className={title}>FOUR SEASON&apos;S TRADING</h1>
 
       <Swiper
         loop={true}
@@ -34,7 +33,7 @@ export const SliderMain = () => {
             <div
               className={card}
               style={{ backgroundImage: `url(${(Images as any)[item].src})` }}
-            ></div>
+            />
           </SwiperSlide>
         ))}
       </Swiper>

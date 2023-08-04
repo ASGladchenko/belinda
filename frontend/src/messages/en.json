@@ -1,5 +1,59 @@
 {
   "header-admin": {
     "exit": "Exit"
+  },
+  "header-client": {
+    "home": "home",
+    "about": "about us",
+    "services": "services",
+    "products": "product",
+    "fruits": "fruits",
+    "vegetables": "vegetable",
+    "seasonality": "seasonality",
+    "contacts": "contacts"
+  },
+  "sidebar-admin": {
+    "company": "Company",
+    "about": "About",
+    "webPage": "Web page"
+  },
+  "footer": {
+    "about": "about us",
+    "products": "product",
+    "contacts": "contacts",
+    "slogan": "«Bellinda» is an importer company in the European market."
+  },
+  "home-page": {
+    "about": {
+      "title": "About us",
+      "information": "«Belinda LLC» - is an importer company on the Ukraine and European market. The main activity of our company is the import and wholesale of products (citrus, fruits, vegetables) from countries such as Turkey, Egypt, Iran, Azerbaijan, etc. Our company carries out direct import of fruit and vegetable products from the manufacturer, which allows it to guarantee uninterrupted delivery times, high quality of goods and competitive prices. We are trusted by leading producers of fresh fruits and vegetables from around the world. Large volumes of imports of goods allow our company to form and offer our customers the best and competitive prices for products. Our products are stored in refrigerated warehouses."
+    },
+    "buns": {
+      "titleImporter": "Direct importer products!",
+      "textImporter": "Working with us, you work without intermediaries. This allows you to get the best price for a high-quality product.",
+      "titleProduct": "High-quality products!",
+      "textProduct": "Working with us, you work with a company that is a direct importer of products that come to you directly from the manufacturer. This allows you to get a high-quality and diverse range of products, for which there are all the necessary quality certificates.",
+      "titleSupplies": "Uninterrupted deliveries in the shortest possible time!",
+      "textSupplies": "An established transport and logistics network allows you to solve all issues of prompt delivery of goods to retail chains.",
+      "titleManager": "Personal manager",
+      "textManager": "Who is assigned to you, will accompany the contract and will be able to answer any questions."
+    },
+    "advantages": {
+      "title": "our advantages",
+      "first": "We are constantly expanding the geography of our distribution presence in Ukraine and Europe.",
+      "second": "Our relations with well-known world producers of fresh fruits and vegetables are getting stronger and more stable every month, which allows us to receive high-quality products at the best prices.",
+      "third": "Regardless of the time of year, we always have a wide range of fresh fruits and vegetables.",
+      "fourth": "Optimal conditions and temperature conditions have been created in the warehouses to preserve fruits and vegetables.",
+      "fifth": "First of all, we are guided by the interests of our partners and are always open to cooperation."
+    },
+    "offers": {
+      "title": "we offer you",
+      "first": "a wide range",
+      "second": "Impeccable product quality",
+      "third": "The best prices",
+      "fourth": "Large volumes of products in stock",
+      "fifth": "Compliance with delivery deadlines",
+      "sixth": "Compliance with the conditions of storage and delivery of products"
+    }
   }
 }

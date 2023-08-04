@@ -28,12 +28,12 @@ interface IEdit {
 }
 
 export const ProductRoot = ({
-  categories,
   url,
   title,
   baseHref,
   notModify,
   swrStorage,
+  categories,
 }: IEdit) => {
   const [id, setId] = useState('');
   const [isFetching, setIsFetching] = useState(false);
@@ -74,10 +74,10 @@ export const ProductRoot = ({
               {...category}
               url={url}
               onEdit={onEdit}
-              key={`product-link-${idx}`}
               baseHref={baseHref}
               notModify={notModify}
               swrStorage={swrStorage}
+              key={`product-link-${idx}`}
             />
           ))}
 

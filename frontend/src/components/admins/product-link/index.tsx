@@ -1,6 +1,7 @@
-import axios from 'axios';
+import { useState } from 'react';
 import useSWR from 'swr';
-import Link from 'next/link';
+import axios from 'axios';
+import Link from 'next-intl/link';
 
 import { productRoot } from '@/http';
 import { useDelayAnimation } from '@/hooks';
@@ -9,7 +10,6 @@ import { Button, Overlay, showMessage } from '@/components';
 
 import { getStyles } from './styles';
 import { IProductLink } from './types';
-import { useState } from 'react';
 
 export const ProductLink = ({
   id,
@@ -36,8 +36,9 @@ export const ProductLink = ({
 
       showMessage.success('Deleted');
     } catch (error) {
-      if (axios.isAxiosError(error)){
-      showMessage.error(error.response?.data.message);}
+      if (axios.isAxiosError(error)) {
+        showMessage.error(error.response?.data.message);
+      }
     } finally {
       setOpen(false);
       setIsFetching(false);
@@ -46,7 +47,7 @@ export const ProductLink = ({
 
   return (
     <>
-      <Link href={baseHref + id} className={link}>
+      <Link href={baseHref + id} className={link} locale="ua">
         <p>{name}</p>
 
         <div className="flex gap-3">

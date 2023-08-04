@@ -58,7 +58,7 @@ export const ProductList = ({ categoryId }: { categoryId: string }) => {
         categories={products}
         swrStorage={categoryId}
         title="Change category:"
-        baseHref={`admin/category/${categoryId}/edit/`}
+        baseHref={`${categoryId}/edit/`}
       />
 
       <Overlay

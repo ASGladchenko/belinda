@@ -1,14 +1,12 @@
-import { useLocaleText } from '@/locale';
-
 import * as HeadImgs from '@/assets/main-swiper';
 import MainImg from '@/assets/offer/bgblur2.jpg';
 
+import { IOffer } from './types';
 import { AnimationBlock } from '../animation-block';
 import { AdvantagesCard } from '../advantages/advantages-card';
 
-export const Offer = () => {
-  const offersBlock = useLocaleText('offerClient');
-  const offers = Object.values(offersBlock).slice(1);
+export const Offer = ({ title, ...props }: IOffer) => {
+  const offers = Object.values(props);
 
   return (
     <section id="offered_you">
@@ -21,7 +19,7 @@ export const Offer = () => {
           animation="animate-down-appearance-xxl"
         >
           <h3 className="uppercase text-white text-center font-extrabold text-[32px] leading-[100%]">
-            {offersBlock.title}
+            {title}
           </h3>
         </AnimationBlock>
       </div>

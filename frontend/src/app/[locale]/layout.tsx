@@ -2,8 +2,7 @@ import { notFound } from 'next/navigation';
 import { useLocale as UseLocale } from 'next-intl';
 import { Inter, Pacifico, Jost } from 'next/font/google';
 
-import { ChildrenProps } from '@/types';
-import { LanguageProvider } from '@/context';
+import { ChildrenProps, IParams } from '@/types';
 import { Provider as ThemeProvider, Toast } from '@/components';
 
 import { ProviderSwr } from './provider-swr';
@@ -38,14 +37,10 @@ export const metadata = {
   description: 'Belinda is a personal website',
 };
 
-export function generateStaticParams() {
-  return [{ locale: 'en' }, { locale: 'de' }];
-}
-
 export default async function RootLayout({
-  children,
   params,
-}: ChildrenProps<{ params: { locale: string } }>) {
+  children,
+}: ChildrenProps<IParams>) {
   const locale = UseLocale();
 
   if (params.locale !== locale) {
@@ -55,13 +50,11 @@ export default async function RootLayout({
   return (
     <html lang={locale} className="scroll-smooth">
       <body
-        className={` ${pacifico.variable} ${jost.variable} ${inter.variable}`}
+        className={`${pacifico.variable} ${jost.variable} ${inter.variable}`}
       >
         <ProviderSwr>
           <ProviderRedux>
-            <LanguageProvider>
-              <ThemeProvider>{children}</ThemeProvider>
-            </LanguageProvider>
+            <ThemeProvider>{children}</ThemeProvider>
             <Toast />
           </ProviderRedux>
         </ProviderSwr>

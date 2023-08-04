@@ -1,13 +1,39 @@
-import { Footer, Header } from '@/components';
+import { useTranslations } from 'next-intl';
 
-export default function Layout({ children }: { children: React.ReactNode }) {
+import { Footer, Header } from '@/components';
+import { ChildrenProps, IParams } from '@/types';
+
+export default function Layout({
+  children,
+  params: { locale },
+}: ChildrenProps<IParams>) {
+  const footer = useTranslations('footer');
+  const header = useTranslations('header-client');
+
   return (
     <div className="font-jost ">
-      <Header />
+      <Header
+        locale={locale}
+        home={header('home')}
+        about={header('about')}
+        fruits={header('fruits')}
+        services={header('services')}
+        products={header('products')}
+        contacts={header('contacts')}
+        vegetables={header('vegetables')}
+        seasonality={header('seasonality')}
+      />
+
       <main id="main" className="bg-white dark:bg-black">
         {children}
       </main>
-      <Footer />
+
+      <Footer
+        about={footer('about')}
+        slogan={footer('slogan')}
+        products={footer('products')}
+        contacts={footer('contacts')}
+      />
     </div>
   );
 }

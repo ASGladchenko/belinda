@@ -1,14 +1,9 @@
-import { useLocaleText } from '@/locale';
-
+import { IMenu } from './types';
 import { MenuItem } from './menu-item';
 import { getModifiedMenu } from './config';
 
-export default function Menu({ isNavBar }: { isNavBar: boolean }) {
-  const { nameCompany, about, webPage } = useLocaleText('asideAdmin');
-
-  const translatedText = [nameCompany, about, webPage];
-
-  const modifiedMenu = getModifiedMenu(translatedText);
+export default function Menu({ isNavBar, ...props }: IMenu) {
+  const modifiedMenu = getModifiedMenu(props);
 
   return (
     <ul className="flex flex-col gap-3 py-6 pl-3 pr-3 overflow-x-hidden lg:pr-0">
