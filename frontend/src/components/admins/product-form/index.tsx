@@ -5,8 +5,7 @@ import { AddedImg, Button, CategoryWrapper, InputField } from '@/components';
 
 import { IProductForm } from './types';
 import { validationSchema } from './config';
-
-import { seasonality } from '@/app/(admin)/admin/category/[categoryId]/mock';
+import { seasonality } from './mock';
 
 export const ProductForm = ({ onSubmit, initialValues }: IProductForm) => {
   return (

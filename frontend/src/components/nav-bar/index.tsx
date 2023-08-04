@@ -2,18 +2,20 @@
 import Link from 'next/link';
 import React, { useEffect, useRef, useState } from 'react';
 
+import { IHeaderClient } from '@/types';
 import { useOutsideClick } from '@/hooks';
 
 import { getStyles } from './styles';
 import { ThemeIcons } from '../theme-icons';
-import { TranslatedNavbar } from '../content-data';
+import { translatedNavbar } from './config';
 import { LanguageSelection } from '../language-selection';
 
-export const NavBar = () => {
+export const NavBar = ({ locale, ...props }: IHeaderClient) => {
   const ref = useRef<HTMLDivElement>(null);
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [isOpenDropDown, setIsOpenDropDown] = useState<boolean>(false);
-  const navbar = TranslatedNavbar();
+  const navbar = translatedNavbar(props);
+
   useOutsideClick(ref, () => setIsOpenDropDown(false));
 
   const {
@@ -76,7 +78,7 @@ export const NavBar = () => {
           </React.Fragment>
         ))}
 
-        <LanguageSelection />
+        <LanguageSelection locale={locale} />
 
         <ThemeIcons />
       </div>

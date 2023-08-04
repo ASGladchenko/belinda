@@ -1,9 +1,9 @@
-export interface IMenuList {
-  href: string;
-  name: string;
-  Icon: React.ComponentType<React.SVGProps<SVGSVGElement>>;
+import { IAsideText } from '@/types';
+
+export interface IMenu extends IAsideText {
+  isNavBar: boolean;
 }
 
-export interface IMenuItem extends IMenuList {
+export interface IMenuItem {
   isNavBar: boolean;
 }

@@ -13,6 +13,21 @@
       }
     ]
   },
+  "overrides": [
+    {
+      "files": ["*.ts", "*.tsx"], // Применять только к TypeScript файлам
+      "rules": {
+        // Отключаем правило no-unused-vars для интерфейсов
+        "@typescript-eslint/no-unused-vars": [
+          "error",
+          {
+            "varsIgnorePattern": "^_",
+            "argsIgnorePattern": "^_"
+          }
+        ]
+      }
+    }
+  ],
   "extends": [
     "next",
     "next/core-web-vitals",

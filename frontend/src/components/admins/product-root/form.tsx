@@ -1,4 +1,4 @@
-import { Form as FormikForm, Formik } from 'formik';
+import { Formik, Form as FormikForm } from 'formik';
 
 import { IRootData } from '@/types';
 import { Button, InputField } from '@/components';

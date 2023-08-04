@@ -3,15 +3,15 @@ import useSWR from 'swr';
 import { FormikValues } from 'formik';
 import {
   Loader,
-  MainWrapper,
   PageHead,
+  MainWrapper,
   ProductForm,
   showMessage,
 } from '@/components';
 
 import { product } from '@/http';
-import { getInitialValues } from '@/components/admins/product-form/config';
 import { IProduct } from '@/components/admins/product-form/types';
+import { getInitialValues } from '@/components/admins/product-form/config';
 import axios from 'axios';
 
 interface ISubCategory {

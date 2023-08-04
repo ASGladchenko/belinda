@@ -2,10 +2,12 @@
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
 
+import { IHeaderClient } from '@/types';
+
 import { NavBar } from '../nav-bar';
 import { getStyles } from './styles';
 
-export const Header = () => {
+export const Header = (props: IHeaderClient) => {
   const [isScrollHeader, setIsScrollHeader] = useState(false);
   const { header, container, logo } = getStyles(isScrollHeader);
 
@@ -27,7 +29,8 @@ export const Header = () => {
         <Link href="/" className={logo}>
           Bellinda
         </Link>
-        <NavBar />
+
+        <NavBar {...props} />
       </div>
     </header>
   );

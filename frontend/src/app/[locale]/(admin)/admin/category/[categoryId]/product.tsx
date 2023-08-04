@@ -1,12 +1,8 @@
 'use client';
-import useSWR from 'swr';
 import axios from 'axios';
+import useSWR from 'swr';
 import { usePathname, useRouter } from 'next/navigation';
 
-import { IRootData } from '@/types';
-import { productRoot } from '@/http';
-import { useDelayAnimation } from '@/hooks';
-import { ACTIVE_CATEGORY } from '@/constants';
 import {
   Form,
   Overlay,
@@ -16,17 +12,15 @@ import {
   showMessage,
   getInitialValues,
 } from '@/components';
+import { IRootData } from '@/types';
+import { productRoot } from '@/http';
+import { useDelayAnimation } from '@/hooks';
 import { getProducts } from '@/http/product';
-
-interface ICategory {
-  params: {
-    categoryId: string;
-  };
-}
+import { ACTIVE_CATEGORY } from '@/constants';
 
 const url = '/product';
 
-const ProductList = ({ params: { categoryId } }: ICategory) => {
+export const ProductList = ({ categoryId }: { categoryId: string }) => {
   const router = useRouter();
   const path = usePathname();
 
@@ -35,8 +29,6 @@ const ProductList = ({ params: { categoryId } }: ICategory) => {
   );
 
   const { data: products } = useSWR(categoryId, () => getProducts(categoryId));
-
-  console.log(products);
 
   const duration = 500;
   const { isOpen, isAnimation, setOpen } = useDelayAnimation(duration);
@@ -66,7 +58,7 @@ const ProductList = ({ params: { categoryId } }: ICategory) => {
         categories={products}
         swrStorage={categoryId}
         title="Change category:"
-        baseHref={`admin/category/${categoryId}/edit/`}
+        baseHref={`${categoryId}/edit/`}
       />
 
       <Overlay
@@ -85,5 +77,3 @@ const ProductList = ({ params: { categoryId } }: ICategory) => {
     </MainWrapper>
   );
 };
-
-export default ProductList;

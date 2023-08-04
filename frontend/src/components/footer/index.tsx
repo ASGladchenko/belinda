@@ -1,9 +1,9 @@
-import { useLocaleText } from '@/locale';
-import { TranslatedFooterNavbar } from '../content-data';
+import { IFooter } from '@/types';
 
-export const Footer = () => {
-  const text = useLocaleText('footerClient');
-  const navbar = TranslatedFooterNavbar();
+import { translatedFooter } from './config';
+
+export const Footer = ({ slogan, ...props }: IFooter) => {
+  const navbar = translatedFooter(props);
 
   return (
     <footer className="bg-black py-[30px] md:py-[60px] text-white">
@@ -16,10 +16,10 @@ export const Footer = () => {
         </a>
 
         <div className="hidden gap-2 md:flex ">
-          {navbar.map((link) => (
+          {navbar.map((link, idx) => (
             <a
-              key={`footer-${link.name}`}
               href={link.path}
+              key={`footer-${idx}`}
               className="uppercase text-[15px] leading-4 font-[600] hover:text-admin-primary transition duration-100 cursor-pointer"
             >
               {link.name}
@@ -30,8 +30,8 @@ export const Footer = () => {
         <p className="opacity-70">bellinda@email.some</p>
 
         <div className="flex items-center justify-between pt-[30px] w-full">
-          <p className="text-[8px] sm:text-sm opacity-60">{text.slogan}</p>
-          <p className="text-[8px] sm:text-sm opacity-60">{text.company}</p>
+          <p className="text-[8px] sm:text-sm opacity-60">{slogan}</p>
+          <p className="text-[8px] sm:text-sm opacity-60">© «Bellinda» 2023</p>
         </div>
       </div>
     </footer>

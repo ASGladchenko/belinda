@@ -20,7 +20,7 @@ import {
 
 const url = '/category';
 
-const Categories = () => {
+const CategoriesClient = () => {
   const duration = 500;
   const [isFetching, setIsFetching] = useState(false);
   const { isOpen, isAnimation, setOpen } = useDelayAnimation(duration);
@@ -90,4 +90,4 @@ const Categories = () => {
   );
 };
 
-export default Categories;
+export default CategoriesClient;
