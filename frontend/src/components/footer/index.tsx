@@ -1,3 +1,5 @@
+import Link from 'next-intl/link';
+
 import { IFooter } from '@/types';
 
 import { translatedFooter } from './config';
@@ -9,12 +11,12 @@ export const Footer = ({ slogan, ...props }: IFooter) => {
     <footer className="bg-black py-[30px] md:py-[60px] text-white">
       <div className="max-w-[1090px] m-[auto] px-[25px] lg:px-3 flex justify-between items-center flex-wrap">
         <div>
-          <a
+          <Link
             href="/"
             className="text-3xl text-white transition duration-300 font-pacifico hover:text-admin-primary"
           >
             Bellinda
-          </a>
+          </Link>
 
           <p className="mt-[30px] text-[8px] md:text-sm opacity-60">{slogan}</p>
         </div>
