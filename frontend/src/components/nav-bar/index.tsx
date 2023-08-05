@@ -1,5 +1,5 @@
 'use client';
-import Link from 'next/link';
+import Link from 'next-intl/link';
 import React, { useEffect, useRef, useState } from 'react';
 
 import { IHeaderClient } from '@/types';

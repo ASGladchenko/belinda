@@ -8,6 +8,6 @@ export const translatedFooter = ({
   return [
     { name: about, path: '#aboutUs' },
     { name: products, path: '/' },
-    { name: contacts, path: '/' },
+    { name: contacts, path: '/contacts' },
   ];
 };

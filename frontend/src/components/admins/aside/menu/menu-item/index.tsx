@@ -1,16 +1,10 @@
-'use client';
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import Link from 'next-intl/link';
 
 import { IMenuItem } from '../types';
 
 import { getStyles } from './styles';
 
-export function MenuItem({ isNavBar, name, href, Icon }: IMenuItem) {
-  const pathname = usePathname();
-  const isActive =
-    pathname === href || !!pathname.split('/')?.find((el) => name === el);
-
+export function MenuItem({ isNavBar, name, href, Icon, isActive }: IMenuItem) {
   const { border, title, icon, main } = getStyles(isActive, isNavBar);
 
   return (

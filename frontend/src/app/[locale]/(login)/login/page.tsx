@@ -1,6 +1,6 @@
 'use client';
 import Cookies from 'js-cookie';
-import CommonLink from 'next/link';
+import Link from 'next-intl/link';
 import { useSWRConfig } from 'swr';
 import { Formik, Form } from 'formik';
 import useSWRMutation from 'swr/mutation';
@@ -13,6 +13,7 @@ import { USE_AUTH, routes } from '@/constants';
 import { Button, InputField, showMessage } from '@/components';
 
 import { initialValues, validationSchema } from './config';
+import axios from 'axios';
 
 export default function LogIn() {
   const router = useRouter();
@@ -35,8 +36,10 @@ export default function LogIn() {
       }
 
       router.push(routes.admin);
-    } catch (error: any) {
-      showMessage.error(error.response.data.message);
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        showMessage.error(error.response?.data.message);
+      }
     }
   };
 
@@ -60,12 +63,12 @@ export default function LogIn() {
               <InputField name="password" type="password" label="Password" />
 
               <div className="flex justify-between w-full ">
-                <CommonLink
+                <Link
                   href="/"
                   className="transition duration-300 text-admin-lighten-grey dark:text-white hover:text-admin-primary dark:hover:text-admin-primary"
                 >
                   Forgot password?
-                </CommonLink>
+                </Link>
 
                 <InputField
                   type="checkbox"
