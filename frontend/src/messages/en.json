@@ -55,5 +55,41 @@
       "fifth": "Compliance with delivery deadlines",
       "sixth": "Compliance with the conditions of storage and delivery of products"
     }
+  },
+  "contacts-client": {
+    "title": "contacts",
+    "card1": {
+      "title": "Headquarters",
+      "title-person": "Contact Person",
+      "person": "Svitovenko Irina",
+      "title-phone": "Phone",
+      "phone": "+38 (050) 050 50 50",
+      "email": "irina@bestmail.com",
+      "title-email": "Email",
+      "title-address": "Address",
+      "address": "Turkey, Istanbul, str.Best, 8"
+    },
+    "card2": {
+      "title": "Manager Europe",
+      "title-person": "Contact Person",
+      "person": "Svitovenko Irina",
+      "title-phone": "Phone",
+      "phone": "+38 (050) 050 50 50",
+      "email": "irina@bestmail.com",
+      "title-email": "Email",
+      "title-address": "Address",
+      "address": "Turkey, Istanbul, str.Best, 8"
+    },
+    "card3": {
+      "title": "Manager Ukraine",
+      "title-person": "Contact Person",
+      "person": "Svitovenko Irina",
+      "title-phone": "Phone",
+      "phone": "+38 (050) 050 50 50",
+      "email": "irina@bestmail.com",
+      "title-email": "Email",
+      "title-address": "Address",
+      "address": "Turkey, Istanbul, str.Best, 8"
+    }
   }
 }
