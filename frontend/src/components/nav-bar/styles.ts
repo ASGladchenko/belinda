@@ -16,7 +16,7 @@ export const getStyles = (isOpen: boolean, isOpenDropDown: boolean) => ({
   ),
 
   burger_container: clsx(
-    'fixed w-screen min-h-screen lg:min-h-fit lg:w-fit lg:w-full lg:relative flex flex-col lg:flex-row items-center gap-8 lg:gap-0 lg:max-w-[600px] lg:justify-between top-0 right-0 transition bg-black lg:bg-transparent text-white lg:text-black p-[50px] lg:p-0  duration-300 dark:text-white',
+    'fixed w-screen min-h-screen lg:min-h-fit lg:w-fit lg:w-full lg:relative flex flex-col lg:flex-row items-center gap-8 lg:gap-0 lg:max-w-[600px] lg:justify-between top-0 right-0 transition bg-black lg:bg-transparent text-white p-[50px] lg:p-0  duration-300 dark:text-white',
     { 'translate-x-full lg:translate-x-0': !isOpen },
     { 'translate-x-0': isOpen },
   ),

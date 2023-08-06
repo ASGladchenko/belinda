@@ -1,15 +1,22 @@
 'use client';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { IAsideText } from '@/types';
 import { Right } from '@/assets/icons';
+import { useWindowWidth } from '@/hooks/useWindowWidth';
 
 import Menu from './menu';
 import { getStyles } from './styles';
 
 export function Aside(props: IAsideText) {
+  const size = useWindowWidth();
+
   const [isNavBar, setIsNavBar] = useState(false);
   const { aside, switcher, header } = getStyles(isNavBar);
+
+  useEffect(() => {
+    if (size > 1024) setIsNavBar(true);
+  }, [size]);
 
   return (
     <aside className={aside}>

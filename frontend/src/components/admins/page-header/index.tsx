@@ -1,11 +1,11 @@
 import { Add } from '@/assets/icons';
-import { Button, Crumps } from '@/components';
+import { Button } from '@/components';
 
 import { IPageHead } from './types';
-import { BreadCrumps } from '../crumps/helpers';
+// import { BreadCrumps } from '../crumps/helpers';
 
-const PageHead = ({ head, onClick, maxCrumps }: IPageHead) => {
-  const crumps = BreadCrumps();
+const PageHead = ({ head, onClick }: IPageHead) => {
+  // const crumps = BreadCrumps();
 
   return (
     <div className="flex flex-col items-start justify-between w-full gap-3 rounded-lg sm:items-center sm:flex-row ">
@@ -14,7 +14,7 @@ const PageHead = ({ head, onClick, maxCrumps }: IPageHead) => {
           {head}
         </h1>
 
-        <Crumps crumps={crumps} max={maxCrumps} />
+        {/* <Crumps crumps={crumps} max={maxCrumps} /> */}
       </div>
 
       {!!onClick && (

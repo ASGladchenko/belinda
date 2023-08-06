@@ -1,5 +1,3 @@
-import clsx from 'clsx';
-
 import { getStyles } from './styles';
 import { InputProps } from './types';
 import { SwitchPassword } from './switch';

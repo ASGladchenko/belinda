@@ -1,4 +1,4 @@
-import Link from 'next/link';
+import Link from 'next-intl/link';
 
 interface ICrumps {
   crumps: { name: string; path: string }[];
@@ -18,7 +18,7 @@ const Crumps = ({ crumps, max = 3 }: ICrumps) => {
         if (index === crumps.length - 1) {
           return (
             <span
-              key={'crumps' + index}
+              key={`crumps-${index}`}
               className="text-[10px] capitalize select-none text-admin-lighten-crumpsActive dark:text-admin-darken-crumpsActive sm:text-sm"
             >
               {name}
@@ -29,7 +29,7 @@ const Crumps = ({ crumps, max = 3 }: ICrumps) => {
         return (
           <>
             <Link
-              key={'crumps' + index}
+              key={`crumps-${index}`}
               href={path}
               className="text-[10px] capitalize text-admin-lighten-crumps hover:text-admin-lighten-crumpsHover active:text-admin-lighten-crumpsActive dark:text-admin-darken-crumps dark:hover:text-admin-darken-crumpsHover dark:active:text-admin-darken-crumpsActive sm:text-sm"
             >
