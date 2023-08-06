@@ -4,6 +4,9 @@ import bg from '@/assets/contacts/contact-bg.jpg';
 
 export const Contacts = () => {
   const page = useTranslations('contacts-client');
+  const page1 = useTranslations('header-admin');
+  console.log(page('card1.title'));
+  console.log(page1('exit'));
 
   return (
     <section>

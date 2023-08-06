@@ -1,4 +1,4 @@
-import { Contacts } from './contacs';
+import { Contacts } from './contacts';
 
 const ContactsPage = () => {
   return <Contacts />;
