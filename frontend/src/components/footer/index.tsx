@@ -34,7 +34,9 @@ export const Footer = ({ slogan, ...props }: IFooter) => {
         </div>
 
         <div className="flex flex-col justify-end">
-          <p className="mb-[30px] opacity-70">bellinda@email.some</p>
+          <p className="mb-[30px] opacity-70 text-[10px] sm:text-sm">
+            bellinda@email.some
+          </p>
 
           <p className="text-[8px] sm:text-sm opacity-60 text-end">
             © «Bellinda» 2023

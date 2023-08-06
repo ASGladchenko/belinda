@@ -24,7 +24,10 @@ export default function Layout({
         seasonality={header('seasonality')}
       />
 
-      <main id="main" className="bg-white dark:bg-black">
+      <main
+        id="main"
+        className="bg-white dark:bg-black min-h-[calc(100vh-151px) md:min-h-[calc(100vh-207px)]"
+      >
         {children}
       </main>
 

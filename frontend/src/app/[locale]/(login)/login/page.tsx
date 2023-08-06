@@ -1,4 +1,5 @@
 'use client';
+import axios from 'axios';
 import Cookies from 'js-cookie';
 import Link from 'next-intl/link';
 import { useSWRConfig } from 'swr';
@@ -13,7 +14,6 @@ import { USE_AUTH, routes } from '@/constants';
 import { Button, InputField, showMessage } from '@/components';
 
 import { initialValues, validationSchema } from './config';
-import axios from 'axios';
 
 export default function LogIn() {
   const router = useRouter();

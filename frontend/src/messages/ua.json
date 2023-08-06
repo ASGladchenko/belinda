@@ -55,5 +55,41 @@
       "fifth": "Дотримання термінів поставки",
       "sixth": "Дотримання умов зберігання та доставки продукції"
     }
+  },
+  "contacts-client": {
+    "title": "контакти",
+    "card1": {
+      "title": "Центральний офіс",
+      "title-person": "Контактна особа",
+      "person": "Світовенко Ірина",
+      "title-phone": "Телефон",
+      "phone": "+38 (050) 050 50 50",
+      "email": "irina@bestmail.com",
+      "title-email": "Электронна пошта",
+      "title-address": "Адресса",
+      "address": "Turkey, Istanbul, str.Best, 8"
+    },
+    "card2": {
+      "title": "Менеджер Європа",
+      "title-person": "Контактна особа",
+      "person": "Світовенко Ірина",
+      "title-phone": "Телефон",
+      "phone": "+38 (050) 050 50 50",
+      "email": "irina@bestmail.com",
+      "title-email": "Електронна пошта",
+      "title-address": "Адреса",
+      "address": "Turkey, Istanbul, str.Best, 8"
+    },
+    "card3": {
+      "title": "Менеджер Україна",
+      "title-person": "Контактна особа",
+      "person": "Світовенко Ірина",
+      "title-phone": "Телефон",
+      "phone": "+38 (050) 050 50 50",
+      "email": "irina@bestmail.com",
+      "title-email": "Электронна пошта",
+      "title-address:": "Адресса",
+      "address": "Turkey, Istanbul, str.Best, 8"
+    }
   }
 }
