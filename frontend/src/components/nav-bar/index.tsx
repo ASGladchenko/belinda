@@ -64,13 +64,14 @@ export const NavBar = ({ locale, ...props }: IHeaderClient) => {
                 </p>
                 <div className={dropDown}>
                   {menu.map(({ name, path }, idx) => (
-                    <a
-                      href={path}
-                      key={`menu-item-${idx}`}
-                      className={`${link} ${dropDownLink}`}
-                    >
-                      {name}
-                    </a>
+                    <React.Fragment key={`menu-item-${idx}`}>
+                      {idx === menu.length - 1 && (
+                        <span className="hidden w-full lg:block h-[1px] bg-[#0000002d] my-3"></span>
+                      )}
+                      <a href={path} className={`${link} ${dropDownLink}`}>
+                        {name}
+                      </a>
+                    </React.Fragment>
                   ))}
                 </div>
               </div>

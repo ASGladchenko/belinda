@@ -6,9 +6,11 @@
   * {
     @apply box-border text-base;
   }
+
   .scroll::-webkit-scrollbar {
     @apply w-[9px];
   }
+
   .scroll::-webkit-scrollbar-track {
     @apply bg-admin-lighten-second dark:bg-admin-darken-second;
   }
@@ -20,8 +22,25 @@
   .scroll::-webkit-scrollbar-thumb:hover {
     @apply border-2 bg-admin-primaryHover;
   }
+
   .scroll-hidden::-webkit-scrollbar {
     @apply hidden;
+  }
+
+  .scroll-client::-webkit-scrollbar {
+    @apply w-[7px];
+  }
+
+  .scroll-client::-webkit-scrollbar-track {
+    @apply bg-white dark:bg-black;
+  }
+
+  .scroll-client::-webkit-scrollbar-thumb {
+    @apply border-[7px] border-transparent border-solid lg:border-4 bg-green-500 rounded-xl bg-clip-content;
+  }
+
+  .scroll-client::-webkit-scrollbar-thumb:hover {
+    @apply border-[7px]  bg-green-700;
   }
 }
 

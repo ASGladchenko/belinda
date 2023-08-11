@@ -12,15 +12,15 @@ export const translatedNavbar = ({
 }: Omit<IHeaderClient, 'locale'>) => {
   return [
     { name: home, path: '/' },
-    { name: about, path: '#aboutUs' },
-    { name: services, path: '#offered_you' },
+    { name: about, path: '/#aboutUs' },
+    { name: services, path: '/#offered_you' },
     {
       name: products,
       path: '/',
       menu: [
         { name: fruits, path: '/' },
         { name: vegetables, path: '/' },
-        { name: seasonality, path: '/' },
+        { name: seasonality, path: '/seasonality' },
       ],
     },
     { name: contacts, path: '/contacts' },
