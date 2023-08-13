@@ -2,7 +2,11 @@ import { useTranslations } from 'next-intl';
 
 import * as Images from '@/assets/category/index';
 
+import { ProductSeasons } from './productSeasons';
+import { SeasonMonths, seasonsProducts } from './mock';
+
 const Seasonality = () => {
+  const months = SeasonMonths();
   const page = useTranslations('header-client');
 
   return (
@@ -18,175 +22,28 @@ const Seasonality = () => {
       <div className="container py-5 overflow-x-scroll scroll-client">
         <table className="w-full">
           <thead>
-            <tr className="border border-red-300">
+            <tr>
               <th
                 scope="col"
                 className="capitalize border border-green-200 dark:border-green-300"
               ></th>
-              <th
-                scope="col"
-                className="capitalize border border-green-200 dark:border-green-300"
-              >
-                jan
-              </th>
-              <th
-                scope="col"
-                className="capitalize border border-green-200 dark:border-green-300"
-              >
-                feb
-              </th>
-              <th
-                scope="col"
-                className="capitalize border border-green-200 dark:border-green-300"
-              >
-                mar
-              </th>
-              <th
-                scope="col"
-                className="capitalize border border-green-200 dark:border-green-300"
-              >
-                apr
-              </th>
-              <th
-                scope="col"
-                className="capitalize border border-green-200 dark:border-green-300"
-              >
-                may
-              </th>
-              <th
-                scope="col"
-                className="capitalize border border-green-200 dark:border-green-300"
-              >
-                jun
-              </th>
-              <th
-                scope="col"
-                className="capitalize border border-green-200 dark:border-green-300"
-              >
-                jul
-              </th>
-              <th
-                scope="col"
-                className="capitalize border border-green-200 dark:border-green-300"
-              >
-                aug
-              </th>
-              <th
-                scope="col"
-                className="capitalize border border-green-200 dark:border-green-300"
-              >
-                sep
-              </th>
-              <th
-                scope="col"
-                className="capitalize border border-green-200 dark:border-green-300"
-              >
-                oct
-              </th>
-              <th
-                scope="col"
-                className="capitalize border border-green-200 dark:border-green-300"
-              >
-                nov
-              </th>
-              <th
-                scope="col"
-                className="capitalize border border-green-200 dark:border-green-300"
-              >
-                dec
-              </th>
+
+              {months.map((month, index) => (
+                <th
+                  key={`${month}-${index}`}
+                  scope="col"
+                  className="capitalize border border-green-200 dark:border-green-300"
+                >
+                  <span className="rotate-45">{month}</span>
+                </th>
+              ))}
             </tr>
           </thead>
-          <tbody>
-            <tr>
-              <th
-                scope="row"
-                className="px-5 capitalize border border-green-200 dark:border-green-300"
-              >
-                kiwi
-              </th>
-              <td className="text-center min-w-[70px] max-w-[80px] py-1 border-green-200 border dark:border-green-300">
-                X
-              </td>
-              <td className="text-center min-w-[70px] max-w-[80px] py-1 border-green-200 border dark:border-green-300">
-                X
-              </td>
-              <td className="text-center min-w-[70px] max-w-[80px] py-1 border-green-200 border dark:border-green-300">
-                X
-              </td>
-              <td className="text-center min-w-[70px] max-w-[80px] py-1 border-green-200 border dark:border-green-300">
-                X
-              </td>
-              <td className="text-center min-w-[70px] max-w-[80px] py-1 border-green-200 border dark:border-green-300">
-                X
-              </td>
-              <td className="text-center min-w-[70px] max-w-[80px] py-1 border-green-200 border dark:border-green-300">
-                {' '}
-              </td>
-              <td className="text-center min-w-[70px] max-w-[80px] py-1 border-green-200 border dark:border-green-300">
-                {' '}
-              </td>
-              <td className="text-center min-w-[70px] max-w-[80px] py-1 border-green-200 border dark:border-green-300">
-                {' '}
-              </td>
-              <td className="text-center min-w-[70px] max-w-[80px] py-1 border-green-200 border dark:border-green-300">
-                {' '}
-              </td>
-              <td className="text-center min-w-[70px] max-w-[80px] py-1 border-green-200 border dark:border-green-300">
-                X
-              </td>
-              <td className="text-center min-w-[70px] max-w-[80px] py-1 border-green-200 border dark:border-green-300">
-                X
-              </td>
-              <td className="text-center min-w-[70px] max-w-[80px] py-1 border-green-200 border dark:border-green-300">
-                X
-              </td>
-            </tr>
 
-            <tr>
-              <th
-                scope="row"
-                className="px-5 capitalize border border-green-200 dark:border-green-300"
-              >
-                Pomegraanate
-              </th>
-              <td className="text-center min-w-[70px] max-w-[80px] py-1 border-green-200 border dark:border-green-300">
-                X
-              </td>
-              <td className="text-center min-w-[70px] max-w-[80px] py-1 border-green-200 border dark:border-green-300">
-                X
-              </td>
-              <td className="text-center min-w-[70px] max-w-[80px] py-1 border-green-200 border dark:border-green-300">
-                X
-              </td>
-              <td className="text-center min-w-[70px] max-w-[80px] py-1 border-green-200 border dark:border-green-300">
-                X
-              </td>
-              <td className="text-center min-w-[70px] max-w-[80px] py-1 border-green-200 border dark:border-green-300">
-                X
-              </td>
-              <td className="text-center min-w-[70px] max-w-[80px] py-1 border-green-200 border dark:border-green-300">
-                {' '}
-              </td>
-              <td className="text-center min-w-[70px] max-w-[80px] py-1 border-green-200 border dark:border-green-300">
-                {' '}
-              </td>
-              <td className="text-center min-w-[70px] max-w-[80px] py-1 border-green-200 border dark:border-green-300">
-                {' '}
-              </td>
-              <td className="text-center min-w-[70px] max-w-[80px] py-1 border-green-200 border dark:border-green-300">
-                {' '}
-              </td>
-              <td className="text-center min-w-[70px] max-w-[80px] py-1 border-green-200 border dark:border-green-300">
-                X
-              </td>
-              <td className="text-center min-w-[70px] max-w-[80px] py-1 border-green-200 border dark:border-green-300">
-                X
-              </td>
-              <td className="text-center min-w-[70px] max-w-[80px] py-1 border-green-200 border dark:border-green-300">
-                X
-              </td>
-            </tr>
+          <tbody>
+            {seasonsProducts.map((product) => (
+              <ProductSeasons key={`seasons-${product.id}`} {...product} />
+            ))}
           </tbody>
         </table>
       </div>
