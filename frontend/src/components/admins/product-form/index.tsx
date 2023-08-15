@@ -1,11 +1,11 @@
 'use client';
 import { Form, Formik } from 'formik';
 
-import { AddedImg, Button, CategoryWrapper, InputField } from '@/components';
+import { Button, AddedImg, InputField, CategoryWrapper } from '@/components';
 
+import { seasonality } from './mock';
 import { IProductForm } from './types';
 import { validationSchema } from './config';
-import { seasonality } from './mock';
 
 export const ProductForm = ({ onSubmit, initialValues }: IProductForm) => {
   return (

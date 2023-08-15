@@ -13,18 +13,18 @@
     "contacts": "контакти"
   },
   "seasonality": {
-    "january": "січ",
-    "february": "лют",
-    "march": "бер",
-    "april": "квт",
+    "jan": "січ",
+    "feb": "лют",
+    "mar": "бер",
+    "apr": "квт",
     "may": "трв",
-    "june": "чер",
-    "july": "лип",
-    "august": "сер",
-    "september": "вер",
-    "october": "жов",
-    "november": "лис",
-    "december": "гру"
+    "jun": "чер",
+    "jul": "лип",
+    "aug": "сер",
+    "sep": "вер",
+    "oct": "жов",
+    "nov": "лис",
+    "dec": "гру"
   },
   "sidebar-admin": {
     "company": "Компанія",

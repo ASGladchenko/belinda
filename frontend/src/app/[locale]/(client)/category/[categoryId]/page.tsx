@@ -1,13 +1,10 @@
 import * as Images from '@/assets/category/index';
 
-import { fruits } from '../mock';
+import { fruits } from './mock';
+import { IClientCategory } from './types';
 import { ProductCard } from './product-card';
 
-const ClientCategory = ({
-  params: { categoryId },
-}: {
-  params: { categoryId: string };
-}) => {
+const ClientCategory = ({ params: { categoryId } }: IClientCategory) => {
   return (
     <section>
       <div

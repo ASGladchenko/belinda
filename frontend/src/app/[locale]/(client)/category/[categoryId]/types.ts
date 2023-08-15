@@ -4,3 +4,9 @@ export interface IProductCard {
   name: string;
   seasonality: string[];
 }
+
+export interface IClientCategory {
+  params: {
+    categoryId: string;
+  };
+}

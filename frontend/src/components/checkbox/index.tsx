@@ -16,7 +16,7 @@ const Checkbox = ({
       htmlFor={id ?? name}
       className={`group ${
         disabled ? 'cursor-default' : 'cursor-pointer'
-      } relative flex gap-2 items-center `}
+      } relative flex gap-2 items-center ${className}`}
     >
       <input
         name={name}

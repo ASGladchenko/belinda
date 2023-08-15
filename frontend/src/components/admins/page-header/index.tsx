@@ -10,7 +10,7 @@ const PageHead = ({ head, onClick }: IPageHead) => {
   // const crumps = BreadCrumps();
 
   return (
-    <div className="flex flex-col items-start justify-between w-full gap-3 rounded-lg sm:items-center sm:flex-row ">
+    <div className="flex flex-row items-start justify-between w-full gap-3 rounded-lg sm:items-center sm:flex-row ">
       <div className="flex flex-col gap-2">
         <h1 className="text-2xl font-medium capitalize select-none text-admin-headPage dark:text-white font-inter">
           {head}
