@@ -12,6 +12,20 @@
     "seasonality": "seasonality",
     "contacts": "contacts"
   },
+  "seasonality": {
+    "january": "jan",
+    "february": "feb",
+    "march": "mar",
+    "april": "apr",
+    "may": "may",
+    "june": "jun",
+    "july": "jul",
+    "august": "aug",
+    "september": "sep",
+    "october": "oct",
+    "november": "nov",
+    "december": "dec"
+  },
   "sidebar-admin": {
     "company": "Company",
     "about": "About",
@@ -88,7 +102,7 @@
       "phone": "+38 (050) 050 50 50",
       "email": "irina@bestmail.com",
       "title-email": "Email",
-      "title-address:": "Address",
+      "title-address": "Address",
       "address": "Turkey, Istanbul, str.Best, 8"
     }
   }

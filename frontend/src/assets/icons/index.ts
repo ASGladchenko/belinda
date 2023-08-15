@@ -16,3 +16,4 @@ export { default as Right } from './right.svg';
 export { default as Search } from './admin/search.svg';
 export { default as Ua } from './flags/ua.svg';
 export { default as Web } from './admin/webpage.svg';
+export { default as Check } from './check.svg';

@@ -26,7 +26,7 @@ export default function Layout({
 
       <main
         id="main"
-        className="bg-white dark:bg-black min-h-[calc(100vh-151px) md:min-h-[calc(100vh-207px)]"
+        className="bg-white dark:bg-black min-h-[calc(100vh-151px)] md:min-h-[calc(100vh-207px)]"
       >
         {children}
       </main>

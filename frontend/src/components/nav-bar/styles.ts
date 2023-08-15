@@ -4,7 +4,7 @@ export const getStyles = (isOpen: boolean, isOpenDropDown: boolean) => ({
   nav_bar: clsx('cursor-pointer h-[30px] flex items-center justify-center'),
 
   burgerIcon: clsx(
-    "relative block lg:hidden rounded bg-black w-[30px] h-[3px] after:block after:content-[''] after:w-[30px] after:h-[3px] after:bg-black dark:after:bg-white dark:before:bg-white dark:bg-white after:absolute before:block before:content-[''] before:w-[30px] before:h-[3px] before:bg-black before:rounded after:rounded before:absolute after:origin-[-4px]-left before:origin-[-12px]-right ",
+    "relative block lg:hidden rounded  w-[30px] h-[3px] after:block after:content-[''] after:w-[30px] after:h-[3px]  after:bg-white before:bg-white bg-white after:absolute before:block before:content-[''] before:w-[30px] before:h-[3px]  before:rounded after:rounded before:absolute after:origin-[-4px]-left before:origin-[-12px]-right ",
     {
       'bg-transparent after:left-0 before:left-0 after:rotate-45 before:-rotate-45 after:transition before:transition transition':
         isOpen,

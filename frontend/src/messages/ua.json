@@ -12,6 +12,20 @@
     "seasonality": "сезонність",
     "contacts": "контакти"
   },
+  "seasonality": {
+    "january": "січ",
+    "february": "лют",
+    "march": "бер",
+    "april": "квт",
+    "may": "трв",
+    "june": "чер",
+    "july": "лип",
+    "august": "сер",
+    "september": "вер",
+    "october": "жов",
+    "november": "лис",
+    "december": "гру"
+  },
   "sidebar-admin": {
     "company": "Компанія",
     "about": "Про нас",
@@ -88,7 +102,7 @@
       "phone": "+38 (050) 050 50 50",
       "email": "irina@bestmail.com",
       "title-email": "Электронна пошта",
-      "title-address:": "Адресса",
+      "title-address": "Адресса",
       "address": "Turkey, Istanbul, str.Best, 8"
     }
   }
