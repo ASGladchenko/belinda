@@ -4,7 +4,7 @@ import { IsString, MinLength, IsNotEmpty, IsOptional } from 'class-validator';
 import { IsCustomArray } from '../../pipes/class-validator/customArrayValidator';
 import { IsThreeLetterMonth } from '../../pipes/class-validator/threeLetterMonthValidator';
 
-export class ProductDto {
+export class UpdateProductDto {
   @ApiProperty({ uniqueItems: true, example: 'Fruits' })
   @IsNotEmpty()
   @IsString()
@@ -45,10 +45,5 @@ export class ProductDto {
   @IsOptional()
   @IsCustomArray()
   @IsThreeLetterMonth({ each: true })
-  months?: string;
-
-  @ApiProperty()
-  @IsNotEmpty()
-  @IsString()
-  categoryId: string;
+  months?: string[] | string;
 }
