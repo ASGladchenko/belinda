@@ -12,6 +12,7 @@ import {
   Controller,
   HttpStatus,
   UploadedFile,
+  HttpException,
   UseInterceptors,
 } from '@nestjs/common';
 import {
@@ -26,11 +27,12 @@ import {
 } from '@nestjs/swagger';
 
 import { AuthGuard } from '../guards';
-import { UpdateProductDto } from './types';
 import { ProductDto } from './dto/product.dto';
 import { ProductEntity } from './product.entity';
 import { ProductService } from './product.service';
 import { postProperty, putProperty } from './config';
+import { UpdateProductDto } from './dto/update.product.dto';
+import { UpdateProductServiceDto } from './dto/update..product.service.dto';
 
 @ApiTags('Products')
 @Controller('product')
@@ -85,8 +87,18 @@ export class ProductController {
   async create(
     @Body() productDto: ProductDto,
     @UploadedFile() file: Express.Multer.File,
-  ) {
-    return this.productService.create(productDto, file);
+  ): Promise<ProductEntity> {
+    const newProduct = { ...productDto };
+
+    if (productDto.months) {
+      try {
+        newProduct.months = JSON.parse(productDto.months as string);
+      } catch (error) {
+        throw new HttpException('JSON is not valid', HttpStatus.BAD_REQUEST);
+      }
+    }
+
+    return this.productService.create(newProduct, file);
   }
 
   // @UseGuards(AuthGuard)
@@ -112,7 +124,17 @@ export class ProductController {
     @Body() productDto: UpdateProductDto,
     @UploadedFile() file: Express.Multer.File,
   ): Promise<ProductEntity> {
-    return this.productService.update(id, productDto, file);
+    const newProduct = { ...productDto } as UpdateProductServiceDto;
+
+    if (productDto.months) {
+      try {
+        newProduct.months = JSON.parse(productDto.months as string);
+      } catch (error) {
+        throw new HttpException('JSON is not valid', HttpStatus.BAD_REQUEST);
+      }
+    }
+
+    return this.productService.update(id, newProduct, file);
   }
 
   // @UseGuards(AuthGuard)

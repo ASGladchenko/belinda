@@ -35,6 +35,10 @@ export class ProductEntity {
   @Column({ nullable: true })
   img_url?: string;
 
+  @ApiProperty({ example: "['jan', 'may', 'oct', 'dec']", required: false })
+  @Column('text', { array: true, nullable: true })
+  months?: string[];
+
   @ManyToOne(() => CategoryEntity, (category) => category.products, {
     onDelete: 'CASCADE',
   })
