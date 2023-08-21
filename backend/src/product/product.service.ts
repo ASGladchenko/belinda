@@ -104,6 +104,10 @@ export class ProductService {
       productDto.img_url = imgUrl;
     }
 
+    if (!file) {
+      await this.fileService.delete(product.img_url);
+    }
+
     return await this.productRepository.save({
       ...product,
       ...productDto,
