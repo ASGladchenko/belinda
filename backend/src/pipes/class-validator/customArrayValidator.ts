@@ -26,7 +26,7 @@ export class IsArrayConstraint implements ValidatorConstraintInterface {
   }
 
   defaultMessage() {
-    return 'months - months must be an array';
+    return 'months must be an array';
   }
 }
 
