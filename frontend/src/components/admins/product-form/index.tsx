@@ -1,77 +1,76 @@
-'use client';
 import { Form, Formik } from 'formik';
+import { usePathname } from 'next/navigation';
 
 import { Button, AddedImg, InputField, CategoryWrapper } from '@/components';
 
-import { seasonality } from './mock';
 import { IProductForm } from './types';
 import { validationSchema } from './config';
+import { MonthsPicker } from './month-picker';
 
-export const ProductForm = ({ onSubmit, initialValues }: IProductForm) => {
+export const ProductForm = ({
+  months,
+  onSubmit,
+  pickerTitle,
+  initialValues,
+  productFormText,
+}: IProductForm) => {
+  const path = usePathname();
+  const isCreate = path.includes('create');
+
   return (
     <CategoryWrapper>
       <Formik
         onSubmit={onSubmit}
         initialValues={initialValues}
-        validationSchema={validationSchema}
+        validationSchema={validationSchema(productFormText.message)}
       >
-        <Form className="flex flex-col items-center justify-center w-full gap-5 p-5 sm:gap-10">
-          <div className="flex flex-col items-center justify-between w-full gap-5 sm:flex-row max-w-[600px]">
-            <div className="flex flex-col gap-5 sm:gap-3 w-full sm:w-[300px] ">
-              <InputField
-                type="text"
-                name="base_name"
-                label="Enter Base name of products"
-              />
+        {({ values }) => (
+          <Form className="flex flex-col items-center justify-center w-full gap-5 p-5 sm:gap-10">
+            <div className="flex flex-col items-center justify-between w-full gap-5 sm:flex-row max-w-[600px]">
+              <div className="flex flex-col gap-5 sm:gap-3 w-full sm:w-[300px] ">
+                <InputField
+                  type="text"
+                  name="name"
+                  label={productFormText.name_eng}
+                />
 
-              <InputField
-                type="text"
-                name="name_ua"
-                label="Enter name of products"
-              />
+                <InputField
+                  type="text"
+                  name="name_ua"
+                  label={productFormText.name_uk}
+                />
+              </div>
+
+              <AddedImg imgUrl={initialValues.img_url} name="img_url" />
             </div>
 
-            <AddedImg imgUrl={initialValues.img_url} name="img_url" />
-          </div>
+            <MonthsPicker
+              name="months"
+              months={months}
+              pickerTitle={pickerTitle}
+              activeMonths={values.months}
+            />
 
-          <div className="flex flex-wrap justify-between w-full gap-3">
-            <h3 className="w-full text-center"> Seasonality</h3>
-            {seasonality.map((month, idx) => {
-              return (
-                <div
-                  key={`seasonality-${idx}`}
-                  className="w-full max-w-[64px] flex"
-                >
-                  <InputField
-                    name={month}
-                    type="checkbox"
-                    label={month[0].toUpperCase() + month.slice(1, 3)}
-                  />
-                </div>
-              );
-            })}
-          </div>
+            <InputField
+              type="textarea"
+              name="description"
+              label={productFormText.description_eng}
+            />
 
-          <InputField
-            type="textarea"
-            name="description"
-            label="Enter Base Description of products"
-          />
+            <InputField
+              type="textarea"
+              id="description_ua"
+              name="description_ua"
+              label={productFormText.description_uk}
+            />
 
-          <InputField
-            type="textarea"
-            id="description_ua"
-            name="description_ua"
-            label="Enter Description of products"
-          />
-
-          <Button
-            type="submit"
-            text="Confirm"
-            variant="primary"
-            className="w-[200px] self-end rounded-lg"
-          />
-        </Form>
+            <Button
+              variant="primary"
+              className="w-[200px] self-end rounded-lg capitalize"
+              text={isCreate ? productFormText.create : productFormText.confirm}
+            />
+          </Form>
+        )}
       </Formik>
     </CategoryWrapper>
   );

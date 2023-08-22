@@ -1,17 +1,20 @@
 import * as Yup from 'yup';
 
+import { IMessage } from '@/types';
+
 export const initialValues = {
   role: '',
   password: '',
   remember: false,
 };
 
-export const validationSchema = Yup.object().shape({
-  role: Yup.string().required('Обязательное поле'),
-  password: Yup.string()
-    .trim()
-    .required('Обязательное поле')
-    .min(4, 'Минимум 4 символов')
-    .max(16, 'Максимум 16 символов'),
-  remember: Yup.boolean(),
-});
+export const validationSchema = ({ required, min4, max16 }: IMessage) =>
+  Yup.object().shape({
+    role: Yup.string().required(required),
+    password: Yup.string()
+      .trim()
+      .required(required)
+      .min(4, min4)
+      .max(16, max16),
+    remember: Yup.boolean(),
+  });

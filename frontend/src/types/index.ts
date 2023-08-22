@@ -36,6 +36,7 @@ export interface IAsideText {
   about: string;
   company: string;
   webPage: string;
+  dashboard: string;
 }
 
 export interface IHeaderClient {
@@ -55,4 +56,43 @@ export interface IFooter {
   slogan: string;
   products: string;
   contacts: string;
+}
+
+export interface IProductFormText {
+  create: string;
+  confirm: string;
+  name_uk: string;
+  name_eng: string;
+  message: IMessage;
+  description_uk: string;
+  description_eng: string;
+}
+
+export interface IMessage {
+  min2?: string;
+  min3?: string;
+  min4?: string;
+  max16?: string;
+  required?: string;
+  matches_english?: string;
+  matches_cyrillic?: string;
+}
+
+export interface IFormText {
+  edit: string;
+  create: string;
+  name_uk: string;
+  name_eng: string;
+  btnCancel: string;
+  message: IMessage;
+  btnConfirm: string;
+}
+
+export interface ILoginPage {
+  login: string;
+  btnText: string;
+  password: string;
+  remember: string;
+  forgot: string;
+  message: IMessage;
 }

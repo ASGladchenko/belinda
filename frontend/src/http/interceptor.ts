@@ -2,18 +2,18 @@ import axios from 'axios';
 import Cookies from 'js-cookie';
 
 import { getCookies, removeTokensCookies } from '@/utils';
+import { http } from './constant';
 
 const initBelinda = ({ onAuthError }: { onAuthError: () => void }) => {
-  axios.defaults.baseURL =
-    'http://31.202.177.131:5200/api' /* 'http://localhost:4200/api' */;
+  axios.defaults.baseURL = `${http.url}/api` /* 'http://localhost:4200/api' */;
 
   axios.interceptors.request.use((config) => {
     const access = getCookies('access');
-    const lang = getCookies('lang');
+    const lang = getCookies('NEXT_LOCALE');
+    config.headers['Accept-Language'] = lang;
 
     if (access) {
       config.headers.Authorization = `Bearer ${access}`;
-      config.headers['Accept-Language'] = lang;
     }
 
     return config;

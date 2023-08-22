@@ -30,7 +30,7 @@ export function Aside(props: IAsideText) {
         />
       </div>
 
-      <h2 className={header}>Dashboard</h2>
+      <h2 className={header}>{props.dashboard}</h2>
 
       <div className="w-full h-[95%] overflow-y-auto scroll lg:pb-0 lg:h-full overflow-x-hidden">
         <Menu isNavBar={isNavBar} {...props} />

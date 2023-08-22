@@ -18,9 +18,15 @@ import {
   getInitialValues,
 } from '@/components';
 
+import { ICategoriesClient } from './types';
+
 const url = '/category';
 
-const CategoriesClient = () => {
+const CategoriesClient = ({
+  btnText,
+  formText,
+  headTitle,
+}: ICategoriesClient) => {
   const duration = 500;
   const [isFetching, setIsFetching] = useState(false);
   const { isOpen, isAnimation, setOpen } = useDelayAnimation(duration);
@@ -39,7 +45,7 @@ const CategoriesClient = () => {
       } else {
         await mutate([await productRoot.create(values, url)]);
       }
-
+      // TODO TRANSLATE THIS MASSAGE
       showMessage.success('Changes are successful');
     } catch (error) {
       if (axios.isAxiosError(error)) {
@@ -47,12 +53,17 @@ const CategoriesClient = () => {
       }
     } finally {
       setIsFetching(false);
+      setOpen(false);
     }
   };
 
   return (
     <MainWrapper>
-      <PageHead head="Categories" onClick={() => setOpen(true)} />
+      <PageHead
+        head={headTitle}
+        btnText={btnText}
+        onClick={() => setOpen(true)}
+      />
 
       {isLoading && <Loader />}
 
@@ -60,7 +71,8 @@ const CategoriesClient = () => {
         <ProductRoot
           url={url}
           categories={data}
-          title="Change category"
+          formText={formText}
+          title={formText.edit}
           swrStorage={GET_CATEGORY}
           baseHref="admin/category/"
         />
@@ -80,8 +92,9 @@ const CategoriesClient = () => {
       >
         <Form
           onSubmit={onSubmit}
+          formText={formText}
           isLoading={isFetching}
-          title="Create Category"
+          title={formText.create}
           onClose={() => setOpen(false)}
           initialValues={getInitialValues()}
         />

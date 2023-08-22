@@ -1,50 +1,65 @@
-'use client';
-import useSWR from 'swr';
-import axios from 'axios';
-import { FormikValues } from 'formik';
-import { usePathname } from 'next/navigation';
+import { useMemo } from 'react';
+import { useTranslations } from 'next-intl';
 
-import { product, productRoot } from '@/http';
-import { ACTIVE_CATEGORY } from '@/constants';
-import { ProductForm, MainWrapper, PageHead, showMessage } from '@/components';
-import { getInitialValues } from '@/components/admins/product-form/config';
+import CreatePage from './create-page';
 
 const Create = () => {
-  const path = usePathname();
-  const categoryId = path.split('/')[path.split('/').length - 2];
+  const validation = useTranslations('validation');
+  const categories = useTranslations('categories');
+  const seasonality = useTranslations('seasonality');
+  const productForm = useTranslations('product-form');
 
-  const { data } = useSWR(ACTIVE_CATEGORY, () =>
-    productRoot.getCategoryById(categoryId),
+  const categoriesText = useMemo(
+    () => ({
+      create: categories('create'),
+      edit: categories('edit'),
+    }),
+    [categories],
   );
 
-  const onSubmit = async (values: FormikValues) => {
-    const { name, name_ua, description, description_ua, img_url } = values;
-    const formData = new FormData();
+  const productFormText = useMemo(
+    () => ({
+      create: productForm('create'),
+      confirm: productForm('confirm'),
+      name_uk: productForm('name_uk'),
+      name_eng: productForm('name_eng'),
+      description_uk: productForm('description_uk'),
+      description_eng: productForm('description_eng'),
+      message: {
+        matches_cyrillic: validation('matches_cyrillic'),
+        matches_english: validation('matches_english'),
+        required: validation('required'),
+        min3: validation('min3'),
+        min2: validation('min2'),
+      },
+    }),
+    [productForm, validation],
+  );
 
-    if (data?.id) {
-      formData.append('name', name);
-      formData.append('name_ua', name_ua);
-      formData.append('img_url', img_url);
-      formData.append('categoryId', data.id);
-      formData.append('description', description);
-      formData.append('description_ua', description_ua);
-    }
-
-    try {
-      await product.create(formData);
-      // route.push()
-    } catch (error) {
-      if (axios.isAxiosError(error)) {
-        showMessage.error(error.response?.data.message);
-      }
-    }
-  };
-
+  const months = useMemo(
+    () => [
+      seasonality('jan'),
+      seasonality('feb'),
+      seasonality('mar'),
+      seasonality('apr'),
+      seasonality('may'),
+      seasonality('jun'),
+      seasonality('jul'),
+      seasonality('aug'),
+      seasonality('sep'),
+      seasonality('oct'),
+      seasonality('nov'),
+      seasonality('dec'),
+    ],
+    [seasonality],
+  );
   return (
-    <MainWrapper>
-      <PageHead head={data ? `Create in ${data?.name}` : 'Loading...'} />
-      <ProductForm onSubmit={onSubmit} initialValues={getInitialValues()} />
-    </MainWrapper>
+    <CreatePage
+      months={months}
+      categoriesText={categoriesText}
+      productFormText={productFormText}
+      pickerTitle={seasonality('title')}
+    />
   );
 };
 
