@@ -2,12 +2,13 @@ import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 
-import { UpdateProductDto } from './types';
 import { ProductDto } from './dto/product.dto';
 import { ProductEntity } from './product.entity';
 import { FileService } from '../file/file.service';
+import { ProductServiceDto } from './dto/product.service.dto';
 import { CategoryService } from '../category/category.service';
 import { DuplicateService } from '../duplicate/duplicate.service';
+import { UpdateProductServiceDto } from './dto/update..product.service.dto';
 
 @Injectable()
 export class ProductService {
@@ -19,7 +20,10 @@ export class ProductService {
     private fileService: FileService,
   ) {}
 
-  async create(productDto: ProductDto, file: Express.Multer.File) {
+  async create(
+    productDto: ProductServiceDto | ProductDto,
+    file: Express.Multer.File,
+  ) {
     const { categoryId, ...product } = productDto;
 
     const category = await this.categoryService.findOne(categoryId);
@@ -38,7 +42,9 @@ export class ProductService {
       product.img_url = imgUrl as string;
     }
 
-    const newProduct = await this.productRepository.create(product);
+    const newProduct = await this.productRepository.create(
+      product as ProductServiceDto,
+    );
     newProduct.category_id = category;
 
     return this.productRepository.save(newProduct);
@@ -70,7 +76,7 @@ export class ProductService {
 
   async update(
     id: string,
-    productDto: UpdateProductDto,
+    productDto: UpdateProductServiceDto,
     file: Express.Multer.File,
   ): Promise<ProductEntity> {
     const product = await this.findOne(id);
@@ -96,6 +102,10 @@ export class ProductService {
     if (file) {
       const imgUrl = await this.fileService.create(file);
       productDto.img_url = imgUrl;
+    }
+
+    if (!file) {
+      await this.fileService.delete(product.img_url);
     }
 
     return await this.productRepository.save({
