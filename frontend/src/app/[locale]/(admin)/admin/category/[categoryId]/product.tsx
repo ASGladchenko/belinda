@@ -2,11 +2,11 @@
 import useSWR from 'swr';
 import { usePathname, useRouter } from 'next/navigation';
 
-import { PageHead, MainWrapper, ProductRoot } from '@/components';
 import { IFormText } from '@/types';
 import { productRoot } from '@/http';
 import { getProducts } from '@/http/product';
 import { ACTIVE_CATEGORY } from '@/constants';
+import { PageHead, MainWrapper, ProductRoot } from '@/components';
 
 const url = '/product';
 
@@ -18,8 +18,8 @@ interface IProductList {
 
 export const ProductList = ({
   btnText,
-  categoryId,
   formText,
+  categoryId,
 }: IProductList) => {
   const router = useRouter();
   const path = usePathname();

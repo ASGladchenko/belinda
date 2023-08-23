@@ -2,6 +2,7 @@ import axios from 'axios';
 import Cookies from 'js-cookie';
 
 import { getCookies, removeTokensCookies } from '@/utils';
+
 import { http } from './constant';
 
 const initBelinda = ({ onAuthError }: { onAuthError: () => void }) => {

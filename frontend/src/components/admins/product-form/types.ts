@@ -6,8 +6,8 @@ export interface IProductForm {
   months: string[];
   pickerTitle: string;
   initialValues: IProduct;
-  onSubmit: (values: FormikValues) => void;
   productFormText: IProductFormText;
+  onSubmit: (values: FormikValues) => void;
 }
 
 export interface IProduct {
