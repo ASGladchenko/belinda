@@ -12,21 +12,61 @@
     "seasonality": "seasonality",
     "contacts": "contacts"
   },
+  "categories": {
+    "create": "Create in",
+    "create_btn": "Create",
+    "edit": "Edit",
+    "title": "Categories"
+  },
+  "create-edit-categories": {
+    "cancel": "Cancel",
+    "confirm": "Confirm",
+    "editTitle": "Edit Category",
+    "createTitle": "Create Category",
+    "name_eng": "Category name in English",
+    "name_uk": "Category name in Ukrainian"
+  },
+  "login": {
+    "login": "Login",
+    "enter": "Enter",
+    "password": "Password",
+    "remember": "Remember me",
+    "forgot": "Forgot password?"
+  },
+  "validation": {
+    "required": "Required field",
+    "min2": "Minimum 2 characters",
+    "min4": "Minimum 4 characters",
+    "min3": "Minimum 3 characters",
+    "max16": "Maximum 16 characters",
+    "matches_english": "Only English letters",
+    "matches_cyrillic": "Only the Cyrillic alphabet"
+  },
+  "product-form": {
+    "create": "create",
+    "confirm": "confirm",
+    "name_eng": "Product name in English",
+    "name_uk": "Product name in Ukrainian",
+    "description_eng": "Product description in English",
+    "description_uk": "Product description in  Ukrainian"
+  },
   "seasonality": {
-    "january": "jan",
-    "february": "feb",
-    "march": "mar",
-    "april": "apr",
+    "title": "seasonality",
+    "jan": "jan",
+    "feb": "feb",
+    "mar": "mar",
+    "apr": "apr",
     "may": "may",
-    "june": "jun",
-    "july": "jul",
-    "august": "aug",
-    "september": "sep",
-    "october": "oct",
-    "november": "nov",
-    "december": "dec"
+    "jun": "jun",
+    "jul": "jul",
+    "aug": "aug",
+    "sep": "sep",
+    "oct": "oct",
+    "nov": "nov",
+    "dec": "dec"
   },
   "sidebar-admin": {
+    "dashboard": "Dashboard",
     "company": "Company",
     "about": "About",
     "webPage": "Web page"

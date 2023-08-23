@@ -1,67 +1,72 @@
-'use client';
-import useSWR from 'swr';
-import { FormikValues } from 'formik';
-import {
-  Loader,
-  PageHead,
-  MainWrapper,
-  ProductForm,
-  showMessage,
-} from '@/components';
+import { useMemo } from 'react';
+import { useTranslations } from 'next-intl';
 
-import { product } from '@/http';
-import { IProduct } from '@/components/admins/product-form/types';
-import { getInitialValues } from '@/components/admins/product-form/config';
-import axios from 'axios';
-
+import EditPage from './edit-page';
 interface ISubCategory {
   params: {
     product: string;
   };
 }
+const EditProduct = ({ params: { product: productId } }: ISubCategory) => {
+  const categories = useTranslations('categories');
+  const validation = useTranslations('validation');
+  const seasonality = useTranslations('seasonality');
+  const productForm = useTranslations('product-form');
 
-const Product = ({ params: { product: productID } }: ISubCategory) => {
-  const { data, isLoading } = useSWR(productID, () =>
-    product.getProductById(productID),
+  const categoriesText = useMemo(
+    () => ({
+      create: categories('create'),
+      edit: categories('edit'),
+    }),
+    [categories],
   );
 
-  const initialValues =
-    isLoading || !data ? ({} as IProduct) : getInitialValues(data);
+  const productFormText = useMemo(
+    () => ({
+      create: productForm('create'),
+      confirm: productForm('confirm'),
+      name_uk: productForm('name_uk'),
+      name_eng: productForm('name_eng'),
+      description_uk: productForm('description_uk'),
+      description_eng: productForm('description_eng'),
+      message: {
+        matches_cyrillic: validation('matches_cyrillic'),
+        matches_english: validation('matches_english'),
+        required: validation('required'),
+        min3: validation('min3'),
+        min2: validation('min2'),
+      },
+    }),
+    [productForm, validation],
+  );
 
-  const onSubmit = async (values: FormikValues) => {
-    const { name, name_ua, description, description_ua, img_url } = values;
-    const formData = new FormData();
-
-    if (data?.id) {
-      formData.append('name', name);
-      formData.append('name_ua', name_ua);
-      formData.append('img_url', img_url);
-      formData.append('categoryId', data.id);
-      formData.append('description', description);
-      formData.append('description_ua', description_ua);
-    }
-
-    try {
-      await product.edit(formData, productID);
-    } catch (error) {
-      if (axios.isAxiosError(error)) {
-        showMessage.error(error.response?.data.message);
-      }
-    }
-  };
+  const months = useMemo(
+    () => [
+      seasonality('jan'),
+      seasonality('feb'),
+      seasonality('mar'),
+      seasonality('apr'),
+      seasonality('may'),
+      seasonality('jun'),
+      seasonality('jul'),
+      seasonality('aug'),
+      seasonality('sep'),
+      seasonality('oct'),
+      seasonality('nov'),
+      seasonality('dec'),
+    ],
+    [seasonality],
+  );
 
   return (
-    <MainWrapper>
-      {isLoading ? (
-        <Loader />
-      ) : (
-        <>
-          <PageHead head={data ? `Edit ${data?.name}` : 'Loading...'} />
-          <ProductForm onSubmit={onSubmit} initialValues={initialValues} />
-        </>
-      )}
-    </MainWrapper>
+    <EditPage
+      months={months}
+      productId={productId}
+      categoriesText={categoriesText}
+      productFormText={productFormText}
+      pickerTitle={seasonality('title')}
+    />
   );
 };
 
-export default Product;
+export default EditProduct;

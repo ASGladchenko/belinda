@@ -1,4 +1,5 @@
 export { default as Add } from './admin/added.svg';
+export { default as Check } from './check.svg';
 export { default as Company } from './admin/company.svg';
 export { default as Delete } from './admin/delete.svg';
 export { default as Down } from './admin/arrowDown.svg';
@@ -16,4 +17,3 @@ export { default as Right } from './right.svg';
 export { default as Search } from './admin/search.svg';
 export { default as Ua } from './flags/ua.svg';
 export { default as Web } from './admin/webpage.svg';
-export { default as Check } from './check.svg';

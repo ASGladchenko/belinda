@@ -30,34 +30,3 @@ export const fruits = {
     },
   ],
 };
-
-export const vegetables = {
-  name: 'vegetables',
-  products: [
-    {
-      id: '1',
-      name: 'Garlic',
-      img: garlic.src,
-      seasonality: ['apr', 'may', 'jun'],
-    },
-    {
-      id: '2',
-      name: 'Pomegranate',
-      img: garlic.src,
-      seasonality: ['apr', 'may', 'jun'],
-    },
-
-    {
-      id: '3',
-      name: 'Lemon',
-      img: garlic.src,
-      seasonality: ['apr', 'may', 'jun'],
-    },
-    {
-      id: '4',
-      name: 'apricot',
-      img: garlic.src,
-      seasonality: ['apr', 'may', 'jun'],
-    },
-  ],
-};

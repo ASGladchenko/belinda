@@ -4,18 +4,18 @@ export const SeasonMonths = () => {
   const months = useTranslations('seasonality');
 
   return [
-    months('january'),
-    months('february'),
-    months('march'),
-    months('april'),
+    months('jan'),
+    months('feb'),
+    months('mar'),
+    months('apr'),
     months('may'),
-    months('june'),
-    months('july'),
-    months('august'),
-    months('september'),
-    months('october'),
-    months('november'),
-    months('december'),
+    months('jun'),
+    months('jul'),
+    months('aug'),
+    months('sep'),
+    months('oct'),
+    months('nov'),
+    months('dec'),
   ];
 };
 

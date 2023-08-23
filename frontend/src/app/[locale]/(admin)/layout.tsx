@@ -15,6 +15,7 @@ export default function LayoutAdmin({
     about: aside('about'),
     company: aside('company'),
     webPage: aside('webPage'),
+    dashboard: aside('dashboard'),
   };
 
   return (

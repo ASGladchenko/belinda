@@ -5,14 +5,14 @@ import { IPageHead } from './types';
 // TODO Revise this component
 // import { BreadCrumps } from '../crumps/helpers';
 
-const PageHead = ({ head, onClick }: IPageHead) => {
+const PageHead = ({ head, onClick, btnText }: IPageHead) => {
   // TODO Revise this component
   // const crumps = BreadCrumps();
 
   return (
-    <div className="flex flex-col items-start justify-between w-full gap-3 rounded-lg sm:items-center sm:flex-row ">
+    <div className="flex flex-row items-start justify-between w-full gap-3 rounded-lg sm:items-center sm:flex-row ">
       <div className="flex flex-col gap-2">
-        <h1 className="text-2xl font-medium capitalize select-none text-admin-headPage dark:text-white font-inter">
+        <h1 className="text-2xl font-medium select-none text-admin-headPage dark:text-white font-inter">
           {head}
         </h1>
         {/* TODO Revise this component */}
@@ -21,7 +21,7 @@ const PageHead = ({ head, onClick }: IPageHead) => {
 
       {!!onClick && (
         <Button
-          text="Create"
+          text={btnText}
           variant="primary"
           onClick={onClick}
           icon={<Add width={24} height={24} />}

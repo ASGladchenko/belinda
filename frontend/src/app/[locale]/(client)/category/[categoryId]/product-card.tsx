@@ -1,6 +1,7 @@
 import { AnimationBlock } from '@/components/animation-block';
-import { IProductCard } from './types';
+
 import { Month } from './month';
+import { IProductCard } from './types';
 
 export const ProductCard = ({ name, img, seasonality }: IProductCard) => {
   return (

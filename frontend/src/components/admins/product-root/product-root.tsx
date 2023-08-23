@@ -3,38 +3,40 @@ import { useMemo, useState } from 'react';
 import axios from 'axios';
 import { useSWRConfig } from 'swr';
 
-import { IRootData } from '@/types';
 import { productRoot } from '@/http';
 import { GET_CATEGORY } from '@/constants';
 import { useDelayAnimation } from '@/hooks';
+import { IFormText, IRootData } from '@/types';
+import { IProductLink } from '@/components/admins/product-link/types';
 import {
   Overlay,
   ProductLink,
   showMessage,
   CategoryWrapper,
 } from '@/components';
-import { IProductLink } from '@/components/admins/product-link/types';
 
 import { Form } from './form';
 import { getInitialValues } from './config';
 
-interface IEdit {
+interface IProductRoot {
   url: string;
   title: string;
   baseHref: string;
   swrStorage: string;
   notModify?: boolean;
+  formText: IFormText;
   categories: IProductLink[];
 }
 
 export const ProductRoot = ({
   url,
   title,
+  formText,
   baseHref,
   notModify,
   swrStorage,
   categories,
-}: IEdit) => {
+}: IProductRoot) => {
   const [id, setId] = useState('');
   const [isFetching, setIsFetching] = useState(false);
   const { mutate } = useSWRConfig();
@@ -91,6 +93,7 @@ export const ProductRoot = ({
           >
             <Form
               title={title}
+              formText={formText}
               onSubmit={onSubmit}
               isLoading={isFetching}
               onClose={() => setOpen(false)}
