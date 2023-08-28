@@ -18,13 +18,13 @@ export const SliderMain = () => {
 
       <Swiper
         loop={true}
-        speed={2000}
+        speed={4000}
         effect="fade"
         slidesPerView={1}
         allowTouchMove={false}
         modules={[EffectFade, Autoplay]}
         autoplay={{
-          delay: 3500,
+          delay: 5000,
           disableOnInteraction: false,
         }}
       >

@@ -1,3 +1,12 @@
+export { default as bg1 } from '../../assets/main-swiper/3.jpg';
+export { default as bg11 } from '../../assets/main-swiper/7.jpg';
+export { default as bg12 } from '../../assets/main-swiper/12.jpg';
+export { default as bg2 } from '../../assets/main-swiper/2.jpg';
+export { default as bg3 } from '../../assets/main-swiper/1.jpg';
+export { default as bg4 } from '../../assets/main-swiper/4.jpg';
+export { default as bg5 } from '../../assets/main-swiper/5.jpg';
+export { default as bg6 } from '../../assets/main-swiper/6.jpg';
+export { default as bg7 } from '../../assets/main-swiper/vegetable.jpg';
+export { default as bg8 } from '../../assets/main-swiper/8.jpg';
+export { default as bg9 } from '../../assets/main-swiper/9.jpg';
 export { default as fruit } from '../../assets/main-swiper/fruit.jpg';
-export { default as vegetable } from '../../assets/main-swiper/vegetable.jpg';
-export { default as bg3 } from '../../assets/main-swiper/bg3.jpg';

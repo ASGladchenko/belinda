@@ -11,16 +11,14 @@ export default function Layout({
   const header = useTranslations('header-client');
 
   return (
-    <div className="font-jost ">
+    <div className="font-jost">
       <Header
         locale={locale}
         home={header('home')}
         about={header('about')}
-        fruits={header('fruits')}
         services={header('services')}
         products={header('products')}
         contacts={header('contacts')}
-        vegetables={header('vegetables')}
         seasonality={header('seasonality')}
       />
 

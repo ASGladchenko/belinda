@@ -1,15 +1,18 @@
-import { IHeaderClient } from '@/types';
+import { ITranslatedNavBar } from '@/types';
 
 export const translatedNavbar = ({
   home,
   about,
-  fruits,
   services,
   products,
   contacts,
-  vegetables,
+  categories,
   seasonality,
-}: Omit<IHeaderClient, 'locale'>) => {
+}: Omit<ITranslatedNavBar, 'locale, isLoading'>) => {
+  const menuItems = categories.map(({ name, id }) => ({
+    name: name,
+    path: `/category/${id}`,
+  }));
   return [
     { name: home, path: '/' },
     { name: about, path: '/#aboutUs' },
@@ -17,11 +20,7 @@ export const translatedNavbar = ({
     {
       name: products,
       path: '/',
-      menu: [
-        { name: fruits, path: '/' },
-        { name: vegetables, path: '/' },
-        { name: seasonality, path: '/seasonality' },
-      ],
+      menu: [...menuItems, { name: seasonality, path: '/seasonality' }],
     },
     { name: contacts, path: '/contacts' },
   ];

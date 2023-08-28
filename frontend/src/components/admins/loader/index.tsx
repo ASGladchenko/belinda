@@ -1,7 +1,9 @@
 import './styles.css';
 
-const Loader = () => (
-  <span className="absolute loader top-[50%] -translate-y-full rotate-45"></span>
+const Loader = ({ style }: { style?: string }) => (
+  <span
+    className={`absolute loader top-[50%] rotate-45  ${style && style}`}
+  ></span>
 );
 
 export { Loader };

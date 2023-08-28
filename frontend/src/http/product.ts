@@ -1,4 +1,3 @@
-import { IProductSend } from '@/types';
 import { belinda } from './interceptor';
 
 export const getProductById = (id: string) =>

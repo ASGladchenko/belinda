@@ -1,12 +1,18 @@
 export interface IProductCard {
   id: string;
+  key?: string;
   img: string;
   name: string;
   seasonality: string[];
 }
 
 export interface IClientCategory {
-  params: {
-    categoryId: string;
-  };
+  categoryId: string;
+}
+
+export interface IProduct {
+  id: string;
+  name: string;
+  img_url: string;
+  months: string[];
 }
