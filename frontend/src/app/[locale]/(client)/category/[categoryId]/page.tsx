@@ -1,6 +1,6 @@
 import { useTranslations } from 'next-intl';
 
-import { mockMonth } from '../mock';
+import { mockMonth } from '@/constants';
 import { ClientCategory } from './client-category';
 
 const ClientCategoryPage = ({
