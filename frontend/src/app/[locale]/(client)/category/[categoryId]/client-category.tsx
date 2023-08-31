@@ -1,15 +1,18 @@
 'use client';
 import useSWR from 'swr';
-import * as Images from '@/assets/category/index';
 
 import { productRoot } from '@/http';
 import { Loader } from '@/components';
 import { getProducts } from '@/http/product';
+import * as Images from '@/assets/category/index';
 
 import { ProductCard } from './product-card';
 import { IClientCategory, IProduct } from './types';
 
-export const ClientCategory = ({ categoryId }: IClientCategory) => {
+export const ClientCategory = ({
+  categoryId,
+  months: translatedMonths,
+}: IClientCategory) => {
   const { data, isLoading } = useSWR(categoryId, () =>
     productRoot.getCategoryById(categoryId),
   );
@@ -48,6 +51,7 @@ export const ClientCategory = ({ categoryId }: IClientCategory) => {
               name={name}
               img={img_url}
               seasonality={months}
+              translatedMonths={translatedMonths}
             />
           ))}
       </div>

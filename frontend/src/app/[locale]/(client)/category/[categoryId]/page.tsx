@@ -1,3 +1,6 @@
+import { useTranslations } from 'next-intl';
+
+import { mockMonth } from '../mock';
 import { ClientCategory } from './client-category';
 
 const ClientCategoryPage = ({
@@ -5,7 +8,12 @@ const ClientCategoryPage = ({
 }: {
   params: { categoryId: string };
 }) => {
-  return <ClientCategory categoryId={categoryId} />;
+  const seasons = useTranslations('seasonality');
+  const months = [
+    ...mockMonth.map((month) => ({ name: month, value: seasons(month) })),
+  ];
+
+  return <ClientCategory months={months} categoryId={categoryId} />;
 };
 
 export default ClientCategoryPage;

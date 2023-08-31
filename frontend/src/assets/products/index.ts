@@ -1,1 +1,1 @@
-export { default as skeleton } from '@/assets/products/skeleton.png';
+export { default as Images } from '@/assets/products/skeleton.png';
