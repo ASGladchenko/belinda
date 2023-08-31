@@ -5,7 +5,7 @@ import { IMessage } from '@/types';
 import { IProduct } from './types';
 
 const baseNameRegExp = /^[A-Za-z0-9\s.,!?;:()"'-]*$/;
-const cyrillicRegExp = /^[А-Яа-яЁёЇїІіЄєҐґ']+$/;
+const cyrillicRegExp = /^[А-Яа-яЁёЇїІіЄєҐґ0-9\s']+$/;
 
 export const validationSchema = ({
   min2,

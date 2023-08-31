@@ -43,11 +43,9 @@ export interface IHeaderClient {
   home: string;
   about: string;
   locale: string;
-  fruits: string;
   services: string;
   products: string;
   contacts: string;
-  vegetables: string;
   seasonality: string;
 }
 
@@ -95,4 +93,17 @@ export interface ILoginPage {
   remember: string;
   forgot: string;
   message: IMessage;
+}
+
+export interface ICategoryNavbarItem {
+  id: string;
+  name: string;
+}
+export interface ITranslatedNavBar
+  extends Omit<IHeaderClient, 'locale' | 'isLoading'> {
+  categories: ICategoryNavbarItem[];
+}
+export interface INavBar extends IHeaderClient {
+  isLoading?: boolean;
+  categories: ICategoryNavbarItem[];
 }

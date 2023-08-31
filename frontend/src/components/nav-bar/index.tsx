@@ -1,8 +1,8 @@
 'use client';
-import Link from 'next-intl/link';
 import React, { useEffect, useRef, useState } from 'react';
+import Link from 'next-intl/link';
 
-import { IHeaderClient } from '@/types';
+import { INavBar } from '@/types';
 import { useOutsideClick } from '@/hooks';
 
 import { getStyles } from './styles';
@@ -10,7 +10,7 @@ import { ThemeIcons } from '../theme-icons';
 import { translatedNavbar } from './config';
 import { LanguageSelection } from '../language-selection';
 
-export const NavBar = ({ locale, ...props }: IHeaderClient) => {
+export const NavBar = ({ locale, ...props }: INavBar) => {
   const ref = useRef<HTMLDivElement>(null);
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [isOpenDropDown, setIsOpenDropDown] = useState<boolean>(false);
