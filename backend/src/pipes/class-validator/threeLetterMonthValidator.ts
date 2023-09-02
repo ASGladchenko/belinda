@@ -6,6 +6,8 @@ import {
   ValidatorConstraintInterface,
 } from 'class-validator';
 
+import { validMonths } from '../../utils/months';
+
 @ValidatorConstraint({ name: 'isThreeLetterMonth', async: false })
 export class IsThreeLetterMonthConstraint
   implements ValidatorConstraintInterface
@@ -21,22 +23,6 @@ export class IsThreeLetterMonthConstraint
         return false;
       }
     }
-
-    const validMonths = [
-      'jan',
-      'feb',
-      'mar',
-      'apr',
-      'may',
-      'jun',
-      'jul',
-      'aug',
-      'sep',
-      'oct',
-      'nov',
-      'dec',
-    ];
-
     for (const month of transformedValue) {
       if (
         typeof month !== 'string' ||

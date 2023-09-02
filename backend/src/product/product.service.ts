@@ -9,8 +9,12 @@ import { FileService } from '../file/file.service';
 import { ProductServiceDto } from './dto/product.service.dto';
 import { CategoryService } from '../category/category.service';
 import { DuplicateService } from '../duplicate/duplicate.service';
-import { getArrayByLanguage, getObjectByLanguage } from '../utils';
 import { UpdateProductServiceDto } from './dto/update.product.service.dto';
+import {
+  sortedMonths,
+  getArrayByLanguage,
+  getObjectByLanguage,
+} from '../utils';
 
 @Injectable()
 export class ProductService {
@@ -75,6 +79,10 @@ export class ProductService {
       product.img_url = imgUrl as string;
     }
 
+    if (Array.isArray(productDto.months)) {
+      productDto.months = sortedMonths(productDto.months);
+    }
+
     const newProduct = await this.productRepository.create(
       product as ProductServiceDto,
     );
@@ -106,6 +114,10 @@ export class ProductService {
         fieldsToCheck,
         id,
       );
+    }
+
+    if (Array.isArray(productDto.months)) {
+      productDto.months = sortedMonths(productDto.months);
     }
 
     if (file) {
