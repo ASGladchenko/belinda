@@ -2,13 +2,15 @@ import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 
+import { LanguageType } from '../decorators';
 import { ProductDto } from './dto/product.dto';
 import { ProductEntity } from './product.entity';
 import { FileService } from '../file/file.service';
 import { ProductServiceDto } from './dto/product.service.dto';
 import { CategoryService } from '../category/category.service';
 import { DuplicateService } from '../duplicate/duplicate.service';
-import { UpdateProductServiceDto } from './dto/update..product.service.dto';
+import { getArrayByLanguage, getObjectByLanguage } from '../utils';
+import { UpdateProductServiceDto } from './dto/update.product.service.dto';
 
 @Injectable()
 export class ProductService {
@@ -19,6 +21,37 @@ export class ProductService {
     private duplicateService: DuplicateService,
     private fileService: FileService,
   ) {}
+
+  async findAll(
+    categoryId: string,
+    lang: LanguageType,
+  ): Promise<ProductEntity[]> {
+    const products = await this.productRepository.find({
+      where: { category_id: { id: categoryId } },
+    });
+
+    if (products?.length === 0) {
+      throw new HttpException('Products not found', HttpStatus.BAD_REQUEST);
+    }
+
+    return getArrayByLanguage(products, lang);
+  }
+
+  async findOne(id: string, lang?: LanguageType): Promise<ProductEntity> {
+    const product = await this.productRepository.findOneBy({
+      id,
+    });
+
+    if (!product) {
+      throw new HttpException('Product not found', HttpStatus.BAD_REQUEST);
+    }
+
+    if (lang) {
+      return getObjectByLanguage(product, lang);
+    }
+
+    return product;
+  }
 
   async create(
     productDto: ProductServiceDto | ProductDto,
@@ -48,30 +81,6 @@ export class ProductService {
     newProduct.category_id = category;
 
     return this.productRepository.save(newProduct);
-  }
-
-  async findAll(categoryId: string): Promise<ProductEntity[]> {
-    const products = await this.productRepository.find({
-      where: { category_id: { id: categoryId } },
-    });
-
-    if (products?.length === 0) {
-      throw new HttpException('Products not found', HttpStatus.BAD_REQUEST);
-    }
-
-    return products;
-  }
-
-  async findOne(id: string): Promise<ProductEntity> {
-    const product = await this.productRepository.findOneBy({
-      id,
-    });
-
-    if (!product) {
-      throw new HttpException('Product not found', HttpStatus.BAD_REQUEST);
-    }
-
-    return product;
   }
 
   async update(

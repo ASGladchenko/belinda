@@ -6,7 +6,7 @@ export class CategoryDto {
   @IsNotEmpty()
   @IsString()
   @MinLength(2, {
-    message: 'Мінімум 2 символи',
+    message: 'Min 2 symbols',
   })
   name_en: string;
 
@@ -14,7 +14,7 @@ export class CategoryDto {
   @IsNotEmpty()
   @IsString()
   @MinLength(2, {
-    message: 'Min 2 symbols',
+    message: 'Мінімум 2 символи',
   })
   name_ua: string;
 }
