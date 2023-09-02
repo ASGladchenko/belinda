@@ -7,7 +7,7 @@ import { HttpException } from '@nestjs/common/exceptions';
 import { ProductEntity } from '../product/product.entity';
 
 const fsPromises = fs.promises;
-const pathOfUrl = 'http://31.202.177.131:5200/'; //'http://localhost:4200/';
+const pathOfUrl = 'http://31.202.177.131:5200/'; /* 'http://localhost:4200/'; */
 
 @Injectable()
 export class FileService {

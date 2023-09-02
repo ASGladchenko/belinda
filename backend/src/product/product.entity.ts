@@ -14,20 +14,19 @@ export class ProductEntity {
   @ApiProperty({ example: 'c77184ec-a8d2-4d29-bdd3-08202b6bce54' })
   @PrimaryGeneratedColumn('uuid')
   id: string;
+  @ApiProperty({ uniqueItems: true, example: 'Apple' })
+  @Column({ unique: true })
+  name_en: string;
 
   @ApiProperty({ uniqueItems: true, example: 'Яблуко' })
   @Column({ unique: true })
-  name: string;
-
-  @ApiProperty({ uniqueItems: true, example: 'Apple' })
-  @Column({ unique: true })
   name_ua: string;
 
-  @ApiProperty({ example: 'Опис', required: false })
-  @Column({ nullable: true })
-  description?: string;
-
   @ApiProperty({ example: 'Description', required: false })
+  @Column({ nullable: true })
+  description_en?: string;
+
+  @ApiProperty({ example: 'Опис', required: false })
   @Column({ nullable: true })
   description_ua?: string;
 

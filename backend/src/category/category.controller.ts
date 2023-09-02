@@ -22,6 +22,7 @@ import { AuthGuard } from '../guards';
 import { CategoryDto } from './dto/category.dto';
 import { CategoryEntity } from './category.entity';
 import { CategoryService } from './category.service';
+import { GetLanguage, LanguageType } from '../decorators';
 
 @ApiTags('Categories')
 @Controller('category')
@@ -36,8 +37,8 @@ export class CategoryController {
     type: [CategoryEntity],
     description: 'OK',
   })
-  async findAll(): Promise<CategoryEntity[]> {
-    return this.categoryService.findAll();
+  async findAll(@GetLanguage() lang: LanguageType): Promise<CategoryEntity[]> {
+    return this.categoryService.findAll(lang);
   }
 
   // @UseGuards(AuthGuard)
@@ -48,8 +49,11 @@ export class CategoryController {
     type: CategoryEntity,
     description: 'OK',
   })
-  findOne(@Param('id') id: string): Promise<CategoryEntity> {
-    return this.categoryService.findOne(id);
+  findOne(
+    @Param('id') id: string,
+    @GetLanguage() lang: LanguageType,
+  ): Promise<CategoryEntity> {
+    return this.categoryService.findOne(id, lang);
   }
 
   // @UseGuards(AuthGuard)

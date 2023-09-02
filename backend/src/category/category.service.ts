@@ -2,10 +2,12 @@ import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Injectable, HttpException, HttpStatus } from '@nestjs/common';
 
+import { LanguageType } from '../decorators';
 import { CategoryDto } from './dto/category.dto';
 import { FileService } from '../file/file.service';
 import { CategoryEntity } from './category.entity';
 import { DuplicateService } from '../duplicate/duplicate.service';
+import { getArrayByLanguage, getObjectByLanguage } from './../utils';
 
 @Injectable()
 export class CategoryService {
@@ -16,17 +18,7 @@ export class CategoryService {
     private fileService: FileService,
   ) {}
 
-  async create(categoryDto: CategoryDto): Promise<CategoryEntity> {
-    await this.duplicateService.check(this.categoryRepository, {
-      name: categoryDto.name,
-      name_ua: categoryDto.name_ua,
-    });
-
-    const newCategory = await this.categoryRepository.create(categoryDto);
-    return await this.categoryRepository.save(newCategory);
-  }
-
-  async findAll(): Promise<CategoryEntity[]> {
+  async findAll(lang: LanguageType): Promise<CategoryEntity[]> {
     const categories = await this.categoryRepository.find({
       relations: { products: true },
     });
@@ -35,10 +27,10 @@ export class CategoryService {
       throw new HttpException('Categories not found', HttpStatus.BAD_REQUEST);
     }
 
-    return categories;
+    return getArrayByLanguage(categories, lang);
   }
 
-  async findOne(id: string): Promise<CategoryEntity> {
+  async findOne(id: string, lang?: LanguageType): Promise<CategoryEntity> {
     const category = await this.categoryRepository.findOneBy({
       id,
     });
@@ -47,7 +39,21 @@ export class CategoryService {
       throw new HttpException('Category not found', HttpStatus.BAD_REQUEST);
     }
 
+    if (lang) {
+      return getObjectByLanguage(category, lang);
+    }
+
     return category;
+  }
+
+  async create(categoryDto: CategoryDto): Promise<CategoryEntity> {
+    await this.duplicateService.check(this.categoryRepository, {
+      name_en: categoryDto.name_en,
+      name_ua: categoryDto.name_ua,
+    });
+
+    const newCategory = await this.categoryRepository.create(categoryDto);
+    return await this.categoryRepository.save(newCategory);
   }
 
   async update(id: string, categoryDto: CategoryDto): Promise<CategoryEntity> {
@@ -55,8 +61,8 @@ export class CategoryService {
 
     const fieldsToCheck = {};
 
-    if (category.name !== categoryDto.name) {
-      fieldsToCheck['name'] = categoryDto.name;
+    if (category.name_en !== categoryDto.name_en) {
+      fieldsToCheck['name_en'] = categoryDto.name_en;
     }
 
     if (category.name_ua !== categoryDto.name_ua) {

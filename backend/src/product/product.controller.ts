@@ -31,8 +31,9 @@ import { ProductDto } from './dto/product.dto';
 import { ProductEntity } from './product.entity';
 import { ProductService } from './product.service';
 import { postProperty, putProperty } from './config';
+import { GetLanguage, LanguageType } from '../decorators';
 import { UpdateProductDto } from './dto/update.product.dto';
-import { UpdateProductServiceDto } from './dto/update..product.service.dto';
+import { UpdateProductServiceDto } from './dto/update.product.service.dto';
 
 @ApiTags('Products')
 @Controller('product')
@@ -50,8 +51,9 @@ export class ProductController {
   })
   async findAll(
     @Query('categoryId') categoryId: string,
+    @GetLanguage() lang: LanguageType,
   ): Promise<ProductEntity[]> {
-    return this.productService.findAll(categoryId);
+    return this.productService.findAll(categoryId, lang);
   }
 
   // @UseGuards(AuthGuard)
@@ -62,8 +64,11 @@ export class ProductController {
     type: ProductEntity,
     description: 'OK',
   })
-  findOne(@Param('id') id: string): Promise<ProductEntity> {
-    return this.productService.findOne(id);
+  findOne(
+    @Param('id') id: string,
+    @GetLanguage() lang: LanguageType,
+  ): Promise<ProductEntity> {
+    return this.productService.findOne(id, lang);
   }
 
   // @UseGuards(AuthGuard)
