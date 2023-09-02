@@ -6,7 +6,7 @@ import { getCookies, removeTokensCookies } from '@/utils';
 import { http } from './constant';
 
 const initBelinda = ({ onAuthError }: { onAuthError: () => void }) => {
-  axios.defaults.baseURL = `${http.url}/api` /* 'http://localhost:4200/api' */;
+  axios.defaults.baseURL = `${http.url}/api`;
 
   axios.interceptors.request.use((config) => {
     const access = getCookies('access');

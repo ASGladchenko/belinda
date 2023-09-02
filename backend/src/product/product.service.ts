@@ -33,7 +33,7 @@ export class ProductService {
     }
 
     await this.duplicateService.check(this.productRepository, {
-      name: productDto.name,
+      name_en: productDto.name_en,
       name_ua: productDto.name_ua,
     });
 
@@ -83,8 +83,8 @@ export class ProductService {
 
     const fieldsToCheck = {};
 
-    if (product.name !== productDto.name) {
-      fieldsToCheck['name'] = productDto.name;
+    if (product.name_en !== productDto.name_en) {
+      fieldsToCheck['name_en'] = productDto.name_en;
     }
 
     if (product.name_ua !== productDto.name_ua) {

@@ -9,15 +9,15 @@ export class UpdateProductServiceDto {
   @IsNotEmpty()
   @IsString()
   @MinLength(2, {
-    message: 'Мінімум 2 символи',
+    message: 'Min 2 symbols',
   })
-  name: string;
+  name_en: string;
 
   @ApiProperty({ uniqueItems: true, example: 'Фрукти' })
   @IsNotEmpty()
   @IsString()
   @MinLength(2, {
-    message: 'Min 2 symbols',
+    message: 'Мінімум 2 символи',
   })
   name_ua: string;
 
@@ -25,15 +25,15 @@ export class UpdateProductServiceDto {
   @IsOptional()
   @IsString()
   @MinLength(2, {
-    message: 'Мінімум 2 символи',
+    message: 'Min 2 symbols',
   })
-  description?: string;
+  description_en?: string;
 
   @ApiProperty({ example: 'Опис', required: false })
   @IsOptional()
   @IsString()
   @MinLength(2, {
-    message: 'Min 2 symbols',
+    message: 'Мінімум 2 символи',
   })
   description_ua?: string;
 

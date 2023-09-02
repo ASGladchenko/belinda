@@ -8,7 +8,7 @@ export class CategoryDto {
   @MinLength(2, {
     message: 'Мінімум 2 символи',
   })
-  name: string;
+  name_en: string;
 
   @ApiProperty({ uniqueItems: true, example: 'Фрукти' })
   @IsNotEmpty()

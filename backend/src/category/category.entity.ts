@@ -11,7 +11,7 @@ export class CategoryEntity {
 
   @ApiProperty({ uniqueItems: true, example: 'Fruits' })
   @Column({ unique: true })
-  name: string;
+  name_en: string;
 
   @ApiProperty({ uniqueItems: true, example: 'Фрукти' })
   @Column({ unique: true })
