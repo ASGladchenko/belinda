@@ -10,7 +10,7 @@ export function getObjectByLanguage<T>(data: T, lang: string) {
       return [...acc, [key, [...getArrayByLanguage(value, lang)]]];
     }
 
-    if (!key.includes('_')) {
+    if (key.includes('_url') || !key.includes('_')) {
       return [...acc, [key, value]];
     }
 

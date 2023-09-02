@@ -125,7 +125,7 @@ export class ProductService {
       productDto.img_url = imgUrl;
     }
 
-    if (!file) {
+    if (!file && product.img_url) {
       await this.fileService.delete(product.img_url);
     }
 
