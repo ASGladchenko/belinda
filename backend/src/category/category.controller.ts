@@ -3,6 +3,7 @@ import {
   Put,
   Post,
   Body,
+  Query,
   Param,
   Delete,
   HttpCode,
@@ -12,6 +13,7 @@ import {
 } from '@nestjs/common';
 import {
   ApiTags,
+  ApiQuery,
   ApiOperation,
   ApiOkResponse,
   ApiCreatedResponse,
@@ -45,6 +47,7 @@ export class CategoryController {
   @Get(':id')
   @HttpCode(HttpStatus.OK)
   @ApiOperation({ summary: 'Get category by id' })
+  @ApiQuery({ name: 'isEdit', type: 'boolean', required: false })
   @ApiOkResponse({
     type: CategoryEntity,
     description: 'OK',
@@ -52,8 +55,9 @@ export class CategoryController {
   findOne(
     @Param('id') id: string,
     @GetLanguage() lang: LanguageType,
+    @Query('isEdit') isEdit?: boolean,
   ): Promise<CategoryEntity> {
-    return this.categoryService.findOne(id, lang);
+    return this.categoryService.findOne(id, lang, isEdit);
   }
 
   // @UseGuards(AuthGuard)

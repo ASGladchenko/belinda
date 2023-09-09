@@ -30,13 +30,21 @@ export class CategoryService {
     return getArrayByLanguage(categories, lang);
   }
 
-  async findOne(id: string, lang?: LanguageType): Promise<CategoryEntity> {
+  async findOne(
+    id: string,
+    lang?: LanguageType,
+    isEdit?: boolean,
+  ): Promise<CategoryEntity> {
     const category = await this.categoryRepository.findOneBy({
       id,
     });
 
     if (!category) {
       throw new HttpException('Category not found', HttpStatus.BAD_REQUEST);
+    }
+
+    if (isEdit) {
+      return category;
     }
 
     if (lang) {
