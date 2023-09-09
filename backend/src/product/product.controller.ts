@@ -60,6 +60,7 @@ export class ProductController {
   @Get(':id')
   @HttpCode(HttpStatus.OK)
   @ApiOperation({ summary: 'Get product by id' })
+  @ApiQuery({ name: 'isEdit', type: 'boolean', required: false })
   @ApiOkResponse({
     type: ProductEntity,
     description: 'OK',
@@ -67,8 +68,9 @@ export class ProductController {
   findOne(
     @Param('id') id: string,
     @GetLanguage() lang: LanguageType,
+    @Query('isEdit') isEdit?: boolean,
   ): Promise<ProductEntity> {
-    return this.productService.findOne(id, lang);
+    return this.productService.findOne(id, lang, !!isEdit);
   }
 
   // @UseGuards(AuthGuard)

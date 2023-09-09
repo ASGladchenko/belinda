@@ -41,13 +41,21 @@ export class ProductService {
     return getArrayByLanguage(products, lang);
   }
 
-  async findOne(id: string, lang?: LanguageType): Promise<ProductEntity> {
+  async findOne(
+    id: string,
+    lang?: LanguageType,
+    isEdit?: boolean,
+  ): Promise<ProductEntity> {
     const product = await this.productRepository.findOneBy({
       id,
     });
 
     if (!product) {
       throw new HttpException('Product not found', HttpStatus.BAD_REQUEST);
+    }
+
+    if (isEdit) {
+      return product;
     }
 
     if (lang) {
