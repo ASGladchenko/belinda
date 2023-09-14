@@ -1,9 +1,8 @@
 import axios from 'axios';
 import Cookies from 'js-cookie';
 
+import { http } from '@/constants';
 import { getCookies, removeTokensCookies } from '@/utils';
-
-import { http } from './constant';
 
 const initBelinda = ({ onAuthError }: { onAuthError: () => void }) => {
   axios.defaults.baseURL = `${http.url}/api`;

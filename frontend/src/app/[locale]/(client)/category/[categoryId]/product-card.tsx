@@ -1,6 +1,6 @@
 import Image from 'next/image';
 
-import { http } from '@/http/constant';
+import { http } from '@/constants';
 import { AnimationBlock } from '@/components/animation-block';
 import { default as skeleton } from '@/assets/products/skeleton.png';
 

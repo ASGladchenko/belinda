@@ -26,7 +26,7 @@ const EditPage = ({
 }: IEditPage) => {
   const router = useRouter();
   const { data, isLoading } = useSWR(productId, () =>
-    product.getProductById(productId),
+    product.getProductById(productId, true),
   );
 
   const initialValues =

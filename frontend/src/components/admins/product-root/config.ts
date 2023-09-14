@@ -7,7 +7,7 @@ const cyrillicRegExp = /^[А-Яа-яЁёЇїІіЄєҐґ']+$/;
 
 export const getInitialValues = (initial?: IRootData) => ({
   name_ua: initial?.name_ua || '',
-  name: initial?.name || '',
+  name_en: initial?.name_en || '',
 });
 
 export const validationSchema = ({
@@ -17,7 +17,7 @@ export const validationSchema = ({
   matches_cyrillic,
 }: IMessage) => {
   return Yup.object().shape({
-    name: Yup.string()
+    name_en: Yup.string()
       .required(required)
       .min(4, min4)
       .matches(baseNameRegExp, matches_english),

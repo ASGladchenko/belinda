@@ -16,6 +16,7 @@ export const ClientCategory = ({
   const { data, isLoading } = useSWR(categoryId, () =>
     productRoot.getCategoryById(categoryId),
   );
+  console.log(data, isLoading);
 
   const { data: products, isLoading: isLoadingProducts } = useSWR(
     `products/${categoryId}`,
@@ -32,9 +33,9 @@ export const ClientCategory = ({
         }}
         className="text-[26px] sm:text-[30px] md:text-[36px] lg:text-[40px] font-bold w-full h-[346px] bg-cover flex items-center justify-center text-white"
       >
-        <h2 className="uppercase">
-          {`${isLoading ? 'Loading...' : data?.name}`}
-        </h2>
+        <h2 className="uppercase">{`${
+          !isLoading && data && data?.name_en
+        }`}</h2>
       </div>
 
       <div className="container flex flex-wrap items-center justify-center gap-6 py-[50px] md:gap-3 lg:py-[100px] lg:px-0">

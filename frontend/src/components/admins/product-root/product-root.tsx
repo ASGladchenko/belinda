@@ -1,5 +1,5 @@
 'use client';
-import { useMemo, useState } from 'react';
+import { useState } from 'react';
 import axios from 'axios';
 import { useSWRConfig } from 'swr';
 
@@ -38,8 +38,10 @@ export const ProductRoot = ({
   categories,
 }: IProductRoot) => {
   const [id, setId] = useState('');
-  const [isFetching, setIsFetching] = useState(false);
+  const [isFetching, setIsFetching] = useState<boolean>(false);
   const { mutate } = useSWRConfig();
+  const [initialValues, setInitialValues] = useState<IRootData | undefined>();
+
   const { isOpen, isAnimation, setOpen } = useDelayAnimation(300);
 
   const onSubmit = async (values: IRootData) => {
@@ -59,13 +61,21 @@ export const ProductRoot = ({
   };
 
   const onEdit = async (id: string) => {
+    try {
+      const category = await productRoot.getCategoryById(id, true);
+      setInitialValues(category);
+    } catch (e) {
+      console.log(e);
+    } finally {
+      console.log('finally');
+    }
     setId(id);
     setOpen(true);
   };
 
-  const initialValues = useMemo(() => {
-    return categories?.find((category) => category.id === id);
-  }, [id, categories]);
+  // const initialValues = useMemo(() => {
+  //   return categories?.find((category) => category.id === id);
+  // }, [id, categories]);
 
   return (
     <>

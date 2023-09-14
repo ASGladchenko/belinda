@@ -1,7 +1,9 @@
 import { belinda } from './interceptor';
 
-export const getProductById = (id: string) =>
-  belinda.get(`/product/${id}`).then(({ data }) => data);
+export const getProductById = (id: string, isEdit: boolean = false) =>
+  belinda
+    .get(`/product/${id}`, { params: { isEdit } })
+    .then(({ data }) => data);
 
 export const getProducts = (categoryId: string) =>
   belinda.get(`/product`, { params: { categoryId } }).then(({ data }) => data);

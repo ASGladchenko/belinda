@@ -27,19 +27,25 @@ const CreatePage = ({
   );
 
   const onSubmit = async (values: FormikValues) => {
-    const { name, name_ua, img_url, description, months, description_ua } =
-      values;
+    const {
+      name_en,
+      name_ua,
+      img_url,
+      description_en,
+      months,
+      description_ua,
+    } = values;
 
     console.log(img_url);
 
     const formData = new FormData();
 
     if (data?.id) {
-      formData.append('name', name);
+      formData.append('name_en', name_en);
       formData.append('name_ua', name_ua);
       formData.append('img_url', img_url);
       formData.append('categoryId', data.id);
-      formData.append('description', description);
+      formData.append('description_en', description_en);
       formData.append('description_ua', description_ua);
       formData.append('months', JSON.stringify(months));
     }

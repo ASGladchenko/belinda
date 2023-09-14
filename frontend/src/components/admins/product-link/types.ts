@@ -1,7 +1,7 @@
 export interface IProductLink {
   id: string;
   url: string;
-  name: string;
+  name_en: string;
   img?: string;
   name_ua: string;
   baseHref: string;

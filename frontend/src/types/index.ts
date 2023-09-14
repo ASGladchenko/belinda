@@ -19,7 +19,7 @@ export interface IAuth {
 }
 
 export interface IRootData {
-  name: string;
+  name_en: string;
   name_ua: string;
 }
 

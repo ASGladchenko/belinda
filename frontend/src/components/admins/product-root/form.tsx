@@ -38,7 +38,7 @@ const Form = ({
         <h2 className={`text-3xl capitalize ${text}`}>{title}</h2>
 
         <InputField
-          name="name"
+          name="name_en"
           className="text-white"
           label={formText.name_eng}
         />

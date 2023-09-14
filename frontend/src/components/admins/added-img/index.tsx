@@ -3,8 +3,8 @@ import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { Field, FieldProps } from 'formik';
 
+import { http } from '@/constants';
 import { Plus } from '@/assets/icons';
-import { http } from '@/http/constant';
 import { showMessage } from '@/components/toast';
 
 import { IAddedImg, IHandleImageChange, IOnClear } from './types';
@@ -55,6 +55,7 @@ const AddedImg = ({ imgUrl, name }: IAddedImg) => {
               {!previewURL && !imgUrl && <Plus width={64} height={64} />}
               <input
                 type="file"
+                accept=".png"
                 className="hidden w-0 h-0"
                 onChange={(event) => handleImageChange({ event, form })}
               />

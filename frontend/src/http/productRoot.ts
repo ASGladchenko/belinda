@@ -5,8 +5,10 @@ import { belinda } from './interceptor';
 export const getCategory = (url: string) =>
   belinda.get(url).then(({ data }) => data);
 
-export const getCategoryById = (id: string) =>
-  belinda.get(`/category/${id}`).then(({ data }) => data);
+export const getCategoryById = (id: string, isEdit: boolean = false) =>
+  belinda
+    .get(`/category/${id}`, { params: { isEdit } })
+    .then(({ data }) => data);
 
 export const create = (data: IRootData, url: string) =>
   belinda.post(url, data).then(({ data }) => data);

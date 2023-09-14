@@ -12,10 +12,10 @@ export interface IProductForm {
 
 export interface IProduct {
   id: string;
-  name: string;
+  name_en: string;
   name_ua: string;
   img_url: string;
   months: string[];
-  description: string;
+  description_en: string;
   description_ua: string;
 }

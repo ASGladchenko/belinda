@@ -30,7 +30,7 @@ export const ProductForm = ({
               <div className="flex flex-col gap-5 sm:gap-3 w-full sm:w-[300px] ">
                 <InputField
                   type="text"
-                  name="name"
+                  name="name_en"
                   label={productFormText.name_eng}
                 />
 
@@ -53,7 +53,7 @@ export const ProductForm = ({
 
             <InputField
               type="textarea"
-              name="description"
+              name="description_en"
               label={productFormText.description_eng}
             />
 
