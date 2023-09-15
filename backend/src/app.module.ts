@@ -10,6 +10,7 @@ import { AuthModule } from './auth/auth.module';
 import { ProductModule } from './product/product.module';
 import { CategoryModule } from './category/category.module';
 import { DuplicateModule } from './duplicate/duplicate.module';
+import { SeasonalityModule } from './seasonality/seasonality.module';
 
 @Module({
   imports: [
@@ -27,6 +28,7 @@ import { DuplicateModule } from './duplicate/duplicate.module';
     ProductModule,
     FileModule,
     DuplicateModule,
+    SeasonalityModule,
   ],
 })
 export class AppModule {}
