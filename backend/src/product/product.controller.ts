@@ -68,9 +68,9 @@ export class ProductController {
   findOne(
     @Param('id') id: string,
     @GetLanguage() lang: LanguageType,
-    @Query('isEdit') isEdit?: boolean,
+    @Query('isEdit') isEdit?: string,
   ): Promise<ProductEntity> {
-    return this.productService.findOne(id, lang, !!isEdit);
+    return this.productService.findOne(id, lang, isEdit);
   }
 
   // @UseGuards(AuthGuard)

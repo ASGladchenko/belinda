@@ -44,7 +44,7 @@ export class ProductService {
   async findOne(
     id: string,
     lang?: LanguageType,
-    isEdit?: boolean,
+    isEdit?: string,
   ): Promise<ProductEntity> {
     const product = await this.productRepository.findOneBy({
       id,
@@ -54,11 +54,7 @@ export class ProductService {
       throw new HttpException('Product not found', HttpStatus.BAD_REQUEST);
     }
 
-    if (isEdit) {
-      return product;
-    }
-
-    if (lang) {
+    if (lang && isEdit === 'false') {
       return getObjectByLanguage(product, lang);
     }
 

@@ -55,7 +55,7 @@ export class CategoryController {
   findOne(
     @Param('id') id: string,
     @GetLanguage() lang: LanguageType,
-    @Query('isEdit') isEdit?: boolean,
+    @Query('isEdit') isEdit?: string,
   ): Promise<CategoryEntity> {
     return this.categoryService.findOne(id, lang, isEdit);
   }
