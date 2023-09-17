@@ -2,10 +2,10 @@ import { Repository } from 'typeorm';
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 
+import { IProductByLanguage } from './types';
 import { getArrayByLanguage } from '../utils';
 import { ProductEntity } from './../product/product.entity';
 import { LanguageType } from './../decorators/language.decorator';
-import { IProductByLanguage } from './types';
 
 @Injectable()
 export class SeasonalityService {
